@@ -9,3 +9,16 @@ db
 simulation
 incremental_db
 
+qsys_system.sopcinfo
+DE2115_DualLockins.asm.rpt
+DE2115_DualLockins.done
+DE2115_DualLockins.fit.rpt
+DE2115_DualLockins.fit.summary
+DE2115_DualLockins.flow.rpt
+DE2115_DualLockins.jdi
+DE2115_DualLockins.map.rpt
+DE2115_DualLockins.map.summary
+DE2115_DualLockins.qsf
+DE2115_DualLockins.sld
+DE2115_DualLockins.sof
+DE2115_DualLockins.sta.rpt
