@@ -277,7 +277,7 @@ assign	LEDG[3]			=  ADA_OR;
 assign	LEDG[4]			=  ADB_OR;
 
 assign 	LEDG[8:5]		=  4'b0;
-assign 	LEDR[16:0]		=  17'b0;
+assign 	LEDR[17:1]		=  17'b0;
 
 
 assign	HEX0[6:0]		=	7'b1111111;
@@ -456,7 +456,7 @@ DE2115_DualLockins_system DE2115_DualLockins_system_inst(
 				.adc_data			(adc_data_in),
 				.adc_clk				(ADA_DCO),
 				.heartbeat_led		(LEDG[0]),
-				.overflow			(LEDR[17])
+				.overflow			(LEDR[0])
 				
 );
 				
