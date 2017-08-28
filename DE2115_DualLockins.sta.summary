@@ -1,0 +1,461 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'FPGA_CLK_B_P'
+Slack : 1.951
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'CLOCK_50'
+Slack : 2.737
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_x|clk_decimated|q'
+Slack : 11.292
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'ADA_DCO'
+Slack : 12.835
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_x|clk_decimated|q'
+Slack : 14.725
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_y|clk_decimated|q'
+Slack : 14.902
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_y|clk_decimated|q'
+Slack : 15.068
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'altera_reserved_tck'
+Slack : 35.570
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'GPIO[8]'
+Slack : 81.607
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'GPIO[8]'
+Slack : 0.330
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'CLOCK_50'
+Slack : 0.332
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'altera_reserved_tck'
+Slack : 0.387
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_x|clk_decimated|q'
+Slack : 0.401
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'ADA_DCO'
+Slack : 0.438
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_y|clk_decimated|q'
+Slack : 0.462
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_x|clk_decimated|q'
+Slack : 0.591
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_y|clk_decimated|q'
+Slack : 0.605
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'FPGA_CLK_B_P'
+Slack : 16.462
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'CLOCK_50'
+Slack : 6.169
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'ADA_DCO'
+Slack : 13.005
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'altera_reserved_tck'
+Slack : 94.137
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'CLOCK_50'
+Slack : 1.027
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'altera_reserved_tck'
+Slack : 1.126
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'ADA_DCO'
+Slack : 3.267
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'ADA_DCO'
+Slack : 9.536
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLOCK_50'
+Slack : 9.546
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'FPGA_CLK_A_N'
+Slack : 15.790
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'FPGA_CLK_A_P'
+Slack : 15.790
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'FPGA_CLK_B_N'
+Slack : 15.790
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'FPGA_CLK_B_P'
+Slack : 15.790
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLOCK2_50'
+Slack : 16.000
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLOCK3_50'
+Slack : 16.000
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 49.484
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'GPIO[8]'
+Slack : 49.593
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_x|clk_decimated|q'
+Slack : 499999.746
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_y|clk_decimated|q'
+Slack : 499999.747
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_y|clk_decimated|q'
+Slack : 499999.753
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_x|clk_decimated|q'
+Slack : 499999.786
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'FPGA_CLK_B_P'
+Slack : 2.707
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'CLOCK_50'
+Slack : 3.317
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_x|clk_decimated|q'
+Slack : 11.906
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'ADA_DCO'
+Slack : 13.495
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_x|clk_decimated|q'
+Slack : 15.277
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_y|clk_decimated|q'
+Slack : 15.455
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_y|clk_decimated|q'
+Slack : 15.591
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'altera_reserved_tck'
+Slack : 36.628
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'GPIO[8]'
+Slack : 83.015
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'GPIO[8]'
+Slack : 0.299
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'CLOCK_50'
+Slack : 0.332
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'altera_reserved_tck'
+Slack : 0.340
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_x|clk_decimated|q'
+Slack : 0.353
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'ADA_DCO'
+Slack : 0.405
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_y|clk_decimated|q'
+Slack : 0.453
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_x|clk_decimated|q'
+Slack : 0.558
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_y|clk_decimated|q'
+Slack : 0.581
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'FPGA_CLK_B_P'
+Slack : 15.788
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'CLOCK_50'
+Slack : 6.610
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'ADA_DCO'
+Slack : 13.782
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'altera_reserved_tck'
+Slack : 94.587
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'CLOCK_50'
+Slack : 0.938
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'altera_reserved_tck'
+Slack : 1.026
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'ADA_DCO'
+Slack : 2.910
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : 9.555
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'ADA_DCO'
+Slack : 9.573
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'FPGA_CLK_A_N'
+Slack : 15.790
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'FPGA_CLK_A_P'
+Slack : 15.790
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'FPGA_CLK_B_N'
+Slack : 15.790
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'FPGA_CLK_B_P'
+Slack : 15.790
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLOCK2_50'
+Slack : 16.000
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLOCK3_50'
+Slack : 16.000
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 49.400
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'GPIO[8]'
+Slack : 49.675
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_y|clk_decimated|q'
+Slack : 499999.726
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_y|clk_decimated|q'
+Slack : 499999.732
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_x|clk_decimated|q'
+Slack : 499999.772
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_x|clk_decimated|q'
+Slack : 499999.776
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'FPGA_CLK_B_P'
+Slack : 5.188
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'CLOCK_50'
+Slack : 5.717
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'ADA_DCO'
+Slack : 15.532
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_x|clk_decimated|q'
+Slack : 15.549
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_x|clk_decimated|q'
+Slack : 17.310
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_y|clk_decimated|q'
+Slack : 17.378
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_y|clk_decimated|q'
+Slack : 17.478
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'altera_reserved_tck'
+Slack : 41.569
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'GPIO[8]'
+Slack : 90.187
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'CLOCK_50'
+Slack : 0.129
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'GPIO[8]'
+Slack : 0.146
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'ADA_DCO'
+Slack : 0.159
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'altera_reserved_tck'
+Slack : 0.164
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_x|clk_decimated|q'
+Slack : 0.181
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_y|clk_decimated|q'
+Slack : 0.221
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_x|clk_decimated|q'
+Slack : 0.263
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_y|clk_decimated|q'
+Slack : 0.281
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'FPGA_CLK_B_P'
+Slack : 13.848
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'CLOCK_50'
+Slack : 7.600
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'ADA_DCO'
+Slack : 15.405
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'altera_reserved_tck'
+Slack : 96.842
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'CLOCK_50'
+Slack : 0.488
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'altera_reserved_tck'
+Slack : 0.536
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'ADA_DCO'
+Slack : 1.042
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : 9.199
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'ADA_DCO'
+Slack : 9.427
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLOCK2_50'
+Slack : 16.000
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLOCK3_50'
+Slack : 16.000
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'FPGA_CLK_A_N'
+Slack : 16.000
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'FPGA_CLK_A_P'
+Slack : 16.000
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'FPGA_CLK_B_N'
+Slack : 16.000
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'FPGA_CLK_B_P'
+Slack : 16.000
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'GPIO[8]'
+Slack : 49.127
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 49.285
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_x|clk_decimated|q'
+Slack : 499999.729
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_x|clk_decimated|q'
+Slack : 499999.771
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_1|cic_y|clk_decimated|q'
+Slack : 499999.774
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'DE2115_DualLockins_system_inst|dual_lia_inst|lockin_2|cic_y|clk_decimated|q'
+Slack : 499999.774
+TNS   : 0.000
+
+------------------------------------------------------------
