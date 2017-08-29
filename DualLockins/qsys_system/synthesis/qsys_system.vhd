@@ -9,7 +9,7 @@ use IEEE.numeric_std.all;
 entity qsys_system is
 	port (
 		clk_clk             : in  std_logic                     := '0'; --          clk.clk
-		gain_ctrl_export    : out std_logic_vector(4 downto 0);         --    gain_ctrl.export
+		gain_ctrl_export    : out std_logic_vector(5 downto 0);         --    gain_ctrl.export
 		phase_incr_1_export : out std_logic_vector(19 downto 0);        -- phase_incr_1.export
 		phase_incr_2_export : out std_logic_vector(19 downto 0);        -- phase_incr_2.export
 		phase_offs_1_export : out std_logic_vector(19 downto 0);        -- phase_offs_1.export
@@ -92,7 +92,7 @@ architecture rtl of qsys_system is
 			writedata  : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
 			chipselect : in  std_logic                     := 'X';             -- chipselect
 			readdata   : out std_logic_vector(31 downto 0);                    -- readdata
-			out_port   : out std_logic_vector(4 downto 0)                      -- export
+			out_port   : out std_logic_vector(5 downto 0)                      -- export
 		);
 	end component qsys_system_gain_controller;
 

@@ -41,8 +41,8 @@ agreement for further details.
 	(port
 		(pt 0 112)
 		(output)
-		(text "gain_ctrl_export[4..0]" (rect 0 0 84 12)(font "Arial" (font_size 8)))
-		(text "gain_ctrl_export[4..0]" (rect 4 101 136 112)(font "Arial" (font_size 8)))
+		(text "gain_ctrl_export[5..0]" (rect 0 0 83 12)(font "Arial" (font_size 8)))
+		(text "gain_ctrl_export[5..0]" (rect 4 101 136 112)(font "Arial" (font_size 8)))
 		(line (pt 0 112)(pt 160 112)(line_width 3))
 	)
 	(port
