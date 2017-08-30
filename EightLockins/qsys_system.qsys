@@ -65,6 +65,102 @@
          type = "int";
       }
    }
+   element nco_freq_ctrl_3
+   {
+      datum _sortIndex
+      {
+         value = "9";
+         type = "int";
+      }
+   }
+   element nco_freq_ctrl_3.s1
+   {
+      datum baseAddress
+      {
+         value = "32";
+         type = "String";
+      }
+   }
+   element nco_freq_ctrl_4
+   {
+      datum _sortIndex
+      {
+         value = "10";
+         type = "int";
+      }
+   }
+   element nco_freq_ctrl_4.s1
+   {
+      datum baseAddress
+      {
+         value = "48";
+         type = "String";
+      }
+   }
+   element nco_freq_ctrl_5
+   {
+      datum _sortIndex
+      {
+         value = "11";
+         type = "int";
+      }
+   }
+   element nco_freq_ctrl_5.s1
+   {
+      datum baseAddress
+      {
+         value = "64";
+         type = "String";
+      }
+   }
+   element nco_freq_ctrl_6
+   {
+      datum _sortIndex
+      {
+         value = "12";
+         type = "int";
+      }
+   }
+   element nco_freq_ctrl_6.s1
+   {
+      datum baseAddress
+      {
+         value = "80";
+         type = "String";
+      }
+   }
+   element nco_freq_ctrl_7
+   {
+      datum _sortIndex
+      {
+         value = "13";
+         type = "int";
+      }
+   }
+   element nco_freq_ctrl_7.s1
+   {
+      datum baseAddress
+      {
+         value = "96";
+         type = "String";
+      }
+   }
+   element nco_freq_ctrl_8
+   {
+      datum _sortIndex
+      {
+         value = "14";
+         type = "int";
+      }
+   }
+   element nco_freq_ctrl_8.s1
+   {
+      datum baseAddress
+      {
+         value = "112";
+         type = "String";
+      }
+   }
    element nco_phase_ctrl_1
    {
       datum _sortIndex
@@ -97,6 +193,102 @@
          type = "String";
       }
    }
+   element nco_phase_ctrl_3
+   {
+      datum _sortIndex
+      {
+         value = "15";
+         type = "int";
+      }
+   }
+   element nco_phase_ctrl_3.s1
+   {
+      datum baseAddress
+      {
+         value = "268435488";
+         type = "String";
+      }
+   }
+   element nco_phase_ctrl_4
+   {
+      datum _sortIndex
+      {
+         value = "16";
+         type = "int";
+      }
+   }
+   element nco_phase_ctrl_4.s1
+   {
+      datum baseAddress
+      {
+         value = "268435504";
+         type = "String";
+      }
+   }
+   element nco_phase_ctrl_5
+   {
+      datum _sortIndex
+      {
+         value = "17";
+         type = "int";
+      }
+   }
+   element nco_phase_ctrl_5.s1
+   {
+      datum baseAddress
+      {
+         value = "268435520";
+         type = "String";
+      }
+   }
+   element nco_phase_ctrl_6
+   {
+      datum _sortIndex
+      {
+         value = "18";
+         type = "int";
+      }
+   }
+   element nco_phase_ctrl_6.s1
+   {
+      datum baseAddress
+      {
+         value = "268435536";
+         type = "String";
+      }
+   }
+   element nco_phase_ctrl_7
+   {
+      datum _sortIndex
+      {
+         value = "19";
+         type = "int";
+      }
+   }
+   element nco_phase_ctrl_7.s1
+   {
+      datum baseAddress
+      {
+         value = "268435552";
+         type = "String";
+      }
+   }
+   element nco_phase_ctrl_8
+   {
+      datum _sortIndex
+      {
+         value = "20";
+         type = "int";
+      }
+   }
+   element nco_phase_ctrl_8.s1
+   {
+      datum baseAddress
+      {
+         value = "268435568";
+         type = "String";
+      }
+   }
    element onchip_ram
    {
       datum _sortIndex
@@ -119,7 +311,7 @@
  <parameter name="hideFromIPCatalog" value="false" />
  <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="1" />
- <parameter name="projectName" value="" />
+ <parameter name="projectName" value="EightLockins.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="testBenchDutName" value="" />
@@ -143,6 +335,36 @@
    type="conduit"
    dir="end" />
  <interface
+   name="phase_incr_3"
+   internal="nco_freq_ctrl_3.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="phase_incr_4"
+   internal="nco_freq_ctrl_4.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="phase_incr_5"
+   internal="nco_freq_ctrl_5.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="phase_incr_6"
+   internal="nco_freq_ctrl_6.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="phase_incr_7"
+   internal="nco_freq_ctrl_7.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="phase_incr_8"
+   internal="nco_freq_ctrl_8.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
    name="phase_offs_1"
    internal="nco_phase_ctrl_1.external_connection"
    type="conduit"
@@ -150,6 +372,36 @@
  <interface
    name="phase_offs_2"
    internal="nco_phase_ctrl_2.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="phase_offs_3"
+   internal="nco_phase_ctrl_3.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="phase_offs_4"
+   internal="nco_phase_ctrl_4.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="phase_offs_5"
+   internal="nco_phase_ctrl_5.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="phase_offs_6"
+   internal="nco_phase_ctrl_6.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="phase_offs_7"
+   internal="nco_phase_ctrl_7.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="phase_offs_8"
+   internal="nco_phase_ctrl_8.external_connection"
    type="conduit"
    dir="end" />
  <interface name="reset" internal="clk.clk_in_reset" type="reset" dir="end" />
@@ -284,6 +536,114 @@
   <parameter name="width" value="20" />
  </module>
  <module
+   name="nco_freq_ctrl_3"
+   kind="altera_avalon_pio"
+   version="16.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="20" />
+ </module>
+ <module
+   name="nco_freq_ctrl_4"
+   kind="altera_avalon_pio"
+   version="16.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="20" />
+ </module>
+ <module
+   name="nco_freq_ctrl_5"
+   kind="altera_avalon_pio"
+   version="16.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="20" />
+ </module>
+ <module
+   name="nco_freq_ctrl_6"
+   kind="altera_avalon_pio"
+   version="16.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="20" />
+ </module>
+ <module
+   name="nco_freq_ctrl_7"
+   kind="altera_avalon_pio"
+   version="16.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="20" />
+ </module>
+ <module
+   name="nco_freq_ctrl_8"
+   kind="altera_avalon_pio"
+   version="16.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="20" />
+ </module>
+ <module
    name="nco_phase_ctrl_1"
    kind="altera_avalon_pio"
    version="16.0"
@@ -303,6 +663,114 @@
  </module>
  <module
    name="nco_phase_ctrl_2"
+   kind="altera_avalon_pio"
+   version="16.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="20" />
+ </module>
+ <module
+   name="nco_phase_ctrl_3"
+   kind="altera_avalon_pio"
+   version="16.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="20" />
+ </module>
+ <module
+   name="nco_phase_ctrl_4"
+   kind="altera_avalon_pio"
+   version="16.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="20" />
+ </module>
+ <module
+   name="nco_phase_ctrl_5"
+   kind="altera_avalon_pio"
+   version="16.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="20" />
+ </module>
+ <module
+   name="nco_phase_ctrl_6"
+   kind="altera_avalon_pio"
+   version="16.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="20" />
+ </module>
+ <module
+   name="nco_phase_ctrl_7"
+   kind="altera_avalon_pio"
+   version="16.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="20" />
+ </module>
+ <module
+   name="nco_phase_ctrl_8"
    kind="altera_avalon_pio"
    version="16.0"
    enabled="1">
@@ -407,6 +875,114 @@
  <connection
    kind="avalon"
    version="16.0"
+   start="bfm_master.m0"
+   end="nco_freq_ctrl_3.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0020" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="bfm_master.m0"
+   end="nco_freq_ctrl_4.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0030" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="bfm_master.m0"
+   end="nco_freq_ctrl_5.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0040" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="bfm_master.m0"
+   end="nco_freq_ctrl_6.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0050" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="bfm_master.m0"
+   end="nco_freq_ctrl_7.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0060" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="bfm_master.m0"
+   end="nco_freq_ctrl_8.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0070" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="bfm_master.m0"
+   end="nco_phase_ctrl_3.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x10000020" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="bfm_master.m0"
+   end="nco_phase_ctrl_4.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x10000030" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="bfm_master.m0"
+   end="nco_phase_ctrl_5.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x10000040" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="bfm_master.m0"
+   end="nco_phase_ctrl_6.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x10000050" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="bfm_master.m0"
+   end="nco_phase_ctrl_7.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x10000060" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="bfm_master.m0"
+   end="nco_phase_ctrl_8.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x10000070" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
    start="jtag_master.master"
    end="nco_freq_control_1.s1">
   <parameter name="arbitrationPriority" value="1" />
@@ -458,6 +1034,114 @@
   <parameter name="baseAddress" value="0x20000000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="jtag_master.master"
+   end="nco_freq_ctrl_3.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0020" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="jtag_master.master"
+   end="nco_freq_ctrl_4.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0030" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="jtag_master.master"
+   end="nco_freq_ctrl_5.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0040" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="jtag_master.master"
+   end="nco_freq_ctrl_6.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0050" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="jtag_master.master"
+   end="nco_freq_ctrl_7.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0060" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="jtag_master.master"
+   end="nco_freq_ctrl_8.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0070" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="jtag_master.master"
+   end="nco_phase_ctrl_3.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x10000020" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="jtag_master.master"
+   end="nco_phase_ctrl_4.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x10000030" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="jtag_master.master"
+   end="nco_phase_ctrl_5.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x10000040" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="jtag_master.master"
+   end="nco_phase_ctrl_6.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x10000050" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="jtag_master.master"
+   end="nco_phase_ctrl_7.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x10000060" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="jtag_master.master"
+   end="nco_phase_ctrl_8.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x10000070" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
  <connection kind="clock" version="16.0" start="clk.clk" end="bfm_master.clk" />
  <connection kind="clock" version="16.0" start="clk.clk" end="jtag_master.clk" />
  <connection
@@ -481,6 +1165,42 @@
    start="clk.clk"
    end="nco_phase_ctrl_2.clk" />
  <connection kind="clock" version="16.0" start="clk.clk" end="gain_controller.clk" />
+ <connection kind="clock" version="16.0" start="clk.clk" end="nco_freq_ctrl_3.clk" />
+ <connection kind="clock" version="16.0" start="clk.clk" end="nco_freq_ctrl_4.clk" />
+ <connection kind="clock" version="16.0" start="clk.clk" end="nco_freq_ctrl_5.clk" />
+ <connection kind="clock" version="16.0" start="clk.clk" end="nco_freq_ctrl_6.clk" />
+ <connection kind="clock" version="16.0" start="clk.clk" end="nco_freq_ctrl_7.clk" />
+ <connection kind="clock" version="16.0" start="clk.clk" end="nco_freq_ctrl_8.clk" />
+ <connection
+   kind="clock"
+   version="16.0"
+   start="clk.clk"
+   end="nco_phase_ctrl_3.clk" />
+ <connection
+   kind="clock"
+   version="16.0"
+   start="clk.clk"
+   end="nco_phase_ctrl_4.clk" />
+ <connection
+   kind="clock"
+   version="16.0"
+   start="clk.clk"
+   end="nco_phase_ctrl_5.clk" />
+ <connection
+   kind="clock"
+   version="16.0"
+   start="clk.clk"
+   end="nco_phase_ctrl_6.clk" />
+ <connection
+   kind="clock"
+   version="16.0"
+   start="clk.clk"
+   end="nco_phase_ctrl_7.clk" />
+ <connection
+   kind="clock"
+   version="16.0"
+   start="clk.clk"
+   end="nco_phase_ctrl_8.clk" />
  <connection kind="clock" version="16.0" start="clk.clk" end="onchip_ram.clk1" />
  <connection
    kind="reset"
@@ -517,6 +1237,66 @@
    version="16.0"
    start="clk.clk_reset"
    end="gain_controller.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="clk.clk_reset"
+   end="nco_freq_ctrl_3.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="clk.clk_reset"
+   end="nco_freq_ctrl_4.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="clk.clk_reset"
+   end="nco_freq_ctrl_5.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="clk.clk_reset"
+   end="nco_freq_ctrl_6.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="clk.clk_reset"
+   end="nco_freq_ctrl_7.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="clk.clk_reset"
+   end="nco_freq_ctrl_8.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="clk.clk_reset"
+   end="nco_phase_ctrl_3.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="clk.clk_reset"
+   end="nco_phase_ctrl_4.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="clk.clk_reset"
+   end="nco_phase_ctrl_5.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="clk.clk_reset"
+   end="nco_phase_ctrl_6.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="clk.clk_reset"
+   end="nco_phase_ctrl_7.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="clk.clk_reset"
+   end="nco_phase_ctrl_8.reset" />
  <connection
    kind="reset"
    version="16.0"

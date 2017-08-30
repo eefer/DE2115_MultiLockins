@@ -33,6 +33,18 @@ ENTITY DE2115_EightLockins_system IS
 		lia_out_y_1 		: 	out 	std_logic_vector(15 downto 0);	-- lock-in y output signal for lockin_1
 		lia_out_x_2 		: 	out 	std_logic_vector(15 downto 0);	-- lock-in x output signal for lockin_2
 		lia_out_y_2 		: 	out 	std_logic_vector(15 downto 0);	-- lock-in y output signal for lockin_2
+		lia_out_x_3 		: 	out 	std_logic_vector(15 downto 0);	-- lock-in x output signal for lockin_2
+		lia_out_y_3 		: 	out 	std_logic_vector(15 downto 0);
+		lia_out_x_4 		: 	out 	std_logic_vector(15 downto 0);	-- lock-in x output signal for lockin_2
+		lia_out_y_4 		: 	out 	std_logic_vector(15 downto 0);
+		lia_out_x_5 		: 	out 	std_logic_vector(15 downto 0);	-- lock-in x output signal for lockin_2
+		lia_out_y_5 		: 	out 	std_logic_vector(15 downto 0);
+		lia_out_x_6 		: 	out 	std_logic_vector(15 downto 0);	-- lock-in x output signal for lockin_2
+		lia_out_y_6 		: 	out 	std_logic_vector(15 downto 0);
+		lia_out_x_7 		: 	out 	std_logic_vector(15 downto 0);	-- lock-in x output signal for lockin_2
+		lia_out_y_7 		: 	out 	std_logic_vector(15 downto 0);
+		lia_out_x_8 		: 	out 	std_logic_vector(15 downto 0);	-- lock-in x output signal for lockin_2
+		lia_out_y_8 		: 	out 	std_logic_vector(15 downto 0);
 		
 		lia_out_valid 		: 	out 	std_logic;
 			
@@ -67,14 +79,33 @@ architecture arch of DE2115_EightLockins_system is
 		samp_clk_i	: in std_logic;								-- sampling clock (1 MHz), ADC sampling rate
 		input			: in std_logic_vector( 13 downto 0);	-- input signal (from ADC)
 		samp_clk_o	: out std_logic;								-- output sampling clock (default 1 kHz) from the CIC filters
-		lia_out_x_1 : out std_logic_vector(15 downto 0);	-- lock-in output signal for lockin_1
-		lia_out_y_1 : out std_logic_vector(15 downto 0);	-- lock-in output signal for lockin_1
-		lia_out_x_2 : out std_logic_vector(15 downto 0);	-- lock-in output signal for lockin_2
-		lia_out_y_2 : out std_logic_vector(15 downto 0);	-- lock-in output signal for lockin_2
 		
+		lia_out_x_1 : out std_logic_vector(15 downto 0);	-- lock-in output signal for lockin_1
+		lia_out_x_2 : out std_logic_vector(15 downto 0);	-- lock-in output signal for lockin_2
+		lia_out_x_3 : out std_logic_vector(15 downto 0);
+		lia_out_x_4 : out std_logic_vector(15 downto 0);
+		lia_out_x_5 : out std_logic_vector(15 downto 0);
+		lia_out_x_6 : out std_logic_vector(15 downto 0);
+		lia_out_x_7 : out std_logic_vector(15 downto 0);
+		lia_out_x_8 : out std_logic_vector(15 downto 0);
+		
+		lia_out_y_1 : out std_logic_vector(15 downto 0);	-- lock-in output signal for lockin_1
+		lia_out_y_2 : out std_logic_vector(15 downto 0);	-- lock-in output signal for lockin_2
+		lia_out_y_3 : out std_logic_vector(15 downto 0);
+		lia_out_y_4 : out std_logic_vector(15 downto 0);
+		lia_out_y_5 : out std_logic_vector(15 downto 0);
+		lia_out_y_6 : out std_logic_vector(15 downto 0);
+		lia_out_y_7 : out std_logic_vector(15 downto 0);
+		lia_out_y_8 : out std_logic_vector(15 downto 0);
 		-- cos drive signals to be sent to DAC
 		dpll_cos_1	: out std_logic_vector(12 downto 0);	-- cosine reference signal for lockin_1
 		dpll_cos_2	: out std_logic_vector(12 downto 0);	-- cosine reference signal for lockin_2
+		dpll_cos_3	: out std_logic_vector(12 downto 0);
+		dpll_cos_4	: out std_logic_vector(12 downto 0);
+		dpll_cos_5	: out std_logic_vector(12 downto 0);
+		dpll_cos_6	: out std_logic_vector(12 downto 0);
+		dpll_cos_7	: out std_logic_vector(12 downto 0);
+		dpll_cos_8	: out std_logic_vector(12 downto 0);
 		
 		-- control lines
 --		out_sel_cycle_i	: in std_logic := '0';				-- rising edge causes output select to change
@@ -88,15 +119,31 @@ architecture arch of DE2115_EightLockins_system is
 	END COMPONENT; -- dual_lia_pkg
 	
 	
-
-	COMPONENT lpm_add IS
+--
+--	COMPONENT lpm_add IS
+--	PORT
+--	(
+--		dataa		: IN 	STD_LOGIC_VECTOR (13 DOWNTO 0);
+--		datab		: IN 	STD_LOGIC_VECTOR (13 DOWNTO 0);
+--		result	: OUT STD_LOGIC_VECTOR (13 DOWNTO 0)
+--	);
+--	END COMPONENT; -- lpm_add;
+	
+	
+	COMPONENT eight_add IS
 	PORT
 	(
-		dataa		: IN 	STD_LOGIC_VECTOR (13 DOWNTO 0);
-		datab		: IN 	STD_LOGIC_VECTOR (13 DOWNTO 0);
-		result	: OUT STD_LOGIC_VECTOR (13 DOWNTO 0)
+		data0x		: IN 	STD_LOGIC_VECTOR (13 DOWNTO 0);
+		data1x		: IN 	STD_LOGIC_VECTOR (13 DOWNTO 0);
+		data2x		: IN 	STD_LOGIC_VECTOR (13 DOWNTO 0);
+		data3x		: IN 	STD_LOGIC_VECTOR (13 DOWNTO 0);
+		data4x		: IN 	STD_LOGIC_VECTOR (13 DOWNTO 0);
+		data5x		: IN 	STD_LOGIC_VECTOR (13 DOWNTO 0);
+		data6x		: IN 	STD_LOGIC_VECTOR (13 DOWNTO 0);
+		data7x		: IN 	STD_LOGIC_VECTOR (13 DOWNTO 0);
+		result	   : OUT STD_LOGIC_VECTOR (16 DOWNTO 0)
 	);
-	END COMPONENT; -- lpm_add;
+	END COMPONENT; 
 	
 
 	
@@ -115,28 +162,68 @@ architecture arch of DE2115_EightLockins_system is
 
 	signal 	cosine_1					:std_logic_vector(12 downto 0);	-- cosine reference signal for lockin_1
 	signal 	cosine_2					:std_logic_vector(12 downto 0);	-- cosine reference signal for lockin_2
+	signal 	cosine_3					:std_logic_vector(12 downto 0);
+	signal 	cosine_4					:std_logic_vector(12 downto 0);
+	signal 	cosine_5					:std_logic_vector(12 downto 0);
+	signal 	cosine_6					:std_logic_vector(12 downto 0);
+	signal 	cosine_7					:std_logic_vector(12 downto 0);
+	signal 	cosine_8					:std_logic_vector(12 downto 0);
+	
 	
 	signal 	i_cosine_1				:std_logic;								-- sign of cosine reference signal for lockin_1
 	signal 	i_cosine_2				:std_logic;								-- sign of cosine reference signal for lockin_2
+	signal 	i_cosine_3				:std_logic;
+	signal 	i_cosine_4				:std_logic;
+	signal 	i_cosine_5				:std_logic;
+	signal 	i_cosine_6				:std_logic;
+	signal 	i_cosine_7				:std_logic;
+	signal 	i_cosine_8				:std_logic;
+	
 	
 	signal 	s_cosine_1				:std_logic_vector(12 downto 0);	-- registered cosine reference signal from lockin_1
 	signal 	s_cosine_2				:std_logic_vector(12 downto 0);	-- registered cosine reference signal from lockin_2
-
+	signal 	s_cosine_3				:std_logic_vector(12 downto 0);
+	signal 	s_cosine_4				:std_logic_vector(12 downto 0);
+	signal 	s_cosine_5				:std_logic_vector(12 downto 0);
+	signal 	s_cosine_6				:std_logic_vector(12 downto 0);
+	signal 	s_cosine_7				:std_logic_vector(12 downto 0);
+	signal 	s_cosine_8				:std_logic_vector(12 downto 0);
+	
 	signal 	u_cosine_1				:std_logic_vector(12 downto 0);	-- registered unsigned cosine reference signal from lockin_1
 	signal 	u_cosine_2				:std_logic_vector(12 downto 0);	-- registered unsigned cosine reference signal from lockin_2
-	
+	signal 	u_cosine_3				:std_logic_vector(12 downto 0);
+	signal 	u_cosine_4				:std_logic_vector(12 downto 0);
+	signal 	u_cosine_5				:std_logic_vector(12 downto 0);
+	signal 	u_cosine_6				:std_logic_vector(12 downto 0);
+	signal 	u_cosine_7				:std_logic_vector(12 downto 0);
+	signal 	u_cosine_8				:std_logic_vector(12 downto 0);
+		
 	signal 	reg_u_cosine_1			:std_logic_vector(12 downto 0);	-- registered unsigned cosine reference signal from lockin_1
 	signal 	reg_u_cosine_2			:std_logic_vector(12 downto 0);	-- registered unsigned cosine reference signal from lockin_2
+	signal 	reg_u_cosine_3			:std_logic_vector(12 downto 0);
+	signal 	reg_u_cosine_4			:std_logic_vector(12 downto 0);
+	signal 	reg_u_cosine_5			:std_logic_vector(12 downto 0);
+	signal 	reg_u_cosine_6			:std_logic_vector(12 downto 0);
+	signal 	reg_u_cosine_7			:std_logic_vector(12 downto 0);
+	signal 	reg_u_cosine_8			:std_logic_vector(12 downto 0);
+	
 	
 	signal 	add_u_cosine_1			:std_logic_vector(13 downto 0);	-- 14 bit unsigned cosine reference signal from lockin_1
 	signal 	add_u_cosine_2			:std_logic_vector(13 downto 0);	-- 14 bit unsigned cosine reference signal from lockin_2
+	signal 	add_u_cosine_3			:std_logic_vector(13 downto 0);
+	signal 	add_u_cosine_4			:std_logic_vector(13 downto 0);
+	signal 	add_u_cosine_5			:std_logic_vector(13 downto 0);
+	signal 	add_u_cosine_6			:std_logic_vector(13 downto 0);
+	signal 	add_u_cosine_7			:std_logic_vector(13 downto 0);
+	signal 	add_u_cosine_8			:std_logic_vector(13 downto 0);
 	
-	signal 	p_cosines				:std_logic_vector(13 downto 0);	-- registered sum of cosines 
+	
+	signal 	p_cosines				:std_logic_vector(16 downto 0);	-- registered sum of cosines 
 	signal 	n_cosines				:std_logic_vector(13 downto 0);	-- inverted registered sum of cosines 
 	
 	signal 	reg_adc_data			:std_logic_vector(13 downto 0);
 	
-	signal	adc_d						: std_logic_vector(13 downto 0);		-- ADC data
+	signal	adc_d						:std_logic_vector(13 downto 0);		-- ADC data
 	
 	signal	analog_to_digital_over_run :	std_logic;
 
@@ -186,13 +273,34 @@ begin
 		samp_clk_i			=> adc_clk,				-- ADC sample clock (1 MHz)
 		input					=> adc_d,				-- ADC output --> LIA input
 		samp_clk_o			=> lia_out_valid,		-- LIA output sample clock (1 MHz or 1 kHz, depending on operating mode)
+		
 		lia_out_x_1 		=>	lia_out_x_1,		-- lock-in output signal for lockin_1
 		lia_out_y_1 		=>	lia_out_y_1,		-- lock-in output signal for lockin_1
 		lia_out_x_2 		=>	lia_out_x_2,		-- lock-in output signal for lockin_2
 		lia_out_y_2 		=>	lia_out_y_2,		-- lock-in output signal for lockin_2
+		lia_out_x_3 		=>	lia_out_x_3,		-- lock-in output signal for lockin_2
+		lia_out_y_3 		=>	lia_out_y_3,	
+		lia_out_x_4 		=>	lia_out_x_4,		-- lock-in output signal for lockin_2
+		lia_out_y_4 		=>	lia_out_y_4,	
+		lia_out_x_5 		=>	lia_out_x_5,		-- lock-in output signal for lockin_2
+		lia_out_y_5 		=>	lia_out_y_5,	
+		lia_out_x_6 		=>	lia_out_x_6,		-- lock-in output signal for lockin_2
+		lia_out_y_6 		=>	lia_out_y_6,	
+		lia_out_x_7 		=>	lia_out_x_7,		-- lock-in output signal for lockin_2
+		lia_out_y_7 		=>	lia_out_y_7,	
+		lia_out_x_8 		=>	lia_out_x_8,		-- lock-in output signal for lockin_2
+		lia_out_y_8 		=>	lia_out_y_8,	
+		
+		
 		
 		dpll_cos_1			=> cosine_1,			-- cosine reference signal for lockin_1
 		dpll_cos_2			=> cosine_2,				-- cosine reference signal for lockin_2
+		dpll_cos_3			=> cosine_3,
+		dpll_cos_4			=> cosine_4,
+		dpll_cos_5			=> cosine_5,
+		dpll_cos_6			=> cosine_6,
+		dpll_cos_7			=> cosine_7,
+		dpll_cos_8			=> cosine_8,
 		
 		overflow_dlia		=> overflow
 		
@@ -220,13 +328,66 @@ begin
 		end if;
 	end process;
 	
-
+	process(clock_50)
+	begin	
+		if rising_edge(clock_50) then
+			s_cosine_3 <= cosine_3;
+		end if;
+	end process;
+	
+	process(clock_50)
+	begin	
+		if rising_edge(clock_50) then
+			s_cosine_4 <= cosine_4;
+		end if;
+	end process;
+	
+	process(clock_50)
+	begin	
+		if rising_edge(clock_50) then
+			s_cosine_5 <= cosine_5;
+		end if;
+	end process;
+	
+	process(clock_50)
+	begin	
+		if rising_edge(clock_50) then
+			s_cosine_6 <= cosine_6;
+		end if;
+	end process;
+	
+	process(clock_50)
+	begin	
+		if rising_edge(clock_50) then
+			s_cosine_7 <= cosine_7;
+		end if;
+	end process;
+	
+	process(clock_50)
+	begin	
+		if rising_edge(clock_50) then
+			s_cosine_8 <= cosine_8;
+		end if;
+	end process;
+	
+	
 	i_cosine_1 <= not s_cosine_1(12);
 	i_cosine_2 <= not s_cosine_2(12);
+	i_cosine_3 <= not s_cosine_3(12);
+	i_cosine_4 <= not s_cosine_4(12);
+	i_cosine_5 <= not s_cosine_5(12);
+	i_cosine_6 <= not s_cosine_6(12);
+	i_cosine_7 <= not s_cosine_7(12);
+	i_cosine_8 <= not s_cosine_8(12);
 	
 	u_cosine_1 <= i_cosine_1 & s_cosine_1(11 downto 0);	--Create unsigned cosine 1
 	u_cosine_2 <= i_cosine_2 & s_cosine_2(11 downto 0);	--Create unsigned cosine 2
-	
+	u_cosine_3 <= i_cosine_3 & s_cosine_3(11 downto 0);
+	u_cosine_4 <= i_cosine_4 & s_cosine_4(11 downto 0);
+	u_cosine_5 <= i_cosine_5 & s_cosine_5(11 downto 0);
+	u_cosine_6 <= i_cosine_6 & s_cosine_6(11 downto 0);
+	u_cosine_7 <= i_cosine_7 & s_cosine_7(11 downto 0);
+	u_cosine_8 <= i_cosine_8 & s_cosine_8(11 downto 0);
 
 	
 	process(clock_50)
@@ -243,25 +404,87 @@ begin
 			reg_u_cosine_2 <= u_cosine_2;
 		end if;
 	end process;
+	
+	process(clock_50)
+	begin	
+		if rising_edge(clock_50) then
+			reg_u_cosine_3 <= u_cosine_3;
+		end if;
+	end process;
+	
+	process(clock_50)
+	begin	
+		if rising_edge(clock_50) then
+			reg_u_cosine_4 <= u_cosine_4;
+		end if;
+	end process;
+	
+	process(clock_50)
+	begin	
+		if rising_edge(clock_50) then
+			reg_u_cosine_5 <= u_cosine_5;
+		end if;
+	end process;
+	
+	process(clock_50)
+	begin	
+		if rising_edge(clock_50) then
+			reg_u_cosine_6 <= u_cosine_6;
+		end if;
+	end process;
+	
+	process(clock_50)
+	begin	
+		if rising_edge(clock_50) then
+			reg_u_cosine_7 <= u_cosine_7;
+		end if;
+	end process;
+	
+	process(clock_50)
+	begin	
+		if rising_edge(clock_50) then
+			reg_u_cosine_8 <= u_cosine_8;
+		end if;
+	end process;
 
 	add_u_cosine_1 <= '0' & reg_u_cosine_1;		--Unsigned cosine 1 ready for addition
 	add_u_cosine_2 <= '0' & reg_u_cosine_2;		--Unsigned cosine 2 ready for addition 
+	add_u_cosine_3 <= '0' & reg_u_cosine_3;
+	add_u_cosine_4 <= '0' & reg_u_cosine_4;
+	add_u_cosine_5 <= '0' & reg_u_cosine_5;
+	add_u_cosine_6 <= '0' & reg_u_cosine_6;
+	add_u_cosine_7 <= '0' & reg_u_cosine_7;
+	add_u_cosine_8 <= '0' & reg_u_cosine_8;
 	
-	sum_cosines : lpm_add
+--	
+--	sum_cosines : lpm_add
+--	port map(
+--		dataa		=>		add_u_cosine_1,
+--		datab		=>		add_u_cosine_2,
+--		result	=>		p_cosines
+--		
+--	);
+	
+	sum_cosines : eight_add
 	port map(
-		dataa		=>		add_u_cosine_1,
-		datab		=>		add_u_cosine_2,
-		result	=>		p_cosines
-		
-	);
+		data0x	=>	add_u_cosine_1,
+		data1x	=>	add_u_cosine_2,
+		data2x	=>	add_u_cosine_3,
+		data3x	=>	add_u_cosine_4,
+		data4x	=>	add_u_cosine_5,
+		data5x	=>	add_u_cosine_6,
+		data6x	=>	add_u_cosine_7,
+		data7x	=>	add_u_cosine_8,
+	   result	=>		p_cosines
+		);
 	
-	n_cosines <= not p_cosines;
+	n_cosines <= not p_cosines(16 downto 3);
 
 		
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			reg_p_cosines <= p_cosines;
+			reg_p_cosines <= p_cosines(16 downto 3);
 		end if;
 	end process;
 	

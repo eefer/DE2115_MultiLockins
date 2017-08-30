@@ -28,14 +28,33 @@ ENTITY eight_lia_pkg IS
 		samp_clk_i	: in 	std_logic;								-- sampling clock (1 MHz), ADC sampling rate
 		input			: in 	std_logic_vector( 13 downto 0);	-- input signal (from ADC)
 		samp_clk_o	: out std_logic;								-- output sampling clock (default 1 kHz) from the CIC filters
+		
 		lia_out_x_1 : out std_logic_vector(15 downto 0);	-- lock-in output signal for lockin_1
 		lia_out_x_2 : out std_logic_vector(15 downto 0);	-- lock-in output signal for lockin_2
+		lia_out_x_3 : out std_logic_vector(15 downto 0);
+		lia_out_x_4 : out std_logic_vector(15 downto 0);
+		lia_out_x_5 : out std_logic_vector(15 downto 0);
+		lia_out_x_6 : out std_logic_vector(15 downto 0);
+		lia_out_x_7 : out std_logic_vector(15 downto 0);
+		lia_out_x_8 : out std_logic_vector(15 downto 0);
+		
 		lia_out_y_1 : out std_logic_vector(15 downto 0);	-- lock-in output signal for lockin_1
 		lia_out_y_2 : out std_logic_vector(15 downto 0);	-- lock-in output signal for lockin_2
-		
+		lia_out_y_3 : out std_logic_vector(15 downto 0);
+		lia_out_y_4 : out std_logic_vector(15 downto 0);
+		lia_out_y_5 : out std_logic_vector(15 downto 0);
+		lia_out_y_6 : out std_logic_vector(15 downto 0);
+		lia_out_y_7 : out std_logic_vector(15 downto 0);
+		lia_out_y_8 : out std_logic_vector(15 downto 0);
 		-- cos drive signals to be sent to DAC
 		dpll_cos_1	: out std_logic_vector(12 downto 0);	-- cosine reference signal for lockin_1
 		dpll_cos_2	: out std_logic_vector(12 downto 0);	-- cosine reference signal for lockin_2
+		dpll_cos_3	: out std_logic_vector(12 downto 0);
+		dpll_cos_4	: out std_logic_vector(12 downto 0);
+		dpll_cos_5	: out std_logic_vector(12 downto 0);
+		dpll_cos_6	: out std_logic_vector(12 downto 0);
+		dpll_cos_7	: out std_logic_vector(12 downto 0);
+		dpll_cos_8	: out std_logic_vector(12 downto 0);
 		
 		overflow_dlia: out std_logic
 		
@@ -88,8 +107,22 @@ ARCHITECTURE arch OF eight_lia_pkg IS
 						clk_clk             : in  std_logic                     := 'X'; 	--          clk.clk
 						phase_incr_1_export : out std_logic_vector(19 downto 0);        	-- phase_incr_1.export
 						phase_incr_2_export : out std_logic_vector(19 downto 0);        	-- phase_incr_2.export
+						phase_incr_3_export : out std_logic_vector(19 downto 0);
+						phase_incr_4_export : out std_logic_vector(19 downto 0);
+						phase_incr_5_export : out std_logic_vector(19 downto 0);
+						phase_incr_6_export : out std_logic_vector(19 downto 0);
+						phase_incr_7_export : out std_logic_vector(19 downto 0);
+						phase_incr_8_export : out std_logic_vector(19 downto 0);
+						
 						phase_offs_1_export : out std_logic_vector(19 downto 0);				-- phase_offs_1.export
 						phase_offs_2_export : out std_logic_vector(19 downto 0);				-- phase_offs_2.export
+						phase_offs_3_export : out std_logic_vector(19 downto 0);
+						phase_offs_4_export : out std_logic_vector(19 downto 0);
+						phase_offs_5_export : out std_logic_vector(19 downto 0);
+						phase_offs_6_export : out std_logic_vector(19 downto 0);
+						phase_offs_7_export : out std_logic_vector(19 downto 0);
+						phase_offs_8_export : out std_logic_vector(19 downto 0);
+						
 						gain_ctrl_export	  : out std_logic_vector (5 downto 0);
 						reset_reset_n       : in  std_logic                     := 'X'; 	--        reset.reset_n
 						resetrequest_reset  : out std_logic                             	-- resetrequest.reset
@@ -134,22 +167,58 @@ ARCHITECTURE arch OF eight_lia_pkg IS
 		-- lock-in outputs
 		signal lia_out_samp_clk_1	: std_logic;							-- output sample clock
 		signal lia_out_samp_clk_2	: std_logic;							-- output sample clock
+		signal lia_out_samp_clk_3	: std_logic;
+		signal lia_out_samp_clk_4	: std_logic;
+		signal lia_out_samp_clk_5	: std_logic;
+		signal lia_out_samp_clk_6	: std_logic;
+		signal lia_out_samp_clk_7	: std_logic;
+		signal lia_out_samp_clk_8	: std_logic;
 
 		signal ref_cos_o_1			: std_logic_vector(12 downto 0);
 		signal ref_sin_o_1			: std_logic_vector(12 downto 0);
 		signal ref_cos_o_2			: std_logic_vector(12 downto 0);
 		signal ref_sin_o_2			: std_logic_vector(12 downto 0);
+		signal ref_cos_o_3			: std_logic_vector(12 downto 0);
+		signal ref_sin_o_3			: std_logic_vector(12 downto 0);
+		signal ref_cos_o_4			: std_logic_vector(12 downto 0);
+		signal ref_sin_o_4			: std_logic_vector(12 downto 0);
+		signal ref_cos_o_5			: std_logic_vector(12 downto 0);
+		signal ref_sin_o_5			: std_logic_vector(12 downto 0);
+		signal ref_cos_o_6			: std_logic_vector(12 downto 0);
+		signal ref_sin_o_6			: std_logic_vector(12 downto 0);
+		signal ref_cos_o_7			: std_logic_vector(12 downto 0);
+		signal ref_sin_o_7			: std_logic_vector(12 downto 0);
+		signal ref_cos_o_8			: std_logic_vector(12 downto 0);
+		signal ref_sin_o_8			: std_logic_vector(12 downto 0);
 		
 		signal dpll_lia_ref_o_1		: std_logic_vector(12 downto 0);
 		signal dpll_lia_ref_o_2		: std_logic_vector(12 downto 0);
+		signal dpll_lia_ref_o_3		: std_logic_vector(12 downto 0);
+		signal dpll_lia_ref_o_4		: std_logic_vector(12 downto 0);
+		signal dpll_lia_ref_o_5		: std_logic_vector(12 downto 0);
+		signal dpll_lia_ref_o_6		: std_logic_vector(12 downto 0);
+		signal dpll_lia_ref_o_7		: std_logic_vector(12 downto 0);
+		signal dpll_lia_ref_o_8		: std_logic_vector(12 downto 0);
 		
 		-- user-specified phase incr value (sets the frequency) for digital PLL signals sent to the IQ mixers. Set in qsys_system.
 		signal phase_incr_1			: std_logic_vector(19 downto 0);
 		signal phase_incr_2			: std_logic_vector(19 downto 0);
+		signal phase_incr_3			: std_logic_vector(19 downto 0);
+		signal phase_incr_4			: std_logic_vector(19 downto 0);
+		signal phase_incr_5			: std_logic_vector(19 downto 0);
+		signal phase_incr_6			: std_logic_vector(19 downto 0);
+		signal phase_incr_7			: std_logic_vector(19 downto 0);
+		signal phase_incr_8			: std_logic_vector(19 downto 0);
 		
 		-- user-specified phase offset between digital PLL and waveforms sent to the IQ mixers. Set in qsys_system.
 		signal phase_offs_1			: std_logic_vector(19 downto 0);
 		signal phase_offs_2			: std_logic_vector(19 downto 0);
+		signal phase_offs_3			: std_logic_vector(19 downto 0);
+		signal phase_offs_4			: std_logic_vector(19 downto 0);
+		signal phase_offs_5			: std_logic_vector(19 downto 0);
+		signal phase_offs_6			: std_logic_vector(19 downto 0);
+		signal phase_offs_7			: std_logic_vector(19 downto 0);
+		signal phase_offs_8			: std_logic_vector(19 downto 0);
 		
 		-- lock-in control lines
 --		signal cic_x_in_sel		: natural range 0 to 1 := 0;	-- CIC filter x input select
@@ -162,8 +231,13 @@ ARCHITECTURE arch OF eight_lia_pkg IS
 		signal gain_ctrl_tx	:	std_logic_vector(5 downto 0);
 		
 		signal overflow_lia_1: std_logic;
-		
 		signal overflow_lia_2: std_logic;
+		signal overflow_lia_3: std_logic;
+		signal overflow_lia_4: std_logic;
+		signal overflow_lia_5: std_logic;
+		signal overflow_lia_6: std_logic;
+		signal overflow_lia_7: std_logic;
+		signal overflow_lia_8: std_logic;
 	
 BEGIN
 	
@@ -176,12 +250,18 @@ BEGIN
 	
 	
 	
-	overflow_dlia	<=	overflow_lia_1 or overflow_lia_2;
+	overflow_dlia	<=	overflow_lia_1 or overflow_lia_2 or overflow_lia_3 or overflow_lia_4 or overflow_lia_5 or overflow_lia_6 or overflow_lia_7 or overflow_lia_8;
 	
 	
 	-- export signals
 	dpll_cos_1 <= dpll_lia_ref_o_1;
 	dpll_cos_2 <= dpll_lia_ref_o_2;
+	dpll_cos_3 <= dpll_lia_ref_o_3;
+	dpll_cos_4 <= dpll_lia_ref_o_4;
+	dpll_cos_5 <= dpll_lia_ref_o_5;
+	dpll_cos_6 <= dpll_lia_ref_o_6;
+	dpll_cos_7 <= dpll_lia_ref_o_7;
+	dpll_cos_8 <= dpll_lia_ref_o_8;
 	ref_o <= dpll_lia_ref_o_1(12);	-- for synchronization (use last bit so 1 for half the cycle)	
 	
 	
@@ -250,13 +330,167 @@ BEGIN
 		
 	);
 	
+	
+	lockin_3 : lia_core
+	port map (
+		sys_clk_i		=> sys_clk_i,
+		areset_i			=> areset_i,
+		
+--		ref_i				=> ref_3_i,					-- forward reference sq wave from input pin
+		phase_offs_i	=> phase_offs_3,			-- get phase offset from control logic
+		phase_incr_i	=> phase_incr_3,			-- phase increment for internal reference
+		ref_cos_o		=> ref_cos_o_3,			-- forward ref cos to output pin
+		ref_sin_o		=> ref_sin_o_3,			-- forward ref sin to output pin
+		dpll_ref			=> dpll_lia_ref_o_3,		-- forward the reference signal generated by nco_3p inside the dpll component
+		gain_ctrl		=> gain_ctrl_tx,
+		samp_clk_i		=> samp_clk_i,				-- forward sample clock from ADC		
+		input				=> input,					-- forward sampled data from the ADC
+		samp_clk_o		=> lia_out_samp_clk_3,	-- lock-in output sample clock
+		out_x				=> lia_out_x_3,			-- direct x output to internal signal line
+		out_y				=> lia_out_y_3,			-- direct y output to internal signal line
+		overflow_lia	=> overflow_lia_3
+--		cic_x_in_sel_i	=> cic_x_in_sel
+		
+	);
+	
+	
+	lockin_4 : lia_core
+	port map (
+		sys_clk_i		=> sys_clk_i,
+		areset_i			=> areset_i,
+		
+--		ref_i				=> ref_4_i,					-- forward reference sq wave from input pin
+		phase_offs_i	=> phase_offs_4,			-- get phase offset from control logic
+		phase_incr_i	=> phase_incr_4,			-- phase increment for internal reference
+		ref_cos_o		=> ref_cos_o_4,			-- forward ref cos to output pin
+		ref_sin_o		=> ref_sin_o_4,			-- forward ref sin to output pin
+		dpll_ref			=> dpll_lia_ref_o_4,		-- forward the reference signal generated by nco_3p inside the dpll component
+		gain_ctrl		=> gain_ctrl_tx,
+		samp_clk_i		=> samp_clk_i,				-- forward sample clock from ADC		
+		input				=> input,					-- forward sampled data from the ADC
+		samp_clk_o		=> lia_out_samp_clk_4,	-- lock-in output sample clock
+		out_x				=> lia_out_x_4,			-- direct x output to internal signal line
+		out_y				=> lia_out_y_4,			-- direct y output to internal signal line
+		overflow_lia	=> overflow_lia_4
+--		cic_x_in_sel_i	=> cic_x_in_sel
+		
+	);
+	
+	
+	lockin_5 : lia_core
+	port map (
+		sys_clk_i		=> sys_clk_i,
+		areset_i			=> areset_i,
+		
+--		ref_i				=> ref_5_i,					-- forward reference sq wave from input pin
+		phase_offs_i	=> phase_offs_5,			-- get phase offset from control logic
+		phase_incr_i	=> phase_incr_5,			-- phase increment for internal reference
+		ref_cos_o		=> ref_cos_o_5,			-- forward ref cos to output pin
+		ref_sin_o		=> ref_sin_o_5,			-- forward ref sin to output pin
+		dpll_ref			=> dpll_lia_ref_o_5,		-- forward the reference signal generated by nco_3p inside the dpll component
+		gain_ctrl		=> gain_ctrl_tx,
+		samp_clk_i		=> samp_clk_i,				-- forward sample clock from ADC		
+		input				=> input,					-- forward sampled data from the ADC
+		samp_clk_o		=> lia_out_samp_clk_5,	-- lock-in output sample clock
+		out_x				=> lia_out_x_5,			-- direct x output to internal signal line
+		out_y				=> lia_out_y_5,			-- direct y output to internal signal line
+		overflow_lia	=> overflow_lia_5
+--		cic_x_in_sel_i	=> cic_x_in_sel
+		
+	);
+	
+	
+	lockin_6 : lia_core
+	port map (
+		sys_clk_i		=> sys_clk_i,
+		areset_i			=> areset_i,
+		
+--		ref_i				=> ref_6_i,					-- forward reference sq wave from input pin
+		phase_offs_i	=> phase_offs_6,			-- get phase offset from control logic
+		phase_incr_i	=> phase_incr_6,			-- phase increment for internal reference
+		ref_cos_o		=> ref_cos_o_6,			-- forward ref cos to output pin
+		ref_sin_o		=> ref_sin_o_6,			-- forward ref sin to output pin
+		dpll_ref			=> dpll_lia_ref_o_6,		-- forward the reference signal generated by nco_3p inside the dpll component
+		gain_ctrl		=> gain_ctrl_tx,
+		samp_clk_i		=> samp_clk_i,				-- forward sample clock from ADC		
+		input				=> input,					-- forward sampled data from the ADC
+		samp_clk_o		=> lia_out_samp_clk_6,	-- lock-in output sample clock
+		out_x				=> lia_out_x_6,			-- direct x output to internal signal line
+		out_y				=> lia_out_y_6,			-- direct y output to internal signal line
+		overflow_lia	=> overflow_lia_6
+--		cic_x_in_sel_i	=> cic_x_in_sel
+		
+	);
+	
+	
+	lockin_7 : lia_core
+	port map (
+		sys_clk_i		=> sys_clk_i,
+		areset_i			=> areset_i,
+		
+--		ref_i				=> ref_7_i,					-- forward reference sq wave from input pin
+		phase_offs_i	=> phase_offs_7,			-- get phase offset from control logic
+		phase_incr_i	=> phase_incr_7,			-- phase increment for internal reference
+		ref_cos_o		=> ref_cos_o_7,			-- forward ref cos to output pin
+		ref_sin_o		=> ref_sin_o_7,			-- forward ref sin to output pin
+		dpll_ref			=> dpll_lia_ref_o_7,		-- forward the reference signal generated by nco_3p inside the dpll component
+		gain_ctrl		=> gain_ctrl_tx,
+		samp_clk_i		=> samp_clk_i,				-- forward sample clock from ADC		
+		input				=> input,					-- forward sampled data from the ADC
+		samp_clk_o		=> lia_out_samp_clk_7,	-- lock-in output sample clock
+		out_x				=> lia_out_x_7,			-- direct x output to internal signal line
+		out_y				=> lia_out_y_7,			-- direct y output to internal signal line
+		overflow_lia	=> overflow_lia_7
+--		cic_x_in_sel_i	=> cic_x_in_sel
+		
+	);
+	
+	
+	lockin_8 : lia_core
+	port map (
+		sys_clk_i		=> sys_clk_i,
+		areset_i			=> areset_i,
+		
+--		ref_i				=> ref_8_i,					-- forward reference sq wave from input pin
+		phase_offs_i	=> phase_offs_8,			-- get phase offset from control logic
+		phase_incr_i	=> phase_incr_8,			-- phase increment for internal reference
+		ref_cos_o		=> ref_cos_o_8,			-- forward ref cos to output pin
+		ref_sin_o		=> ref_sin_o_8,			-- forward ref sin to output pin
+		dpll_ref			=> dpll_lia_ref_o_8,		-- forward the reference signal generated by nco_3p inside the dpll component
+		gain_ctrl		=> gain_ctrl_tx,
+		samp_clk_i		=> samp_clk_i,				-- forward sample clock from ADC		
+		input				=> input,					-- forward sampled data from the ADC
+		samp_clk_o		=> lia_out_samp_clk_8,	-- lock-in output sample clock
+		out_x				=> lia_out_x_8,			-- direct x output to internal signal line
+		out_y				=> lia_out_y_8,			-- direct y output to internal signal line
+		overflow_lia	=> overflow_lia_8
+--		cic_x_in_sel_i	=> cic_x_in_sel
+		
+	);
+	
+	
+	
 	qsys : qsys_system
 	port map(
 		clk_clk             => sys_clk_i, 		--          clk.clk
 		phase_incr_1_export => phase_incr_1,   -- phase_incr_1.export
 		phase_incr_2_export => phase_incr_2,	-- phase_incr_2.export
+		phase_incr_3_export => phase_incr_3,
+		phase_incr_4_export => phase_incr_4,
+		phase_incr_5_export => phase_incr_5,
+		phase_incr_6_export => phase_incr_6,
+		phase_incr_7_export => phase_incr_7,
+		phase_incr_8_export => phase_incr_8,
+		
+		
 		phase_offs_1_export => phase_offs_1,	-- phase_offs_1.export
 		phase_offs_2_export => phase_offs_2,	-- phase_offs_2.export
+		phase_offs_3_export => phase_offs_3,
+		phase_offs_4_export => phase_offs_4,
+		phase_offs_5_export => phase_offs_5,
+		phase_offs_6_export => phase_offs_6,
+		phase_offs_7_export => phase_offs_7,
+		phase_offs_8_export => phase_offs_8,
 		
 		gain_ctrl_export	  => gain_ctrl_tx,
 		reset_reset_n       => not areset_i,   --        reset.reset_n

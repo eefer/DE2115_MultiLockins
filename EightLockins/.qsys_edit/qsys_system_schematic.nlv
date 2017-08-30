@@ -1,35 +1,59 @@
 # # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
 # 
+preplace inst qsys_system.nco_phase_ctrl_7 -pg 1 -lvl 3 -y 1530
+preplace inst qsys_system.nco_freq_ctrl_3 -pg 1 -lvl 3 -y 1130
+preplace inst qsys_system.nco_phase_ctrl_8 -pg 1 -lvl 3 -y 1630
+preplace inst qsys_system.nco_freq_ctrl_4 -pg 1 -lvl 3 -y 230
 preplace inst qsys_system.jtag_master.b2p_adapter -pg 1
+preplace inst qsys_system.nco_freq_ctrl_5 -pg 1 -lvl 3 -y 330
 preplace inst qsys_system.jtag_master.p2b -pg 1
+preplace inst qsys_system.nco_freq_ctrl_6 -pg 1 -lvl 3 -y 430
+preplace inst qsys_system.nco_freq_ctrl_7 -pg 1 -lvl 3 -y 530
+preplace inst qsys_system.nco_freq_ctrl_8 -pg 1 -lvl 3 -y 810
 preplace inst qsys_system.jtag_master.b2p -pg 1
 preplace inst qsys_system.jtag_master.jtag_phy_embedded_in_jtag_master -pg 1
-preplace inst qsys_system.onchip_ram -pg 1 -lvl 3 -y 230
+preplace inst qsys_system.onchip_ram -pg 1 -lvl 3 -y 630
 preplace inst qsys_system.jtag_master.clk_src -pg 1
-preplace inst qsys_system.nco_phase_ctrl_1 -pg 1 -lvl 3 -y 410
-preplace inst qsys_system.nco_phase_ctrl_2 -pg 1 -lvl 3 -y 510
+preplace inst qsys_system.nco_phase_ctrl_1 -pg 1 -lvl 3 -y 910
+preplace inst qsys_system.nco_phase_ctrl_2 -pg 1 -lvl 3 -y 1010
 preplace inst qsys_system.clk -pg 1 -lvl 1 -y 530
+preplace inst qsys_system.nco_phase_ctrl_3 -pg 1 -lvl 3 -y 1230
 preplace inst qsys_system.nco_freq_control_1 -pg 1 -lvl 3 -y 130
 preplace inst qsys_system.jtag_master.transacto -pg 1
 preplace inst qsys_system.gain_controller -pg 1 -lvl 3 -y 30
 preplace inst qsys_system.bfm_master -pg 1 -lvl 2 -y 570
-preplace inst qsys_system.nco_freq_control_2 -pg 1 -lvl 3 -y 310
+preplace inst qsys_system.nco_phase_ctrl_4 -pg 1 -lvl 3 -y 1330
+preplace inst qsys_system.nco_freq_control_2 -pg 1 -lvl 3 -y 710
 preplace inst qsys_system.jtag_master.fifo -pg 1
+preplace inst qsys_system.nco_phase_ctrl_5 -pg 1 -lvl 3 -y 1430
 preplace inst qsys_system.jtag_master.timing_adt -pg 1
+preplace inst qsys_system.nco_phase_ctrl_6 -pg 1 -lvl 3 -y 1730
 preplace inst qsys_system.jtag_master.p2b_adapter -pg 1
 preplace inst qsys_system.jtag_master.clk_rst -pg 1
 preplace inst qsys_system.jtag_master -pg 1 -lvl 2 -y 660
 preplace inst qsys_system -pg 1 -lvl 1 -y 40 -regy -20
-preplace netloc FAN_OUT<net_container>qsys_system</net_container>(SLAVE)bfm_master.clk_reset,(MASTER)clk.clk_reset,(SLAVE)nco_freq_control_2.reset,(SLAVE)nco_phase_ctrl_1.reset,(SLAVE)onchip_ram.reset1,(SLAVE)nco_phase_ctrl_2.reset,(SLAVE)gain_controller.reset,(SLAVE)nco_freq_control_1.reset,(SLAVE)jtag_master.clk_reset) 1 1 2 300 560 600
-preplace netloc FAN_OUT<net_container>qsys_system</net_container>(SLAVE)bfm_master.clk,(SLAVE)gain_controller.clk,(MASTER)clk.clk,(SLAVE)nco_phase_ctrl_1.clk,(SLAVE)jtag_master.clk,(SLAVE)nco_freq_control_1.clk,(SLAVE)nco_freq_control_2.clk,(SLAVE)nco_phase_ctrl_2.clk,(SLAVE)onchip_ram.clk1) 1 1 2 320 540 580
-preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)nco_freq_control_2.external_connection,(SLAVE)qsys_system.phase_incr_2) 1 0 3 NJ 340 NJ 340 NJ
-preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)qsys_system.phase_offs_2,(SLAVE)nco_phase_ctrl_2.external_connection) 1 0 3 NJ 520 NJ 520 NJ
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)nco_phase_ctrl_8.external_connection,(SLAVE)qsys_system.phase_offs_8) 1 0 3 NJ 1660 NJ 1660 NJ
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)qsys_system.phase_incr_7,(SLAVE)nco_freq_ctrl_7.external_connection) 1 0 3 NJ 600 NJ 560 NJ
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)nco_freq_ctrl_3.external_connection,(SLAVE)qsys_system.phase_incr_3) 1 0 3 NJ 1160 NJ 1160 NJ
+preplace netloc INTERCONNECT<net_container>qsys_system</net_container>(SLAVE)nco_freq_ctrl_4.s1,(SLAVE)nco_freq_ctrl_3.s1,(SLAVE)nco_freq_ctrl_7.s1,(SLAVE)nco_freq_ctrl_8.s1,(SLAVE)nco_phase_ctrl_6.s1,(SLAVE)nco_phase_ctrl_7.s1,(SLAVE)nco_freq_control_1.s1,(SLAVE)nco_phase_ctrl_2.s1,(SLAVE)gain_controller.s1,(SLAVE)onchip_ram.s1,(SLAVE)nco_phase_ctrl_4.s1,(MASTER)bfm_master.m0,(SLAVE)nco_phase_ctrl_8.s1,(SLAVE)nco_freq_ctrl_5.s1,(SLAVE)nco_freq_control_2.s1,(SLAVE)nco_phase_ctrl_1.s1,(SLAVE)nco_phase_ctrl_5.s1,(SLAVE)nco_phase_ctrl_3.s1,(MASTER)jtag_master.master,(SLAVE)nco_freq_ctrl_6.s1) 1 2 1 600
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)qsys_system.phase_offs_6,(SLAVE)nco_phase_ctrl_6.external_connection) 1 0 3 NJ 1760 NJ 1760 NJ
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)nco_freq_ctrl_5.external_connection,(SLAVE)qsys_system.phase_incr_5) 1 0 3 NJ 360 NJ 360 NJ
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)nco_freq_control_2.external_connection,(SLAVE)qsys_system.phase_incr_2) 1 0 3 NJ 740 NJ 740 NJ
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)qsys_system.phase_offs_7,(SLAVE)nco_phase_ctrl_7.external_connection) 1 0 3 NJ 1560 NJ 1560 NJ
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)qsys_system.phase_offs_2,(SLAVE)nco_phase_ctrl_2.external_connection) 1 0 3 NJ 1040 NJ 1040 NJ
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)qsys_system.phase_incr_6,(SLAVE)nco_freq_ctrl_6.external_connection) 1 0 3 NJ 460 NJ 460 NJ
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)qsys_system.phase_offs_1,(SLAVE)nco_phase_ctrl_1.external_connection) 1 0 3 NJ 940 NJ 940 NJ
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)clk.clk_in_reset,(SLAVE)qsys_system.reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)qsys_system.phase_incr_4,(SLAVE)nco_freq_ctrl_4.external_connection) 1 0 3 NJ 260 NJ 260 NJ
 preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)qsys_system.phase_incr_1,(SLAVE)nco_freq_control_1.external_connection) 1 0 3 NJ 160 NJ 160 NJ
-preplace netloc INTERCONNECT<net_container>qsys_system</net_container>(SLAVE)nco_freq_control_1.s1,(SLAVE)nco_phase_ctrl_2.s1,(SLAVE)gain_controller.s1,(SLAVE)onchip_ram.s1,(MASTER)jtag_master.master,(MASTER)bfm_master.m0,(SLAVE)nco_freq_control_2.s1,(SLAVE)nco_phase_ctrl_1.s1) 1 2 1 620
-preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)qsys_system.reset,(SLAVE)clk.clk_in_reset) 1 0 1 NJ
-preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)nco_phase_ctrl_1.external_connection,(SLAVE)qsys_system.phase_offs_1) 1 0 3 NJ 440 NJ 440 NJ
-preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)clk.clk_in,(SLAVE)qsys_system.clk) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>qsys_system</net_container>(SLAVE)nco_phase_ctrl_2.clk,(SLAVE)nco_phase_ctrl_7.clk,(SLAVE)nco_freq_ctrl_5.clk,(MASTER)clk.clk,(SLAVE)onchip_ram.clk1,(SLAVE)nco_phase_ctrl_1.clk,(SLAVE)nco_freq_ctrl_3.clk,(SLAVE)nco_phase_ctrl_6.clk,(SLAVE)bfm_master.clk,(SLAVE)nco_phase_ctrl_8.clk,(SLAVE)gain_controller.clk,(SLAVE)nco_freq_control_1.clk,(SLAVE)nco_freq_ctrl_7.clk,(SLAVE)nco_phase_ctrl_4.clk,(SLAVE)nco_phase_ctrl_5.clk,(SLAVE)jtag_master.clk,(SLAVE)nco_phase_ctrl_3.clk,(SLAVE)nco_freq_ctrl_4.clk,(SLAVE)nco_freq_ctrl_8.clk,(SLAVE)nco_freq_control_2.clk,(SLAVE)nco_freq_ctrl_6.clk) 1 1 2 300 520 640
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)qsys_system.phase_offs_5,(SLAVE)nco_phase_ctrl_5.external_connection) 1 0 3 NJ 1460 NJ 1460 NJ
 preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)gain_controller.external_connection,(SLAVE)qsys_system.gain_ctrl) 1 0 3 NJ 60 NJ 60 NJ
-preplace netloc EXPORT<net_container>qsys_system</net_container>(MASTER)qsys_system.resetrequest,(MASTER)jtag_master.master_reset) 1 2 2 NJ 690 NJ
-levelinfo -pg 1 0 90 910
-levelinfo -hier qsys_system 100 130 400 650 800
+preplace netloc FAN_OUT<net_container>qsys_system</net_container>(SLAVE)onchip_ram.reset1,(SLAVE)nco_freq_ctrl_4.reset,(SLAVE)nco_freq_ctrl_5.reset,(SLAVE)nco_freq_ctrl_7.reset,(SLAVE)nco_phase_ctrl_8.reset,(SLAVE)nco_phase_ctrl_4.reset,(SLAVE)nco_freq_control_2.reset,(SLAVE)nco_phase_ctrl_2.reset,(SLAVE)nco_freq_control_1.reset,(MASTER)clk.clk_reset,(SLAVE)gain_controller.reset,(SLAVE)nco_freq_ctrl_6.reset,(SLAVE)jtag_master.clk_reset,(SLAVE)nco_phase_ctrl_5.reset,(SLAVE)nco_freq_ctrl_3.reset,(SLAVE)nco_phase_ctrl_3.reset,(SLAVE)nco_phase_ctrl_1.reset,(SLAVE)bfm_master.clk_reset,(SLAVE)nco_phase_ctrl_7.reset,(SLAVE)nco_freq_ctrl_8.reset,(SLAVE)nco_phase_ctrl_6.reset) 1 1 2 320 540 620
+preplace netloc EXPORT<net_container>qsys_system</net_container>(MASTER)qsys_system.resetrequest,(MASTER)jtag_master.master_reset) 1 2 2 NJ 1120 NJ
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)qsys_system.phase_offs_4,(SLAVE)nco_phase_ctrl_4.external_connection) 1 0 3 NJ 1360 NJ 1360 NJ
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)nco_phase_ctrl_3.external_connection,(SLAVE)qsys_system.phase_offs_3) 1 0 3 NJ 1260 NJ 1260 NJ
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)qsys_system.phase_incr_8,(SLAVE)nco_freq_ctrl_8.external_connection) 1 0 3 NJ 840 NJ 840 NJ
+preplace netloc EXPORT<net_container>qsys_system</net_container>(SLAVE)qsys_system.clk,(SLAVE)clk.clk_in) 1 0 1 NJ
+levelinfo -pg 1 0 90 930
+levelinfo -hier qsys_system 100 130 420 670 820

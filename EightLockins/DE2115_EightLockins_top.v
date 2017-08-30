@@ -311,6 +311,18 @@ wire 		[15:0]	lia_out_x_1;		// lock-in x output signal for lockin_1
 wire		[15:0]	lia_out_y_1;		// lock-in y output signal for lockin_1
 wire		[15:0]	lia_out_x_2;		// lock-in x output signal for lockin_2
 wire		[15:0]	lia_out_y_2;		// lock-in y output signal for lockin_2
+wire		[15:0]	lia_out_x_3;		// lock-in x output signal for lockin_2
+wire		[15:0]	lia_out_y_3;
+wire		[15:0]	lia_out_x_4;		// lock-in x output signal for lockin_2
+wire		[15:0]	lia_out_y_4;
+wire		[15:0]	lia_out_x_5;		// lock-in x output signal for lockin_2
+wire		[15:0]	lia_out_y_5;
+wire		[15:0]	lia_out_x_6;		// lock-in x output signal for lockin_2
+wire		[15:0]	lia_out_y_6;
+wire		[15:0]	lia_out_x_7;		// lock-in x output signal for lockin_2
+wire		[15:0]	lia_out_y_7;
+wire		[15:0]	lia_out_x_8;		// lock-in x output signal for lockin_2
+wire		[15:0]	lia_out_y_8;
 wire 		lia_out_valid;
 
  
@@ -395,7 +407,57 @@ reg [127:0] encoded_data = 128'd0;
 
 always @ (negedge lia_out_valid)
 begin
-encoded_data <= { temp_counter,2'b11,lia_out_y_2[3:0],
+encoded_data <= {	temp_counter,2'b11,lia_out_y_8[3:0],
+						temp_counter,2'b11,lia_out_y_8[7:4],
+						temp_counter,2'b11,lia_out_y_8[11:8],
+						temp_counter,2'b11,lia_out_y_8[15:12],
+						
+						temp_counter,2'b10,lia_out_x_8[3:0],
+						temp_counter,2'b10,lia_out_x_8[7:4],
+						temp_counter,2'b10,lia_out_x_8[11:8],
+						temp_counter,2'b10,lia_out_x_8[15:12],
+						
+						temp_counter,2'b11,lia_out_y_7[3:0],
+						temp_counter,2'b11,lia_out_y_7[7:4],
+						temp_counter,2'b11,lia_out_y_7[11:8],
+						temp_counter,2'b11,lia_out_y_7[15:12],
+						
+						temp_counter,2'b10,lia_out_x_6[3:0],
+						temp_counter,2'b10,lia_out_x_6[7:4],
+						temp_counter,2'b10,lia_out_x_6[11:8],
+						temp_counter,2'b10,lia_out_x_6[15:12],
+						
+						temp_counter,2'b11,lia_out_y_5[3:0],
+						temp_counter,2'b11,lia_out_y_5[7:4],
+						temp_counter,2'b11,lia_out_y_5[11:8],
+						temp_counter,2'b11,lia_out_y_5[15:12],
+						
+						temp_counter,2'b10,lia_out_x_5[3:0],
+						temp_counter,2'b10,lia_out_x_5[7:4],
+						temp_counter,2'b10,lia_out_x_5[11:8],
+						temp_counter,2'b10,lia_out_x_5[15:12],
+						
+						temp_counter,2'b11,lia_out_y_4[3:0],
+						temp_counter,2'b11,lia_out_y_4[7:4],
+						temp_counter,2'b11,lia_out_y_4[11:8],
+						temp_counter,2'b11,lia_out_y_4[15:12],
+						
+						temp_counter,2'b10,lia_out_x_4[3:0],
+						temp_counter,2'b10,lia_out_x_4[7:4],
+						temp_counter,2'b10,lia_out_x_4[11:8],
+						temp_counter,2'b10,lia_out_x_4[15:12],
+						
+						temp_counter,2'b11,lia_out_y_3[3:0],
+						temp_counter,2'b11,lia_out_y_3[7:4],
+						temp_counter,2'b11,lia_out_y_3[11:8],
+						temp_counter,2'b11,lia_out_y_3[15:12],
+						
+						temp_counter,2'b10,lia_out_x_3[3:0],
+						temp_counter,2'b10,lia_out_x_3[7:4],
+						temp_counter,2'b10,lia_out_x_3[11:8],
+						temp_counter,2'b10,lia_out_x_3[15:12],						
+												
+						temp_counter,2'b11,lia_out_y_2[3:0],
 						temp_counter,2'b11,lia_out_y_2[7:4],
 						temp_counter,2'b11,lia_out_y_2[11:8],
 						temp_counter,2'b11,lia_out_y_2[15:12],
@@ -451,7 +513,18 @@ DE2115_EightLockins_system DE2115_EightLockins_system_inst(
 				.lia_out_y_1 		(lia_out_y_1),		// lock-in y output signal for lockin_1
 				.lia_out_x_2 		(lia_out_x_2),		// lock-in x output signal for lockin_2
 				.lia_out_y_2 		(lia_out_y_2),		// lock-in y output signal for lockin_2
-				
+				.lia_out_x_3 		(lia_out_x_3),		// lock-in x output signal for lockin_2
+				.lia_out_y_3 		(lia_out_y_3),
+				.lia_out_x_4 		(lia_out_x_4),		// lock-in x output signal for lockin_2
+				.lia_out_y_4 		(lia_out_y_4),
+				.lia_out_x_5 		(lia_out_x_5),		// lock-in x output signal for lockin_2
+				.lia_out_y_5 		(lia_out_y_5),
+				.lia_out_x_6 		(lia_out_x_6),		// lock-in x output signal for lockin_2
+				.lia_out_y_6 		(lia_out_y_6),
+				.lia_out_x_7 		(lia_out_x_7),		// lock-in x output signal for lockin_2
+				.lia_out_y_7 		(lia_out_y_7),
+				.lia_out_x_8 		(lia_out_x_8),		// lock-in x output signal for lockin_2
+				.lia_out_y_8 		(lia_out_y_8),
 				.lia_out_valid 	(lia_out_valid),				
 				.adc_data			(adc_data_in),
 				.adc_clk				(ADA_DCO),

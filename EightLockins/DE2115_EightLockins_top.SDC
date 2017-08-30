@@ -20,6 +20,18 @@ create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eig
 create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_1|cic_y|clk_decimated}]
 create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_2|cic_x|clk_decimated}]
 create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_2|cic_y|clk_decimated}]
+create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_3|cic_x|clk_decimated}]
+create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_3|cic_y|clk_decimated}]
+create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_4|cic_x|clk_decimated}]
+create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_4|cic_y|clk_decimated}]
+create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_5|cic_x|clk_decimated}]
+create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_5|cic_y|clk_decimated}]
+create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_6|cic_x|clk_decimated}]
+create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_6|cic_y|clk_decimated}]
+create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_7|cic_x|clk_decimated}]
+create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_7|cic_y|clk_decimated}]
+create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_8|cic_x|clk_decimated}]
+create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_8|cic_y|clk_decimated}]
 
 create_clock -period 100 [get_ports GPIO[8]]
 

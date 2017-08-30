@@ -980,4 +980,5 @@ set_global_assignment -name VHDL_FILE mult_13x14.vhd
 set_global_assignment -name QIP_FILE mult_13x14.qip
 set_global_assignment -name SOURCE_FILE mult_13x14.cmp
 set_global_assignment -name QIP_FILE qsys_system/synthesis/qsys_system.qip
+set_global_assignment -name QIP_FILE eight_add.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

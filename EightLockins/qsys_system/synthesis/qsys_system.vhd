@@ -12,8 +12,20 @@ entity qsys_system is
 		gain_ctrl_export    : out std_logic_vector(5 downto 0);         --    gain_ctrl.export
 		phase_incr_1_export : out std_logic_vector(19 downto 0);        -- phase_incr_1.export
 		phase_incr_2_export : out std_logic_vector(19 downto 0);        -- phase_incr_2.export
+		phase_incr_3_export : out std_logic_vector(19 downto 0);        -- phase_incr_3.export
+		phase_incr_4_export : out std_logic_vector(19 downto 0);        -- phase_incr_4.export
+		phase_incr_5_export : out std_logic_vector(19 downto 0);        -- phase_incr_5.export
+		phase_incr_6_export : out std_logic_vector(19 downto 0);        -- phase_incr_6.export
+		phase_incr_7_export : out std_logic_vector(19 downto 0);        -- phase_incr_7.export
+		phase_incr_8_export : out std_logic_vector(19 downto 0);        -- phase_incr_8.export
 		phase_offs_1_export : out std_logic_vector(19 downto 0);        -- phase_offs_1.export
 		phase_offs_2_export : out std_logic_vector(19 downto 0);        -- phase_offs_2.export
+		phase_offs_3_export : out std_logic_vector(19 downto 0);        -- phase_offs_3.export
+		phase_offs_4_export : out std_logic_vector(19 downto 0);        -- phase_offs_4.export
+		phase_offs_5_export : out std_logic_vector(19 downto 0);        -- phase_offs_5.export
+		phase_offs_6_export : out std_logic_vector(19 downto 0);        -- phase_offs_6.export
+		phase_offs_7_export : out std_logic_vector(19 downto 0);        -- phase_offs_7.export
+		phase_offs_8_export : out std_logic_vector(19 downto 0);        -- phase_offs_8.export
 		reset_reset_n       : in  std_logic                     := '0'; --        reset.reset_n
 		resetrequest_reset  : out std_logic                             -- resetrequest.reset
 	);
@@ -194,6 +206,36 @@ architecture rtl of qsys_system is
 			nco_freq_control_2_s1_readdata                    : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
 			nco_freq_control_2_s1_writedata                   : out std_logic_vector(31 downto 0);                    -- writedata
 			nco_freq_control_2_s1_chipselect                  : out std_logic;                                        -- chipselect
+			nco_freq_ctrl_3_s1_address                        : out std_logic_vector(1 downto 0);                     -- address
+			nco_freq_ctrl_3_s1_write                          : out std_logic;                                        -- write
+			nco_freq_ctrl_3_s1_readdata                       : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			nco_freq_ctrl_3_s1_writedata                      : out std_logic_vector(31 downto 0);                    -- writedata
+			nco_freq_ctrl_3_s1_chipselect                     : out std_logic;                                        -- chipselect
+			nco_freq_ctrl_4_s1_address                        : out std_logic_vector(1 downto 0);                     -- address
+			nco_freq_ctrl_4_s1_write                          : out std_logic;                                        -- write
+			nco_freq_ctrl_4_s1_readdata                       : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			nco_freq_ctrl_4_s1_writedata                      : out std_logic_vector(31 downto 0);                    -- writedata
+			nco_freq_ctrl_4_s1_chipselect                     : out std_logic;                                        -- chipselect
+			nco_freq_ctrl_5_s1_address                        : out std_logic_vector(1 downto 0);                     -- address
+			nco_freq_ctrl_5_s1_write                          : out std_logic;                                        -- write
+			nco_freq_ctrl_5_s1_readdata                       : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			nco_freq_ctrl_5_s1_writedata                      : out std_logic_vector(31 downto 0);                    -- writedata
+			nco_freq_ctrl_5_s1_chipselect                     : out std_logic;                                        -- chipselect
+			nco_freq_ctrl_6_s1_address                        : out std_logic_vector(1 downto 0);                     -- address
+			nco_freq_ctrl_6_s1_write                          : out std_logic;                                        -- write
+			nco_freq_ctrl_6_s1_readdata                       : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			nco_freq_ctrl_6_s1_writedata                      : out std_logic_vector(31 downto 0);                    -- writedata
+			nco_freq_ctrl_6_s1_chipselect                     : out std_logic;                                        -- chipselect
+			nco_freq_ctrl_7_s1_address                        : out std_logic_vector(1 downto 0);                     -- address
+			nco_freq_ctrl_7_s1_write                          : out std_logic;                                        -- write
+			nco_freq_ctrl_7_s1_readdata                       : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			nco_freq_ctrl_7_s1_writedata                      : out std_logic_vector(31 downto 0);                    -- writedata
+			nco_freq_ctrl_7_s1_chipselect                     : out std_logic;                                        -- chipselect
+			nco_freq_ctrl_8_s1_address                        : out std_logic_vector(1 downto 0);                     -- address
+			nco_freq_ctrl_8_s1_write                          : out std_logic;                                        -- write
+			nco_freq_ctrl_8_s1_readdata                       : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			nco_freq_ctrl_8_s1_writedata                      : out std_logic_vector(31 downto 0);                    -- writedata
+			nco_freq_ctrl_8_s1_chipselect                     : out std_logic;                                        -- chipselect
 			nco_phase_ctrl_1_s1_address                       : out std_logic_vector(1 downto 0);                     -- address
 			nco_phase_ctrl_1_s1_write                         : out std_logic;                                        -- write
 			nco_phase_ctrl_1_s1_readdata                      : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
@@ -204,6 +246,36 @@ architecture rtl of qsys_system is
 			nco_phase_ctrl_2_s1_readdata                      : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
 			nco_phase_ctrl_2_s1_writedata                     : out std_logic_vector(31 downto 0);                    -- writedata
 			nco_phase_ctrl_2_s1_chipselect                    : out std_logic;                                        -- chipselect
+			nco_phase_ctrl_3_s1_address                       : out std_logic_vector(1 downto 0);                     -- address
+			nco_phase_ctrl_3_s1_write                         : out std_logic;                                        -- write
+			nco_phase_ctrl_3_s1_readdata                      : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			nco_phase_ctrl_3_s1_writedata                     : out std_logic_vector(31 downto 0);                    -- writedata
+			nco_phase_ctrl_3_s1_chipselect                    : out std_logic;                                        -- chipselect
+			nco_phase_ctrl_4_s1_address                       : out std_logic_vector(1 downto 0);                     -- address
+			nco_phase_ctrl_4_s1_write                         : out std_logic;                                        -- write
+			nco_phase_ctrl_4_s1_readdata                      : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			nco_phase_ctrl_4_s1_writedata                     : out std_logic_vector(31 downto 0);                    -- writedata
+			nco_phase_ctrl_4_s1_chipselect                    : out std_logic;                                        -- chipselect
+			nco_phase_ctrl_5_s1_address                       : out std_logic_vector(1 downto 0);                     -- address
+			nco_phase_ctrl_5_s1_write                         : out std_logic;                                        -- write
+			nco_phase_ctrl_5_s1_readdata                      : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			nco_phase_ctrl_5_s1_writedata                     : out std_logic_vector(31 downto 0);                    -- writedata
+			nco_phase_ctrl_5_s1_chipselect                    : out std_logic;                                        -- chipselect
+			nco_phase_ctrl_6_s1_address                       : out std_logic_vector(1 downto 0);                     -- address
+			nco_phase_ctrl_6_s1_write                         : out std_logic;                                        -- write
+			nco_phase_ctrl_6_s1_readdata                      : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			nco_phase_ctrl_6_s1_writedata                     : out std_logic_vector(31 downto 0);                    -- writedata
+			nco_phase_ctrl_6_s1_chipselect                    : out std_logic;                                        -- chipselect
+			nco_phase_ctrl_7_s1_address                       : out std_logic_vector(1 downto 0);                     -- address
+			nco_phase_ctrl_7_s1_write                         : out std_logic;                                        -- write
+			nco_phase_ctrl_7_s1_readdata                      : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			nco_phase_ctrl_7_s1_writedata                     : out std_logic_vector(31 downto 0);                    -- writedata
+			nco_phase_ctrl_7_s1_chipselect                    : out std_logic;                                        -- chipselect
+			nco_phase_ctrl_8_s1_address                       : out std_logic_vector(1 downto 0);                     -- address
+			nco_phase_ctrl_8_s1_write                         : out std_logic;                                        -- write
+			nco_phase_ctrl_8_s1_readdata                      : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			nco_phase_ctrl_8_s1_writedata                     : out std_logic_vector(31 downto 0);                    -- writedata
+			nco_phase_ctrl_8_s1_chipselect                    : out std_logic;                                        -- chipselect
 			onchip_ram_s1_address                             : out std_logic_vector(9 downto 0);                     -- address
 			onchip_ram_s1_write                               : out std_logic;                                        -- write
 			onchip_ram_s1_readdata                            : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
@@ -328,6 +400,66 @@ architecture rtl of qsys_system is
 	signal mm_interconnect_0_gain_controller_s1_address            : std_logic_vector(1 downto 0);  -- mm_interconnect_0:gain_controller_s1_address -> gain_controller:address
 	signal mm_interconnect_0_gain_controller_s1_write              : std_logic;                     -- mm_interconnect_0:gain_controller_s1_write -> mm_interconnect_0_gain_controller_s1_write:in
 	signal mm_interconnect_0_gain_controller_s1_writedata          : std_logic_vector(31 downto 0); -- mm_interconnect_0:gain_controller_s1_writedata -> gain_controller:writedata
+	signal mm_interconnect_0_nco_freq_ctrl_3_s1_chipselect         : std_logic;                     -- mm_interconnect_0:nco_freq_ctrl_3_s1_chipselect -> nco_freq_ctrl_3:chipselect
+	signal mm_interconnect_0_nco_freq_ctrl_3_s1_readdata           : std_logic_vector(31 downto 0); -- nco_freq_ctrl_3:readdata -> mm_interconnect_0:nco_freq_ctrl_3_s1_readdata
+	signal mm_interconnect_0_nco_freq_ctrl_3_s1_address            : std_logic_vector(1 downto 0);  -- mm_interconnect_0:nco_freq_ctrl_3_s1_address -> nco_freq_ctrl_3:address
+	signal mm_interconnect_0_nco_freq_ctrl_3_s1_write              : std_logic;                     -- mm_interconnect_0:nco_freq_ctrl_3_s1_write -> mm_interconnect_0_nco_freq_ctrl_3_s1_write:in
+	signal mm_interconnect_0_nco_freq_ctrl_3_s1_writedata          : std_logic_vector(31 downto 0); -- mm_interconnect_0:nco_freq_ctrl_3_s1_writedata -> nco_freq_ctrl_3:writedata
+	signal mm_interconnect_0_nco_freq_ctrl_4_s1_chipselect         : std_logic;                     -- mm_interconnect_0:nco_freq_ctrl_4_s1_chipselect -> nco_freq_ctrl_4:chipselect
+	signal mm_interconnect_0_nco_freq_ctrl_4_s1_readdata           : std_logic_vector(31 downto 0); -- nco_freq_ctrl_4:readdata -> mm_interconnect_0:nco_freq_ctrl_4_s1_readdata
+	signal mm_interconnect_0_nco_freq_ctrl_4_s1_address            : std_logic_vector(1 downto 0);  -- mm_interconnect_0:nco_freq_ctrl_4_s1_address -> nco_freq_ctrl_4:address
+	signal mm_interconnect_0_nco_freq_ctrl_4_s1_write              : std_logic;                     -- mm_interconnect_0:nco_freq_ctrl_4_s1_write -> mm_interconnect_0_nco_freq_ctrl_4_s1_write:in
+	signal mm_interconnect_0_nco_freq_ctrl_4_s1_writedata          : std_logic_vector(31 downto 0); -- mm_interconnect_0:nco_freq_ctrl_4_s1_writedata -> nco_freq_ctrl_4:writedata
+	signal mm_interconnect_0_nco_freq_ctrl_5_s1_chipselect         : std_logic;                     -- mm_interconnect_0:nco_freq_ctrl_5_s1_chipselect -> nco_freq_ctrl_5:chipselect
+	signal mm_interconnect_0_nco_freq_ctrl_5_s1_readdata           : std_logic_vector(31 downto 0); -- nco_freq_ctrl_5:readdata -> mm_interconnect_0:nco_freq_ctrl_5_s1_readdata
+	signal mm_interconnect_0_nco_freq_ctrl_5_s1_address            : std_logic_vector(1 downto 0);  -- mm_interconnect_0:nco_freq_ctrl_5_s1_address -> nco_freq_ctrl_5:address
+	signal mm_interconnect_0_nco_freq_ctrl_5_s1_write              : std_logic;                     -- mm_interconnect_0:nco_freq_ctrl_5_s1_write -> mm_interconnect_0_nco_freq_ctrl_5_s1_write:in
+	signal mm_interconnect_0_nco_freq_ctrl_5_s1_writedata          : std_logic_vector(31 downto 0); -- mm_interconnect_0:nco_freq_ctrl_5_s1_writedata -> nco_freq_ctrl_5:writedata
+	signal mm_interconnect_0_nco_freq_ctrl_6_s1_chipselect         : std_logic;                     -- mm_interconnect_0:nco_freq_ctrl_6_s1_chipselect -> nco_freq_ctrl_6:chipselect
+	signal mm_interconnect_0_nco_freq_ctrl_6_s1_readdata           : std_logic_vector(31 downto 0); -- nco_freq_ctrl_6:readdata -> mm_interconnect_0:nco_freq_ctrl_6_s1_readdata
+	signal mm_interconnect_0_nco_freq_ctrl_6_s1_address            : std_logic_vector(1 downto 0);  -- mm_interconnect_0:nco_freq_ctrl_6_s1_address -> nco_freq_ctrl_6:address
+	signal mm_interconnect_0_nco_freq_ctrl_6_s1_write              : std_logic;                     -- mm_interconnect_0:nco_freq_ctrl_6_s1_write -> mm_interconnect_0_nco_freq_ctrl_6_s1_write:in
+	signal mm_interconnect_0_nco_freq_ctrl_6_s1_writedata          : std_logic_vector(31 downto 0); -- mm_interconnect_0:nco_freq_ctrl_6_s1_writedata -> nco_freq_ctrl_6:writedata
+	signal mm_interconnect_0_nco_freq_ctrl_7_s1_chipselect         : std_logic;                     -- mm_interconnect_0:nco_freq_ctrl_7_s1_chipselect -> nco_freq_ctrl_7:chipselect
+	signal mm_interconnect_0_nco_freq_ctrl_7_s1_readdata           : std_logic_vector(31 downto 0); -- nco_freq_ctrl_7:readdata -> mm_interconnect_0:nco_freq_ctrl_7_s1_readdata
+	signal mm_interconnect_0_nco_freq_ctrl_7_s1_address            : std_logic_vector(1 downto 0);  -- mm_interconnect_0:nco_freq_ctrl_7_s1_address -> nco_freq_ctrl_7:address
+	signal mm_interconnect_0_nco_freq_ctrl_7_s1_write              : std_logic;                     -- mm_interconnect_0:nco_freq_ctrl_7_s1_write -> mm_interconnect_0_nco_freq_ctrl_7_s1_write:in
+	signal mm_interconnect_0_nco_freq_ctrl_7_s1_writedata          : std_logic_vector(31 downto 0); -- mm_interconnect_0:nco_freq_ctrl_7_s1_writedata -> nco_freq_ctrl_7:writedata
+	signal mm_interconnect_0_nco_freq_ctrl_8_s1_chipselect         : std_logic;                     -- mm_interconnect_0:nco_freq_ctrl_8_s1_chipselect -> nco_freq_ctrl_8:chipselect
+	signal mm_interconnect_0_nco_freq_ctrl_8_s1_readdata           : std_logic_vector(31 downto 0); -- nco_freq_ctrl_8:readdata -> mm_interconnect_0:nco_freq_ctrl_8_s1_readdata
+	signal mm_interconnect_0_nco_freq_ctrl_8_s1_address            : std_logic_vector(1 downto 0);  -- mm_interconnect_0:nco_freq_ctrl_8_s1_address -> nco_freq_ctrl_8:address
+	signal mm_interconnect_0_nco_freq_ctrl_8_s1_write              : std_logic;                     -- mm_interconnect_0:nco_freq_ctrl_8_s1_write -> mm_interconnect_0_nco_freq_ctrl_8_s1_write:in
+	signal mm_interconnect_0_nco_freq_ctrl_8_s1_writedata          : std_logic_vector(31 downto 0); -- mm_interconnect_0:nco_freq_ctrl_8_s1_writedata -> nco_freq_ctrl_8:writedata
+	signal mm_interconnect_0_nco_phase_ctrl_3_s1_chipselect        : std_logic;                     -- mm_interconnect_0:nco_phase_ctrl_3_s1_chipselect -> nco_phase_ctrl_3:chipselect
+	signal mm_interconnect_0_nco_phase_ctrl_3_s1_readdata          : std_logic_vector(31 downto 0); -- nco_phase_ctrl_3:readdata -> mm_interconnect_0:nco_phase_ctrl_3_s1_readdata
+	signal mm_interconnect_0_nco_phase_ctrl_3_s1_address           : std_logic_vector(1 downto 0);  -- mm_interconnect_0:nco_phase_ctrl_3_s1_address -> nco_phase_ctrl_3:address
+	signal mm_interconnect_0_nco_phase_ctrl_3_s1_write             : std_logic;                     -- mm_interconnect_0:nco_phase_ctrl_3_s1_write -> mm_interconnect_0_nco_phase_ctrl_3_s1_write:in
+	signal mm_interconnect_0_nco_phase_ctrl_3_s1_writedata         : std_logic_vector(31 downto 0); -- mm_interconnect_0:nco_phase_ctrl_3_s1_writedata -> nco_phase_ctrl_3:writedata
+	signal mm_interconnect_0_nco_phase_ctrl_4_s1_chipselect        : std_logic;                     -- mm_interconnect_0:nco_phase_ctrl_4_s1_chipselect -> nco_phase_ctrl_4:chipselect
+	signal mm_interconnect_0_nco_phase_ctrl_4_s1_readdata          : std_logic_vector(31 downto 0); -- nco_phase_ctrl_4:readdata -> mm_interconnect_0:nco_phase_ctrl_4_s1_readdata
+	signal mm_interconnect_0_nco_phase_ctrl_4_s1_address           : std_logic_vector(1 downto 0);  -- mm_interconnect_0:nco_phase_ctrl_4_s1_address -> nco_phase_ctrl_4:address
+	signal mm_interconnect_0_nco_phase_ctrl_4_s1_write             : std_logic;                     -- mm_interconnect_0:nco_phase_ctrl_4_s1_write -> mm_interconnect_0_nco_phase_ctrl_4_s1_write:in
+	signal mm_interconnect_0_nco_phase_ctrl_4_s1_writedata         : std_logic_vector(31 downto 0); -- mm_interconnect_0:nco_phase_ctrl_4_s1_writedata -> nco_phase_ctrl_4:writedata
+	signal mm_interconnect_0_nco_phase_ctrl_5_s1_chipselect        : std_logic;                     -- mm_interconnect_0:nco_phase_ctrl_5_s1_chipselect -> nco_phase_ctrl_5:chipselect
+	signal mm_interconnect_0_nco_phase_ctrl_5_s1_readdata          : std_logic_vector(31 downto 0); -- nco_phase_ctrl_5:readdata -> mm_interconnect_0:nco_phase_ctrl_5_s1_readdata
+	signal mm_interconnect_0_nco_phase_ctrl_5_s1_address           : std_logic_vector(1 downto 0);  -- mm_interconnect_0:nco_phase_ctrl_5_s1_address -> nco_phase_ctrl_5:address
+	signal mm_interconnect_0_nco_phase_ctrl_5_s1_write             : std_logic;                     -- mm_interconnect_0:nco_phase_ctrl_5_s1_write -> mm_interconnect_0_nco_phase_ctrl_5_s1_write:in
+	signal mm_interconnect_0_nco_phase_ctrl_5_s1_writedata         : std_logic_vector(31 downto 0); -- mm_interconnect_0:nco_phase_ctrl_5_s1_writedata -> nco_phase_ctrl_5:writedata
+	signal mm_interconnect_0_nco_phase_ctrl_6_s1_chipselect        : std_logic;                     -- mm_interconnect_0:nco_phase_ctrl_6_s1_chipselect -> nco_phase_ctrl_6:chipselect
+	signal mm_interconnect_0_nco_phase_ctrl_6_s1_readdata          : std_logic_vector(31 downto 0); -- nco_phase_ctrl_6:readdata -> mm_interconnect_0:nco_phase_ctrl_6_s1_readdata
+	signal mm_interconnect_0_nco_phase_ctrl_6_s1_address           : std_logic_vector(1 downto 0);  -- mm_interconnect_0:nco_phase_ctrl_6_s1_address -> nco_phase_ctrl_6:address
+	signal mm_interconnect_0_nco_phase_ctrl_6_s1_write             : std_logic;                     -- mm_interconnect_0:nco_phase_ctrl_6_s1_write -> mm_interconnect_0_nco_phase_ctrl_6_s1_write:in
+	signal mm_interconnect_0_nco_phase_ctrl_6_s1_writedata         : std_logic_vector(31 downto 0); -- mm_interconnect_0:nco_phase_ctrl_6_s1_writedata -> nco_phase_ctrl_6:writedata
+	signal mm_interconnect_0_nco_phase_ctrl_7_s1_chipselect        : std_logic;                     -- mm_interconnect_0:nco_phase_ctrl_7_s1_chipselect -> nco_phase_ctrl_7:chipselect
+	signal mm_interconnect_0_nco_phase_ctrl_7_s1_readdata          : std_logic_vector(31 downto 0); -- nco_phase_ctrl_7:readdata -> mm_interconnect_0:nco_phase_ctrl_7_s1_readdata
+	signal mm_interconnect_0_nco_phase_ctrl_7_s1_address           : std_logic_vector(1 downto 0);  -- mm_interconnect_0:nco_phase_ctrl_7_s1_address -> nco_phase_ctrl_7:address
+	signal mm_interconnect_0_nco_phase_ctrl_7_s1_write             : std_logic;                     -- mm_interconnect_0:nco_phase_ctrl_7_s1_write -> mm_interconnect_0_nco_phase_ctrl_7_s1_write:in
+	signal mm_interconnect_0_nco_phase_ctrl_7_s1_writedata         : std_logic_vector(31 downto 0); -- mm_interconnect_0:nco_phase_ctrl_7_s1_writedata -> nco_phase_ctrl_7:writedata
+	signal mm_interconnect_0_nco_phase_ctrl_8_s1_chipselect        : std_logic;                     -- mm_interconnect_0:nco_phase_ctrl_8_s1_chipselect -> nco_phase_ctrl_8:chipselect
+	signal mm_interconnect_0_nco_phase_ctrl_8_s1_readdata          : std_logic_vector(31 downto 0); -- nco_phase_ctrl_8:readdata -> mm_interconnect_0:nco_phase_ctrl_8_s1_readdata
+	signal mm_interconnect_0_nco_phase_ctrl_8_s1_address           : std_logic_vector(1 downto 0);  -- mm_interconnect_0:nco_phase_ctrl_8_s1_address -> nco_phase_ctrl_8:address
+	signal mm_interconnect_0_nco_phase_ctrl_8_s1_write             : std_logic;                     -- mm_interconnect_0:nco_phase_ctrl_8_s1_write -> mm_interconnect_0_nco_phase_ctrl_8_s1_write:in
+	signal mm_interconnect_0_nco_phase_ctrl_8_s1_writedata         : std_logic_vector(31 downto 0); -- mm_interconnect_0:nco_phase_ctrl_8_s1_writedata -> nco_phase_ctrl_8:writedata
 	signal rst_controller_reset_out_reset                          : std_logic;                     -- rst_controller:reset_out -> [bfm_master:reset, mm_interconnect_0:bfm_master_clk_reset_reset_bridge_in_reset_reset, mm_interconnect_0:jtag_master_clk_reset_reset_bridge_in_reset_reset, onchip_ram:reset, rst_controller_reset_out_reset:in, rst_translator:in_reset]
 	signal rst_controller_reset_out_reset_req                      : std_logic;                     -- rst_controller:reset_req -> [onchip_ram:reset_req, rst_translator:reset_req_in]
 	signal reset_reset_n_ports_inv                                 : std_logic;                     -- reset_reset_n:inv -> [jtag_master:clk_reset_reset, rst_controller:reset_in0]
@@ -336,7 +468,19 @@ architecture rtl of qsys_system is
 	signal mm_interconnect_0_nco_phase_ctrl_1_s1_write_ports_inv   : std_logic;                     -- mm_interconnect_0_nco_phase_ctrl_1_s1_write:inv -> nco_phase_ctrl_1:write_n
 	signal mm_interconnect_0_nco_phase_ctrl_2_s1_write_ports_inv   : std_logic;                     -- mm_interconnect_0_nco_phase_ctrl_2_s1_write:inv -> nco_phase_ctrl_2:write_n
 	signal mm_interconnect_0_gain_controller_s1_write_ports_inv    : std_logic;                     -- mm_interconnect_0_gain_controller_s1_write:inv -> gain_controller:write_n
-	signal rst_controller_reset_out_reset_ports_inv                : std_logic;                     -- rst_controller_reset_out_reset:inv -> [gain_controller:reset_n, nco_freq_control_1:reset_n, nco_freq_control_2:reset_n, nco_phase_ctrl_1:reset_n, nco_phase_ctrl_2:reset_n]
+	signal mm_interconnect_0_nco_freq_ctrl_3_s1_write_ports_inv    : std_logic;                     -- mm_interconnect_0_nco_freq_ctrl_3_s1_write:inv -> nco_freq_ctrl_3:write_n
+	signal mm_interconnect_0_nco_freq_ctrl_4_s1_write_ports_inv    : std_logic;                     -- mm_interconnect_0_nco_freq_ctrl_4_s1_write:inv -> nco_freq_ctrl_4:write_n
+	signal mm_interconnect_0_nco_freq_ctrl_5_s1_write_ports_inv    : std_logic;                     -- mm_interconnect_0_nco_freq_ctrl_5_s1_write:inv -> nco_freq_ctrl_5:write_n
+	signal mm_interconnect_0_nco_freq_ctrl_6_s1_write_ports_inv    : std_logic;                     -- mm_interconnect_0_nco_freq_ctrl_6_s1_write:inv -> nco_freq_ctrl_6:write_n
+	signal mm_interconnect_0_nco_freq_ctrl_7_s1_write_ports_inv    : std_logic;                     -- mm_interconnect_0_nco_freq_ctrl_7_s1_write:inv -> nco_freq_ctrl_7:write_n
+	signal mm_interconnect_0_nco_freq_ctrl_8_s1_write_ports_inv    : std_logic;                     -- mm_interconnect_0_nco_freq_ctrl_8_s1_write:inv -> nco_freq_ctrl_8:write_n
+	signal mm_interconnect_0_nco_phase_ctrl_3_s1_write_ports_inv   : std_logic;                     -- mm_interconnect_0_nco_phase_ctrl_3_s1_write:inv -> nco_phase_ctrl_3:write_n
+	signal mm_interconnect_0_nco_phase_ctrl_4_s1_write_ports_inv   : std_logic;                     -- mm_interconnect_0_nco_phase_ctrl_4_s1_write:inv -> nco_phase_ctrl_4:write_n
+	signal mm_interconnect_0_nco_phase_ctrl_5_s1_write_ports_inv   : std_logic;                     -- mm_interconnect_0_nco_phase_ctrl_5_s1_write:inv -> nco_phase_ctrl_5:write_n
+	signal mm_interconnect_0_nco_phase_ctrl_6_s1_write_ports_inv   : std_logic;                     -- mm_interconnect_0_nco_phase_ctrl_6_s1_write:inv -> nco_phase_ctrl_6:write_n
+	signal mm_interconnect_0_nco_phase_ctrl_7_s1_write_ports_inv   : std_logic;                     -- mm_interconnect_0_nco_phase_ctrl_7_s1_write:inv -> nco_phase_ctrl_7:write_n
+	signal mm_interconnect_0_nco_phase_ctrl_8_s1_write_ports_inv   : std_logic;                     -- mm_interconnect_0_nco_phase_ctrl_8_s1_write:inv -> nco_phase_ctrl_8:write_n
+	signal rst_controller_reset_out_reset_ports_inv                : std_logic;                     -- rst_controller_reset_out_reset:inv -> [gain_controller:reset_n, nco_freq_control_1:reset_n, nco_freq_control_2:reset_n, nco_freq_ctrl_3:reset_n, nco_freq_ctrl_4:reset_n, nco_freq_ctrl_5:reset_n, nco_freq_ctrl_6:reset_n, nco_freq_ctrl_7:reset_n, nco_freq_ctrl_8:reset_n, nco_phase_ctrl_1:reset_n, nco_phase_ctrl_2:reset_n, nco_phase_ctrl_3:reset_n, nco_phase_ctrl_4:reset_n, nco_phase_ctrl_5:reset_n, nco_phase_ctrl_6:reset_n, nco_phase_ctrl_7:reset_n, nco_phase_ctrl_8:reset_n]
 
 begin
 
@@ -458,6 +602,78 @@ begin
 			out_port   => phase_incr_2_export                                      -- external_connection.export
 		);
 
+	nco_freq_ctrl_3 : component qsys_system_nco_freq_control_2
+		port map (
+			clk        => clk_clk,                                              --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
+			address    => mm_interconnect_0_nco_freq_ctrl_3_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_freq_ctrl_3_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_freq_ctrl_3_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_freq_ctrl_3_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_freq_ctrl_3_s1_readdata,        --                    .readdata
+			out_port   => phase_incr_3_export                                   -- external_connection.export
+		);
+
+	nco_freq_ctrl_4 : component qsys_system_nco_freq_control_2
+		port map (
+			clk        => clk_clk,                                              --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
+			address    => mm_interconnect_0_nco_freq_ctrl_4_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_freq_ctrl_4_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_freq_ctrl_4_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_freq_ctrl_4_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_freq_ctrl_4_s1_readdata,        --                    .readdata
+			out_port   => phase_incr_4_export                                   -- external_connection.export
+		);
+
+	nco_freq_ctrl_5 : component qsys_system_nco_freq_control_2
+		port map (
+			clk        => clk_clk,                                              --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
+			address    => mm_interconnect_0_nco_freq_ctrl_5_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_freq_ctrl_5_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_freq_ctrl_5_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_freq_ctrl_5_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_freq_ctrl_5_s1_readdata,        --                    .readdata
+			out_port   => phase_incr_5_export                                   -- external_connection.export
+		);
+
+	nco_freq_ctrl_6 : component qsys_system_nco_freq_control_2
+		port map (
+			clk        => clk_clk,                                              --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
+			address    => mm_interconnect_0_nco_freq_ctrl_6_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_freq_ctrl_6_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_freq_ctrl_6_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_freq_ctrl_6_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_freq_ctrl_6_s1_readdata,        --                    .readdata
+			out_port   => phase_incr_6_export                                   -- external_connection.export
+		);
+
+	nco_freq_ctrl_7 : component qsys_system_nco_freq_control_2
+		port map (
+			clk        => clk_clk,                                              --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
+			address    => mm_interconnect_0_nco_freq_ctrl_7_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_freq_ctrl_7_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_freq_ctrl_7_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_freq_ctrl_7_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_freq_ctrl_7_s1_readdata,        --                    .readdata
+			out_port   => phase_incr_7_export                                   -- external_connection.export
+		);
+
+	nco_freq_ctrl_8 : component qsys_system_nco_freq_control_2
+		port map (
+			clk        => clk_clk,                                              --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
+			address    => mm_interconnect_0_nco_freq_ctrl_8_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_freq_ctrl_8_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_freq_ctrl_8_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_freq_ctrl_8_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_freq_ctrl_8_s1_readdata,        --                    .readdata
+			out_port   => phase_incr_8_export                                   -- external_connection.export
+		);
+
 	nco_phase_ctrl_1 : component qsys_system_nco_freq_control_2
 		port map (
 			clk        => clk_clk,                                               --                 clk.clk
@@ -480,6 +696,78 @@ begin
 			chipselect => mm_interconnect_0_nco_phase_ctrl_2_s1_chipselect,      --                    .chipselect
 			readdata   => mm_interconnect_0_nco_phase_ctrl_2_s1_readdata,        --                    .readdata
 			out_port   => phase_offs_2_export                                    -- external_connection.export
+		);
+
+	nco_phase_ctrl_3 : component qsys_system_nco_freq_control_2
+		port map (
+			clk        => clk_clk,                                               --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
+			address    => mm_interconnect_0_nco_phase_ctrl_3_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_phase_ctrl_3_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_phase_ctrl_3_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_phase_ctrl_3_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_phase_ctrl_3_s1_readdata,        --                    .readdata
+			out_port   => phase_offs_3_export                                    -- external_connection.export
+		);
+
+	nco_phase_ctrl_4 : component qsys_system_nco_freq_control_2
+		port map (
+			clk        => clk_clk,                                               --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
+			address    => mm_interconnect_0_nco_phase_ctrl_4_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_phase_ctrl_4_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_phase_ctrl_4_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_phase_ctrl_4_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_phase_ctrl_4_s1_readdata,        --                    .readdata
+			out_port   => phase_offs_4_export                                    -- external_connection.export
+		);
+
+	nco_phase_ctrl_5 : component qsys_system_nco_freq_control_2
+		port map (
+			clk        => clk_clk,                                               --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
+			address    => mm_interconnect_0_nco_phase_ctrl_5_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_phase_ctrl_5_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_phase_ctrl_5_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_phase_ctrl_5_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_phase_ctrl_5_s1_readdata,        --                    .readdata
+			out_port   => phase_offs_5_export                                    -- external_connection.export
+		);
+
+	nco_phase_ctrl_6 : component qsys_system_nco_freq_control_2
+		port map (
+			clk        => clk_clk,                                               --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
+			address    => mm_interconnect_0_nco_phase_ctrl_6_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_phase_ctrl_6_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_phase_ctrl_6_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_phase_ctrl_6_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_phase_ctrl_6_s1_readdata,        --                    .readdata
+			out_port   => phase_offs_6_export                                    -- external_connection.export
+		);
+
+	nco_phase_ctrl_7 : component qsys_system_nco_freq_control_2
+		port map (
+			clk        => clk_clk,                                               --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
+			address    => mm_interconnect_0_nco_phase_ctrl_7_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_phase_ctrl_7_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_phase_ctrl_7_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_phase_ctrl_7_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_phase_ctrl_7_s1_readdata,        --                    .readdata
+			out_port   => phase_offs_7_export                                    -- external_connection.export
+		);
+
+	nco_phase_ctrl_8 : component qsys_system_nco_freq_control_2
+		port map (
+			clk        => clk_clk,                                               --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
+			address    => mm_interconnect_0_nco_phase_ctrl_8_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_phase_ctrl_8_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_phase_ctrl_8_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_phase_ctrl_8_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_phase_ctrl_8_s1_readdata,        --                    .readdata
+			out_port   => phase_offs_8_export                                    -- external_connection.export
 		);
 
 	onchip_ram : component qsys_system_onchip_ram
@@ -532,6 +820,36 @@ begin
 			nco_freq_control_2_s1_readdata                    => mm_interconnect_0_nco_freq_control_2_s1_readdata,   --                                            .readdata
 			nco_freq_control_2_s1_writedata                   => mm_interconnect_0_nco_freq_control_2_s1_writedata,  --                                            .writedata
 			nco_freq_control_2_s1_chipselect                  => mm_interconnect_0_nco_freq_control_2_s1_chipselect, --                                            .chipselect
+			nco_freq_ctrl_3_s1_address                        => mm_interconnect_0_nco_freq_ctrl_3_s1_address,       --                          nco_freq_ctrl_3_s1.address
+			nco_freq_ctrl_3_s1_write                          => mm_interconnect_0_nco_freq_ctrl_3_s1_write,         --                                            .write
+			nco_freq_ctrl_3_s1_readdata                       => mm_interconnect_0_nco_freq_ctrl_3_s1_readdata,      --                                            .readdata
+			nco_freq_ctrl_3_s1_writedata                      => mm_interconnect_0_nco_freq_ctrl_3_s1_writedata,     --                                            .writedata
+			nco_freq_ctrl_3_s1_chipselect                     => mm_interconnect_0_nco_freq_ctrl_3_s1_chipselect,    --                                            .chipselect
+			nco_freq_ctrl_4_s1_address                        => mm_interconnect_0_nco_freq_ctrl_4_s1_address,       --                          nco_freq_ctrl_4_s1.address
+			nco_freq_ctrl_4_s1_write                          => mm_interconnect_0_nco_freq_ctrl_4_s1_write,         --                                            .write
+			nco_freq_ctrl_4_s1_readdata                       => mm_interconnect_0_nco_freq_ctrl_4_s1_readdata,      --                                            .readdata
+			nco_freq_ctrl_4_s1_writedata                      => mm_interconnect_0_nco_freq_ctrl_4_s1_writedata,     --                                            .writedata
+			nco_freq_ctrl_4_s1_chipselect                     => mm_interconnect_0_nco_freq_ctrl_4_s1_chipselect,    --                                            .chipselect
+			nco_freq_ctrl_5_s1_address                        => mm_interconnect_0_nco_freq_ctrl_5_s1_address,       --                          nco_freq_ctrl_5_s1.address
+			nco_freq_ctrl_5_s1_write                          => mm_interconnect_0_nco_freq_ctrl_5_s1_write,         --                                            .write
+			nco_freq_ctrl_5_s1_readdata                       => mm_interconnect_0_nco_freq_ctrl_5_s1_readdata,      --                                            .readdata
+			nco_freq_ctrl_5_s1_writedata                      => mm_interconnect_0_nco_freq_ctrl_5_s1_writedata,     --                                            .writedata
+			nco_freq_ctrl_5_s1_chipselect                     => mm_interconnect_0_nco_freq_ctrl_5_s1_chipselect,    --                                            .chipselect
+			nco_freq_ctrl_6_s1_address                        => mm_interconnect_0_nco_freq_ctrl_6_s1_address,       --                          nco_freq_ctrl_6_s1.address
+			nco_freq_ctrl_6_s1_write                          => mm_interconnect_0_nco_freq_ctrl_6_s1_write,         --                                            .write
+			nco_freq_ctrl_6_s1_readdata                       => mm_interconnect_0_nco_freq_ctrl_6_s1_readdata,      --                                            .readdata
+			nco_freq_ctrl_6_s1_writedata                      => mm_interconnect_0_nco_freq_ctrl_6_s1_writedata,     --                                            .writedata
+			nco_freq_ctrl_6_s1_chipselect                     => mm_interconnect_0_nco_freq_ctrl_6_s1_chipselect,    --                                            .chipselect
+			nco_freq_ctrl_7_s1_address                        => mm_interconnect_0_nco_freq_ctrl_7_s1_address,       --                          nco_freq_ctrl_7_s1.address
+			nco_freq_ctrl_7_s1_write                          => mm_interconnect_0_nco_freq_ctrl_7_s1_write,         --                                            .write
+			nco_freq_ctrl_7_s1_readdata                       => mm_interconnect_0_nco_freq_ctrl_7_s1_readdata,      --                                            .readdata
+			nco_freq_ctrl_7_s1_writedata                      => mm_interconnect_0_nco_freq_ctrl_7_s1_writedata,     --                                            .writedata
+			nco_freq_ctrl_7_s1_chipselect                     => mm_interconnect_0_nco_freq_ctrl_7_s1_chipselect,    --                                            .chipselect
+			nco_freq_ctrl_8_s1_address                        => mm_interconnect_0_nco_freq_ctrl_8_s1_address,       --                          nco_freq_ctrl_8_s1.address
+			nco_freq_ctrl_8_s1_write                          => mm_interconnect_0_nco_freq_ctrl_8_s1_write,         --                                            .write
+			nco_freq_ctrl_8_s1_readdata                       => mm_interconnect_0_nco_freq_ctrl_8_s1_readdata,      --                                            .readdata
+			nco_freq_ctrl_8_s1_writedata                      => mm_interconnect_0_nco_freq_ctrl_8_s1_writedata,     --                                            .writedata
+			nco_freq_ctrl_8_s1_chipselect                     => mm_interconnect_0_nco_freq_ctrl_8_s1_chipselect,    --                                            .chipselect
 			nco_phase_ctrl_1_s1_address                       => mm_interconnect_0_nco_phase_ctrl_1_s1_address,      --                         nco_phase_ctrl_1_s1.address
 			nco_phase_ctrl_1_s1_write                         => mm_interconnect_0_nco_phase_ctrl_1_s1_write,        --                                            .write
 			nco_phase_ctrl_1_s1_readdata                      => mm_interconnect_0_nco_phase_ctrl_1_s1_readdata,     --                                            .readdata
@@ -542,6 +860,36 @@ begin
 			nco_phase_ctrl_2_s1_readdata                      => mm_interconnect_0_nco_phase_ctrl_2_s1_readdata,     --                                            .readdata
 			nco_phase_ctrl_2_s1_writedata                     => mm_interconnect_0_nco_phase_ctrl_2_s1_writedata,    --                                            .writedata
 			nco_phase_ctrl_2_s1_chipselect                    => mm_interconnect_0_nco_phase_ctrl_2_s1_chipselect,   --                                            .chipselect
+			nco_phase_ctrl_3_s1_address                       => mm_interconnect_0_nco_phase_ctrl_3_s1_address,      --                         nco_phase_ctrl_3_s1.address
+			nco_phase_ctrl_3_s1_write                         => mm_interconnect_0_nco_phase_ctrl_3_s1_write,        --                                            .write
+			nco_phase_ctrl_3_s1_readdata                      => mm_interconnect_0_nco_phase_ctrl_3_s1_readdata,     --                                            .readdata
+			nco_phase_ctrl_3_s1_writedata                     => mm_interconnect_0_nco_phase_ctrl_3_s1_writedata,    --                                            .writedata
+			nco_phase_ctrl_3_s1_chipselect                    => mm_interconnect_0_nco_phase_ctrl_3_s1_chipselect,   --                                            .chipselect
+			nco_phase_ctrl_4_s1_address                       => mm_interconnect_0_nco_phase_ctrl_4_s1_address,      --                         nco_phase_ctrl_4_s1.address
+			nco_phase_ctrl_4_s1_write                         => mm_interconnect_0_nco_phase_ctrl_4_s1_write,        --                                            .write
+			nco_phase_ctrl_4_s1_readdata                      => mm_interconnect_0_nco_phase_ctrl_4_s1_readdata,     --                                            .readdata
+			nco_phase_ctrl_4_s1_writedata                     => mm_interconnect_0_nco_phase_ctrl_4_s1_writedata,    --                                            .writedata
+			nco_phase_ctrl_4_s1_chipselect                    => mm_interconnect_0_nco_phase_ctrl_4_s1_chipselect,   --                                            .chipselect
+			nco_phase_ctrl_5_s1_address                       => mm_interconnect_0_nco_phase_ctrl_5_s1_address,      --                         nco_phase_ctrl_5_s1.address
+			nco_phase_ctrl_5_s1_write                         => mm_interconnect_0_nco_phase_ctrl_5_s1_write,        --                                            .write
+			nco_phase_ctrl_5_s1_readdata                      => mm_interconnect_0_nco_phase_ctrl_5_s1_readdata,     --                                            .readdata
+			nco_phase_ctrl_5_s1_writedata                     => mm_interconnect_0_nco_phase_ctrl_5_s1_writedata,    --                                            .writedata
+			nco_phase_ctrl_5_s1_chipselect                    => mm_interconnect_0_nco_phase_ctrl_5_s1_chipselect,   --                                            .chipselect
+			nco_phase_ctrl_6_s1_address                       => mm_interconnect_0_nco_phase_ctrl_6_s1_address,      --                         nco_phase_ctrl_6_s1.address
+			nco_phase_ctrl_6_s1_write                         => mm_interconnect_0_nco_phase_ctrl_6_s1_write,        --                                            .write
+			nco_phase_ctrl_6_s1_readdata                      => mm_interconnect_0_nco_phase_ctrl_6_s1_readdata,     --                                            .readdata
+			nco_phase_ctrl_6_s1_writedata                     => mm_interconnect_0_nco_phase_ctrl_6_s1_writedata,    --                                            .writedata
+			nco_phase_ctrl_6_s1_chipselect                    => mm_interconnect_0_nco_phase_ctrl_6_s1_chipselect,   --                                            .chipselect
+			nco_phase_ctrl_7_s1_address                       => mm_interconnect_0_nco_phase_ctrl_7_s1_address,      --                         nco_phase_ctrl_7_s1.address
+			nco_phase_ctrl_7_s1_write                         => mm_interconnect_0_nco_phase_ctrl_7_s1_write,        --                                            .write
+			nco_phase_ctrl_7_s1_readdata                      => mm_interconnect_0_nco_phase_ctrl_7_s1_readdata,     --                                            .readdata
+			nco_phase_ctrl_7_s1_writedata                     => mm_interconnect_0_nco_phase_ctrl_7_s1_writedata,    --                                            .writedata
+			nco_phase_ctrl_7_s1_chipselect                    => mm_interconnect_0_nco_phase_ctrl_7_s1_chipselect,   --                                            .chipselect
+			nco_phase_ctrl_8_s1_address                       => mm_interconnect_0_nco_phase_ctrl_8_s1_address,      --                         nco_phase_ctrl_8_s1.address
+			nco_phase_ctrl_8_s1_write                         => mm_interconnect_0_nco_phase_ctrl_8_s1_write,        --                                            .write
+			nco_phase_ctrl_8_s1_readdata                      => mm_interconnect_0_nco_phase_ctrl_8_s1_readdata,     --                                            .readdata
+			nco_phase_ctrl_8_s1_writedata                     => mm_interconnect_0_nco_phase_ctrl_8_s1_writedata,    --                                            .writedata
+			nco_phase_ctrl_8_s1_chipselect                    => mm_interconnect_0_nco_phase_ctrl_8_s1_chipselect,   --                                            .chipselect
 			onchip_ram_s1_address                             => mm_interconnect_0_onchip_ram_s1_address,            --                               onchip_ram_s1.address
 			onchip_ram_s1_write                               => mm_interconnect_0_onchip_ram_s1_write,              --                                            .write
 			onchip_ram_s1_readdata                            => mm_interconnect_0_onchip_ram_s1_readdata,           --                                            .readdata
@@ -627,6 +975,30 @@ begin
 	mm_interconnect_0_nco_phase_ctrl_2_s1_write_ports_inv <= not mm_interconnect_0_nco_phase_ctrl_2_s1_write;
 
 	mm_interconnect_0_gain_controller_s1_write_ports_inv <= not mm_interconnect_0_gain_controller_s1_write;
+
+	mm_interconnect_0_nco_freq_ctrl_3_s1_write_ports_inv <= not mm_interconnect_0_nco_freq_ctrl_3_s1_write;
+
+	mm_interconnect_0_nco_freq_ctrl_4_s1_write_ports_inv <= not mm_interconnect_0_nco_freq_ctrl_4_s1_write;
+
+	mm_interconnect_0_nco_freq_ctrl_5_s1_write_ports_inv <= not mm_interconnect_0_nco_freq_ctrl_5_s1_write;
+
+	mm_interconnect_0_nco_freq_ctrl_6_s1_write_ports_inv <= not mm_interconnect_0_nco_freq_ctrl_6_s1_write;
+
+	mm_interconnect_0_nco_freq_ctrl_7_s1_write_ports_inv <= not mm_interconnect_0_nco_freq_ctrl_7_s1_write;
+
+	mm_interconnect_0_nco_freq_ctrl_8_s1_write_ports_inv <= not mm_interconnect_0_nco_freq_ctrl_8_s1_write;
+
+	mm_interconnect_0_nco_phase_ctrl_3_s1_write_ports_inv <= not mm_interconnect_0_nco_phase_ctrl_3_s1_write;
+
+	mm_interconnect_0_nco_phase_ctrl_4_s1_write_ports_inv <= not mm_interconnect_0_nco_phase_ctrl_4_s1_write;
+
+	mm_interconnect_0_nco_phase_ctrl_5_s1_write_ports_inv <= not mm_interconnect_0_nco_phase_ctrl_5_s1_write;
+
+	mm_interconnect_0_nco_phase_ctrl_6_s1_write_ports_inv <= not mm_interconnect_0_nco_phase_ctrl_6_s1_write;
+
+	mm_interconnect_0_nco_phase_ctrl_7_s1_write_ports_inv <= not mm_interconnect_0_nco_phase_ctrl_7_s1_write;
+
+	mm_interconnect_0_nco_phase_ctrl_8_s1_write_ports_inv <= not mm_interconnect_0_nco_phase_ctrl_8_s1_write;
 
 	rst_controller_reset_out_reset_ports_inv <= not rst_controller_reset_out_reset;
 
