@@ -1,5 +1,5 @@
 EDA Netlist Writer report for EightLockins
-Tue Aug 29 20:05:18 2017
+Wed Aug 30 11:35:14 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Tue Aug 29 20:05:18 2017 ;
+; EDA Netlist Writer Status ; Successful - Wed Aug 30 11:35:14 2017 ;
 ; Revision Name             ; EightLockins                          ;
 ; Top-level Entity Name     ; DE2115_EightLockins_top               ;
 ; Family                    ; Cyclone IV E                          ;
@@ -67,20 +67,20 @@ agreement for further details.
 +---------------------------------------------------------------------------------------------------+------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------+
-; Simulation Generated Files                                                                                                     ;
-+--------------------------------------------------------------------------------------------------------------------------------+
-; Generated Files                                                                                                                ;
-+--------------------------------------------------------------------------------------------------------------------------------+
-; C:/altera_lite/16.0/QIIprojects/DE2115_ MultiLockins_/EightLockins/simulation/modelsim/EightLockins_7_1200mv_85c_slow.vho      ;
-; C:/altera_lite/16.0/QIIprojects/DE2115_ MultiLockins_/EightLockins/simulation/modelsim/EightLockins_7_1200mv_0c_slow.vho       ;
-; C:/altera_lite/16.0/QIIprojects/DE2115_ MultiLockins_/EightLockins/simulation/modelsim/EightLockins_min_1200mv_0c_fast.vho     ;
-; C:/altera_lite/16.0/QIIprojects/DE2115_ MultiLockins_/EightLockins/simulation/modelsim/EightLockins.vho                        ;
-; C:/altera_lite/16.0/QIIprojects/DE2115_ MultiLockins_/EightLockins/simulation/modelsim/EightLockins_7_1200mv_85c_vhd_slow.sdo  ;
-; C:/altera_lite/16.0/QIIprojects/DE2115_ MultiLockins_/EightLockins/simulation/modelsim/EightLockins_7_1200mv_0c_vhd_slow.sdo   ;
-; C:/altera_lite/16.0/QIIprojects/DE2115_ MultiLockins_/EightLockins/simulation/modelsim/EightLockins_min_1200mv_0c_vhd_fast.sdo ;
-; C:/altera_lite/16.0/QIIprojects/DE2115_ MultiLockins_/EightLockins/simulation/modelsim/EightLockins_vhd.sdo                    ;
-+--------------------------------------------------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------+
+; Simulation Generated Files                                                                                             ;
++------------------------------------------------------------------------------------------------------------------------+
+; Generated Files                                                                                                        ;
++------------------------------------------------------------------------------------------------------------------------+
+; C:/Users/arya1080/Desktop/DE2115_MultiLockins/EightLockins/simulation/modelsim/EightLockins_7_1200mv_85c_slow.vho      ;
+; C:/Users/arya1080/Desktop/DE2115_MultiLockins/EightLockins/simulation/modelsim/EightLockins_7_1200mv_0c_slow.vho       ;
+; C:/Users/arya1080/Desktop/DE2115_MultiLockins/EightLockins/simulation/modelsim/EightLockins_min_1200mv_0c_fast.vho     ;
+; C:/Users/arya1080/Desktop/DE2115_MultiLockins/EightLockins/simulation/modelsim/EightLockins.vho                        ;
+; C:/Users/arya1080/Desktop/DE2115_MultiLockins/EightLockins/simulation/modelsim/EightLockins_7_1200mv_85c_vhd_slow.sdo  ;
+; C:/Users/arya1080/Desktop/DE2115_MultiLockins/EightLockins/simulation/modelsim/EightLockins_7_1200mv_0c_vhd_slow.sdo   ;
+; C:/Users/arya1080/Desktop/DE2115_MultiLockins/EightLockins/simulation/modelsim/EightLockins_min_1200mv_0c_vhd_fast.sdo ;
+; C:/Users/arya1080/Desktop/DE2115_MultiLockins/EightLockins/simulation/modelsim/EightLockins_vhd.sdo                    ;
++------------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------+
@@ -89,21 +89,21 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Lite Edition
-    Info: Processing started: Tue Aug 29 20:04:59 2017
+    Info: Processing started: Wed Aug 30 11:35:00 2017
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off EightLockins -c EightLockins
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (204019): Generated file EightLockins_7_1200mv_85c_slow.vho in folder "C:/altera_lite/16.0/QIIprojects/DE2115_ MultiLockins_/EightLockins/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file EightLockins_7_1200mv_0c_slow.vho in folder "C:/altera_lite/16.0/QIIprojects/DE2115_ MultiLockins_/EightLockins/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file EightLockins_min_1200mv_0c_fast.vho in folder "C:/altera_lite/16.0/QIIprojects/DE2115_ MultiLockins_/EightLockins/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file EightLockins.vho in folder "C:/altera_lite/16.0/QIIprojects/DE2115_ MultiLockins_/EightLockins/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file EightLockins_7_1200mv_85c_vhd_slow.sdo in folder "C:/altera_lite/16.0/QIIprojects/DE2115_ MultiLockins_/EightLockins/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file EightLockins_7_1200mv_0c_vhd_slow.sdo in folder "C:/altera_lite/16.0/QIIprojects/DE2115_ MultiLockins_/EightLockins/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file EightLockins_min_1200mv_0c_vhd_fast.sdo in folder "C:/altera_lite/16.0/QIIprojects/DE2115_ MultiLockins_/EightLockins/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file EightLockins_vhd.sdo in folder "C:/altera_lite/16.0/QIIprojects/DE2115_ MultiLockins_/EightLockins/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file EightLockins_7_1200mv_85c_slow.vho in folder "C:/Users/arya1080/Desktop/DE2115_MultiLockins/EightLockins/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file EightLockins_7_1200mv_0c_slow.vho in folder "C:/Users/arya1080/Desktop/DE2115_MultiLockins/EightLockins/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file EightLockins_min_1200mv_0c_fast.vho in folder "C:/Users/arya1080/Desktop/DE2115_MultiLockins/EightLockins/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file EightLockins.vho in folder "C:/Users/arya1080/Desktop/DE2115_MultiLockins/EightLockins/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file EightLockins_7_1200mv_85c_vhd_slow.sdo in folder "C:/Users/arya1080/Desktop/DE2115_MultiLockins/EightLockins/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file EightLockins_7_1200mv_0c_vhd_slow.sdo in folder "C:/Users/arya1080/Desktop/DE2115_MultiLockins/EightLockins/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file EightLockins_min_1200mv_0c_vhd_fast.sdo in folder "C:/Users/arya1080/Desktop/DE2115_MultiLockins/EightLockins/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file EightLockins_vhd.sdo in folder "C:/Users/arya1080/Desktop/DE2115_MultiLockins/EightLockins/simulation/modelsim/" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 856 megabytes
-    Info: Processing ended: Tue Aug 29 20:05:18 2017
-    Info: Elapsed time: 00:00:19
-    Info: Total CPU time (on all processors): 00:00:19
+    Info: Peak virtual memory: 852 megabytes
+    Info: Processing ended: Wed Aug 30 11:35:15 2017
+    Info: Elapsed time: 00:00:15
+    Info: Total CPU time (on all processors): 00:00:14
 
 
