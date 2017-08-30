@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Tue Aug 29 20:03:02 2017
+Quartus Prime Version : 16.0.0 Build 211 04/27/2016 SJ Lite Edition
+Revision Name : EightLockins
+Top-level Entity Name : DE2115_EightLockins_top
+Family : Cyclone IV E
+Total logic elements : 18,247
+    Total combinational functions : 9,879
+    Dedicated logic registers : 9,959
+Total registers : 9959
+Total pins : 285
+Total virtual pins : 0
+Total memory bits : 53,248
+Embedded Multiplier 9-bit elements : 8
+Total PLLs : 0

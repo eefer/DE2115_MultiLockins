@@ -1,0 +1,16 @@
+Fitter Status : Successful - Tue Aug 29 20:04:33 2017
+Quartus Prime Version : 16.0.0 Build 211 04/27/2016 SJ Lite Edition
+Revision Name : EightLockins
+Top-level Entity Name : DE2115_EightLockins_top
+Family : Cyclone IV E
+Device : EP4CE115F29C7
+Timing Models : Final
+Total logic elements : 14,424 / 114,480 ( 13 % )
+    Total combinational functions : 9,887 / 114,480 ( 9 % )
+    Dedicated logic registers : 9,873 / 114,480 ( 9 % )
+Total registers : 9873
+Total pins : 285 / 529 ( 54 % )
+Total virtual pins : 0
+Total memory bits : 53,248 / 3,981,312 ( 1 % )
+Embedded Multiplier 9-bit elements : 8 / 532 ( 2 % )
+Total PLLs : 0 / 4 ( 0 % )
