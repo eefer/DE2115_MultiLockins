@@ -4,28 +4,28 @@ set master [lindex $masters 0]
 
 open_service master $master
 
-master_write_32 $master 0x00000000 13946
+##master_write_32 $master 0x00000000 13946
 #lockin 1 = 665 kHz
 
-master_write_32 $master 0x00000010 14051
+master_write_32 $master 0x00000010 0
 #lockin 2 = 670 kHz
 
-master_write_32 $master 0x00000020 14156
+master_write_32 $master 0x00000020 0
 #lockin 3 = 675 kHz
 
-master_write_32 $master 0x00000030 14261
+master_write_32 $master 0x00000030 0
 #lockin 4 = 680 kHz
 
-master_write_32 $master 0x00000040 14365
+master_write_32 $master 0x00000040 0
 #lockin 5 = 685 kHz
 
-master_write_32 $master 0x00000050 14470
+master_write_32 $master 0x00000050 0
 #lockin 6 = 690 kHz
 
-master_write_32 $master 0x00000060 14575
+master_write_32 $master 0x00000060 0
 #lockin 7 = 695 kHz
 
-master_write_32 $master 0x00000070 14680
+master_write_32 $master 0x00000070 0
 #lockin 8 = 700 kHz
 
 master_write_32 $master 0x10000000 0
@@ -43,3 +43,9 @@ master_write_32 $master 0x10000050 0
 master_write_32 $master 0x10000060 0
 
 master_write_32 $master 0x10000070 0
+
+for {set i 13946} {$i < 13956} {incr i} {
+    master_write_32 $master 0x00000000 i
+##	 master_read_32 $master 0x00000000 $i
+	 puts "I inside first loop: $i"
+}
