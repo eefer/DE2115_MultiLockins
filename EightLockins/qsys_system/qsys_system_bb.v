@@ -2,6 +2,8 @@
 module qsys_system (
 	clk_clk,
 	gain_ctrl_export,
+	lia_1_x_export,
+	lia_1_y_export,
 	phase_incr_1_export,
 	phase_incr_2_export,
 	phase_incr_3_export,
@@ -23,6 +25,8 @@ module qsys_system (
 
 	input		clk_clk;
 	output	[5:0]	gain_ctrl_export;
+	input	[15:0]	lia_1_x_export;
+	input	[15:0]	lia_1_y_export;
 	output	[19:0]	phase_incr_1_export;
 	output	[19:0]	phase_incr_2_export;
 	output	[19:0]	phase_incr_3_export;

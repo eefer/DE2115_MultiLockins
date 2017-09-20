@@ -8,26 +8,28 @@ use IEEE.numeric_std.all;
 
 entity qsys_system is
 	port (
-		clk_clk             : in  std_logic                     := '0'; --          clk.clk
-		gain_ctrl_export    : out std_logic_vector(5 downto 0);         --    gain_ctrl.export
-		phase_incr_1_export : out std_logic_vector(19 downto 0);        -- phase_incr_1.export
-		phase_incr_2_export : out std_logic_vector(19 downto 0);        -- phase_incr_2.export
-		phase_incr_3_export : out std_logic_vector(19 downto 0);        -- phase_incr_3.export
-		phase_incr_4_export : out std_logic_vector(19 downto 0);        -- phase_incr_4.export
-		phase_incr_5_export : out std_logic_vector(19 downto 0);        -- phase_incr_5.export
-		phase_incr_6_export : out std_logic_vector(19 downto 0);        -- phase_incr_6.export
-		phase_incr_7_export : out std_logic_vector(19 downto 0);        -- phase_incr_7.export
-		phase_incr_8_export : out std_logic_vector(19 downto 0);        -- phase_incr_8.export
-		phase_offs_1_export : out std_logic_vector(19 downto 0);        -- phase_offs_1.export
-		phase_offs_2_export : out std_logic_vector(19 downto 0);        -- phase_offs_2.export
-		phase_offs_3_export : out std_logic_vector(19 downto 0);        -- phase_offs_3.export
-		phase_offs_4_export : out std_logic_vector(19 downto 0);        -- phase_offs_4.export
-		phase_offs_5_export : out std_logic_vector(19 downto 0);        -- phase_offs_5.export
-		phase_offs_6_export : out std_logic_vector(19 downto 0);        -- phase_offs_6.export
-		phase_offs_7_export : out std_logic_vector(19 downto 0);        -- phase_offs_7.export
-		phase_offs_8_export : out std_logic_vector(19 downto 0);        -- phase_offs_8.export
-		reset_reset_n       : in  std_logic                     := '0'; --        reset.reset_n
-		resetrequest_reset  : out std_logic                             -- resetrequest.reset
+		clk_clk             : in  std_logic                     := '0';             --          clk.clk
+		gain_ctrl_export    : out std_logic_vector(5 downto 0);                     --    gain_ctrl.export
+		lia_1_x_export      : in  std_logic_vector(15 downto 0) := (others => '0'); --      lia_1_x.export
+		lia_1_y_export      : in  std_logic_vector(15 downto 0) := (others => '0'); --      lia_1_y.export
+		phase_incr_1_export : out std_logic_vector(19 downto 0);                    -- phase_incr_1.export
+		phase_incr_2_export : out std_logic_vector(19 downto 0);                    -- phase_incr_2.export
+		phase_incr_3_export : out std_logic_vector(19 downto 0);                    -- phase_incr_3.export
+		phase_incr_4_export : out std_logic_vector(19 downto 0);                    -- phase_incr_4.export
+		phase_incr_5_export : out std_logic_vector(19 downto 0);                    -- phase_incr_5.export
+		phase_incr_6_export : out std_logic_vector(19 downto 0);                    -- phase_incr_6.export
+		phase_incr_7_export : out std_logic_vector(19 downto 0);                    -- phase_incr_7.export
+		phase_incr_8_export : out std_logic_vector(19 downto 0);                    -- phase_incr_8.export
+		phase_offs_1_export : out std_logic_vector(19 downto 0);                    -- phase_offs_1.export
+		phase_offs_2_export : out std_logic_vector(19 downto 0);                    -- phase_offs_2.export
+		phase_offs_3_export : out std_logic_vector(19 downto 0);                    -- phase_offs_3.export
+		phase_offs_4_export : out std_logic_vector(19 downto 0);                    -- phase_offs_4.export
+		phase_offs_5_export : out std_logic_vector(19 downto 0);                    -- phase_offs_5.export
+		phase_offs_6_export : out std_logic_vector(19 downto 0);                    -- phase_offs_6.export
+		phase_offs_7_export : out std_logic_vector(19 downto 0);                    -- phase_offs_7.export
+		phase_offs_8_export : out std_logic_vector(19 downto 0);                    -- phase_offs_8.export
+		reset_reset_n       : in  std_logic                     := '0';             --        reset.reset_n
+		resetrequest_reset  : out std_logic                                         -- resetrequest.reset
 	);
 end entity qsys_system;
 
@@ -129,6 +131,16 @@ architecture rtl of qsys_system is
 		);
 	end component qsys_system_jtag_master;
 
+	component qsys_system_lia_1_x is
+		port (
+			clk      : in  std_logic                     := 'X';             -- clk
+			reset_n  : in  std_logic                     := 'X';             -- reset_n
+			address  : in  std_logic_vector(1 downto 0)  := (others => 'X'); -- address
+			readdata : out std_logic_vector(31 downto 0);                    -- readdata
+			in_port  : in  std_logic_vector(15 downto 0) := (others => 'X')  -- export
+		);
+	end component qsys_system_lia_1_x;
+
 	component qsys_system_nco_freq_control_1 is
 		port (
 			clk        : in  std_logic                     := 'X';             -- clk
@@ -196,6 +208,10 @@ architecture rtl of qsys_system is
 			gain_controller_s1_readdata                       : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
 			gain_controller_s1_writedata                      : out std_logic_vector(31 downto 0);                    -- writedata
 			gain_controller_s1_chipselect                     : out std_logic;                                        -- chipselect
+			lia_1_x_s1_address                                : out std_logic_vector(1 downto 0);                     -- address
+			lia_1_x_s1_readdata                               : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			lia_1_y_s1_address                                : out std_logic_vector(1 downto 0);                     -- address
+			lia_1_y_s1_readdata                               : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
 			nco_freq_control_1_s1_address                     : out std_logic_vector(1 downto 0);                     -- address
 			nco_freq_control_1_s1_write                       : out std_logic;                                        -- write
 			nco_freq_control_1_s1_readdata                    : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
@@ -460,6 +476,10 @@ architecture rtl of qsys_system is
 	signal mm_interconnect_0_nco_phase_ctrl_8_s1_address           : std_logic_vector(1 downto 0);  -- mm_interconnect_0:nco_phase_ctrl_8_s1_address -> nco_phase_ctrl_8:address
 	signal mm_interconnect_0_nco_phase_ctrl_8_s1_write             : std_logic;                     -- mm_interconnect_0:nco_phase_ctrl_8_s1_write -> mm_interconnect_0_nco_phase_ctrl_8_s1_write:in
 	signal mm_interconnect_0_nco_phase_ctrl_8_s1_writedata         : std_logic_vector(31 downto 0); -- mm_interconnect_0:nco_phase_ctrl_8_s1_writedata -> nco_phase_ctrl_8:writedata
+	signal mm_interconnect_0_lia_1_x_s1_readdata                   : std_logic_vector(31 downto 0); -- lia_1_x:readdata -> mm_interconnect_0:lia_1_x_s1_readdata
+	signal mm_interconnect_0_lia_1_x_s1_address                    : std_logic_vector(1 downto 0);  -- mm_interconnect_0:lia_1_x_s1_address -> lia_1_x:address
+	signal mm_interconnect_0_lia_1_y_s1_readdata                   : std_logic_vector(31 downto 0); -- lia_1_y:readdata -> mm_interconnect_0:lia_1_y_s1_readdata
+	signal mm_interconnect_0_lia_1_y_s1_address                    : std_logic_vector(1 downto 0);  -- mm_interconnect_0:lia_1_y_s1_address -> lia_1_y:address
 	signal rst_controller_reset_out_reset                          : std_logic;                     -- rst_controller:reset_out -> [bfm_master:reset, mm_interconnect_0:bfm_master_clk_reset_reset_bridge_in_reset_reset, mm_interconnect_0:jtag_master_clk_reset_reset_bridge_in_reset_reset, onchip_ram:reset, rst_controller_reset_out_reset:in, rst_translator:in_reset]
 	signal rst_controller_reset_out_reset_req                      : std_logic;                     -- rst_controller:reset_req -> [onchip_ram:reset_req, rst_translator:reset_req_in]
 	signal reset_reset_n_ports_inv                                 : std_logic;                     -- reset_reset_n:inv -> [jtag_master:clk_reset_reset, rst_controller:reset_in0]
@@ -480,7 +500,7 @@ architecture rtl of qsys_system is
 	signal mm_interconnect_0_nco_phase_ctrl_6_s1_write_ports_inv   : std_logic;                     -- mm_interconnect_0_nco_phase_ctrl_6_s1_write:inv -> nco_phase_ctrl_6:write_n
 	signal mm_interconnect_0_nco_phase_ctrl_7_s1_write_ports_inv   : std_logic;                     -- mm_interconnect_0_nco_phase_ctrl_7_s1_write:inv -> nco_phase_ctrl_7:write_n
 	signal mm_interconnect_0_nco_phase_ctrl_8_s1_write_ports_inv   : std_logic;                     -- mm_interconnect_0_nco_phase_ctrl_8_s1_write:inv -> nco_phase_ctrl_8:write_n
-	signal rst_controller_reset_out_reset_ports_inv                : std_logic;                     -- rst_controller_reset_out_reset:inv -> [gain_controller:reset_n, nco_freq_control_1:reset_n, nco_freq_control_2:reset_n, nco_freq_ctrl_3:reset_n, nco_freq_ctrl_4:reset_n, nco_freq_ctrl_5:reset_n, nco_freq_ctrl_6:reset_n, nco_freq_ctrl_7:reset_n, nco_freq_ctrl_8:reset_n, nco_phase_ctrl_1:reset_n, nco_phase_ctrl_2:reset_n, nco_phase_ctrl_3:reset_n, nco_phase_ctrl_4:reset_n, nco_phase_ctrl_5:reset_n, nco_phase_ctrl_6:reset_n, nco_phase_ctrl_7:reset_n, nco_phase_ctrl_8:reset_n]
+	signal rst_controller_reset_out_reset_ports_inv                : std_logic;                     -- rst_controller_reset_out_reset:inv -> [gain_controller:reset_n, lia_1_x:reset_n, lia_1_y:reset_n, nco_freq_control_1:reset_n, nco_freq_control_2:reset_n, nco_freq_ctrl_3:reset_n, nco_freq_ctrl_4:reset_n, nco_freq_ctrl_5:reset_n, nco_freq_ctrl_6:reset_n, nco_freq_ctrl_7:reset_n, nco_freq_ctrl_8:reset_n, nco_phase_ctrl_1:reset_n, nco_phase_ctrl_2:reset_n, nco_phase_ctrl_3:reset_n, nco_phase_ctrl_4:reset_n, nco_phase_ctrl_5:reset_n, nco_phase_ctrl_6:reset_n, nco_phase_ctrl_7:reset_n, nco_phase_ctrl_8:reset_n]
 
 begin
 
@@ -576,6 +596,24 @@ begin
 			master_readdatavalid => jtag_master_master_readdatavalid, --             .readdatavalid
 			master_byteenable    => jtag_master_master_byteenable,    --             .byteenable
 			master_reset_reset   => resetrequest_reset                -- master_reset.reset
+		);
+
+	lia_1_x : component qsys_system_lia_1_x
+		port map (
+			clk      => clk_clk,                                  --                 clk.clk
+			reset_n  => rst_controller_reset_out_reset_ports_inv, --               reset.reset_n
+			address  => mm_interconnect_0_lia_1_x_s1_address,     --                  s1.address
+			readdata => mm_interconnect_0_lia_1_x_s1_readdata,    --                    .readdata
+			in_port  => lia_1_x_export                            -- external_connection.export
+		);
+
+	lia_1_y : component qsys_system_lia_1_x
+		port map (
+			clk      => clk_clk,                                  --                 clk.clk
+			reset_n  => rst_controller_reset_out_reset_ports_inv, --               reset.reset_n
+			address  => mm_interconnect_0_lia_1_y_s1_address,     --                  s1.address
+			readdata => mm_interconnect_0_lia_1_y_s1_readdata,    --                    .readdata
+			in_port  => lia_1_y_export                            -- external_connection.export
 		);
 
 	nco_freq_control_1 : component qsys_system_nco_freq_control_1
@@ -810,6 +848,10 @@ begin
 			gain_controller_s1_readdata                       => mm_interconnect_0_gain_controller_s1_readdata,      --                                            .readdata
 			gain_controller_s1_writedata                      => mm_interconnect_0_gain_controller_s1_writedata,     --                                            .writedata
 			gain_controller_s1_chipselect                     => mm_interconnect_0_gain_controller_s1_chipselect,    --                                            .chipselect
+			lia_1_x_s1_address                                => mm_interconnect_0_lia_1_x_s1_address,               --                                  lia_1_x_s1.address
+			lia_1_x_s1_readdata                               => mm_interconnect_0_lia_1_x_s1_readdata,              --                                            .readdata
+			lia_1_y_s1_address                                => mm_interconnect_0_lia_1_y_s1_address,               --                                  lia_1_y_s1.address
+			lia_1_y_s1_readdata                               => mm_interconnect_0_lia_1_y_s1_readdata,              --                                            .readdata
 			nco_freq_control_1_s1_address                     => mm_interconnect_0_nco_freq_control_1_s1_address,    --                       nco_freq_control_1_s1.address
 			nco_freq_control_1_s1_write                       => mm_interconnect_0_nco_freq_control_1_s1_write,      --                                            .write
 			nco_freq_control_1_s1_readdata                    => mm_interconnect_0_nco_freq_control_1_s1_readdata,   --                                            .readdata

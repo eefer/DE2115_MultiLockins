@@ -123,6 +123,8 @@ ARCHITECTURE arch OF eight_lia_pkg IS
 						phase_offs_7_export : out std_logic_vector(19 downto 0);
 						phase_offs_8_export : out std_logic_vector(19 downto 0);
 						
+						lia_1_x_export		  : in std_logic_vector(15 downto 0);
+						lia_1_y_export		  : in std_logic_vector(15 downto 0);
 						gain_ctrl_export	  : out std_logic_vector (5 downto 0);
 						reset_reset_n       : in  std_logic                     := 'X'; 	--        reset.reset_n
 						resetrequest_reset  : out std_logic                             	-- resetrequest.reset
@@ -238,6 +240,9 @@ ARCHITECTURE arch OF eight_lia_pkg IS
 		signal overflow_lia_6: std_logic;
 		signal overflow_lia_7: std_logic;
 		signal overflow_lia_8: std_logic;
+		
+		signal lia_out_x_1_tx: std_logic_vector(15 downto 0);
+		signal lia_out_y_1_tx: std_logic_vector(15 downto 0);
 	
 BEGIN
 	
@@ -264,8 +269,8 @@ BEGIN
 	dpll_cos_8 <= dpll_lia_ref_o_8;
 	ref_o <= dpll_lia_ref_o_1(12);	-- for synchronization (use last bit so 1 for half the cycle)	
 	
-	
-
+--	lia_out_x_1 => lia_out_x_1_tx;
+--	lia_out_y_1 => lia_out_y_1_tx;
 	
 -- sends the out_sel to the lia_output_state
 --	lia_output_state <= std_logic_vector(to_unsigned(out_sel,3));
@@ -299,8 +304,8 @@ BEGIN
 		samp_clk_i		=> samp_clk_i,				-- forward sample clock from ADC		
 		input				=> input,					-- forward sampled data from the ADC
 		samp_clk_o		=> samp_clk_o,				-- lock-in output sample clock
-		out_x				=> lia_out_x_1,			-- direct x output to internal signal line
-		out_y				=> lia_out_y_1,			-- direct y output to internal signal line
+		out_x				=> lia_out_x_1_tx,			-- direct x output to internal signal line
+		out_y			   => lia_out_y_1_tx,			-- direct y output to internal signal line
 		overflow_lia	=> overflow_lia_1
 --		cic_x_in_sel_i	=> cic_x_in_sel
 
@@ -491,6 +496,9 @@ BEGIN
 		phase_offs_6_export => phase_offs_6,
 		phase_offs_7_export => phase_offs_7,
 		phase_offs_8_export => phase_offs_8,
+		
+		lia_1_x_export		  => lia_out_x_1_tx,
+		lia_1_y_export		  => lia_out_y_1_tx,
 		
 		gain_ctrl_export	  => gain_ctrl_tx,
 		reset_reset_n       => not areset_i,   --        reset.reset_n

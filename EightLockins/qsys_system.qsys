@@ -49,6 +49,38 @@
          type = "int";
       }
    }
+   element lia_1_x
+   {
+      datum _sortIndex
+      {
+         value = "21";
+         type = "int";
+      }
+   }
+   element lia_1_x.s1
+   {
+      datum baseAddress
+      {
+         value = "805306368";
+         type = "String";
+      }
+   }
+   element lia_1_y
+   {
+      datum _sortIndex
+      {
+         value = "22";
+         type = "int";
+      }
+   }
+   element lia_1_y.s1
+   {
+      datum baseAddress
+      {
+         value = "822083584";
+         type = "String";
+      }
+   }
    element nco_freq_control_1
    {
       datum _sortIndex
@@ -325,6 +357,16 @@
    type="conduit"
    dir="end" />
  <interface
+   name="lia_1_x"
+   internal="lia_1_x.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="lia_1_y"
+   internal="lia_1_y.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
    name="phase_incr_1"
    internal="nco_freq_control_1.external_connection"
    type="conduit"
@@ -498,6 +540,34 @@
   <parameter name="FIFO_DEPTHS" value="2" />
   <parameter name="PLI_PORT" value="50000" />
   <parameter name="USE_PLI" value="0" />
+ </module>
+ <module name="lia_1_x" kind="altera_avalon_pio" version="16.0" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="16" />
+ </module>
+ <module name="lia_1_y" kind="altera_avalon_pio" version="16.0" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="16" />
  </module>
  <module
    name="nco_freq_control_1"
@@ -980,6 +1050,16 @@
   <parameter name="baseAddress" value="0x10000070" />
   <parameter name="defaultConnection" value="false" />
  </connection>
+ <connection kind="avalon" version="16.0" start="bfm_master.m0" end="lia_1_x.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x30000000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection kind="avalon" version="16.0" start="bfm_master.m0" end="lia_1_y.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x31000000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
  <connection
    kind="avalon"
    version="16.0"
@@ -1142,6 +1222,24 @@
   <parameter name="baseAddress" value="0x10000070" />
   <parameter name="defaultConnection" value="false" />
  </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="jtag_master.master"
+   end="lia_1_x.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x30000000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="jtag_master.master"
+   end="lia_1_y.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x31000000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
  <connection kind="clock" version="16.0" start="clk.clk" end="bfm_master.clk" />
  <connection kind="clock" version="16.0" start="clk.clk" end="jtag_master.clk" />
  <connection
@@ -1201,6 +1299,8 @@
    version="16.0"
    start="clk.clk"
    end="nco_phase_ctrl_8.clk" />
+ <connection kind="clock" version="16.0" start="clk.clk" end="lia_1_x.clk" />
+ <connection kind="clock" version="16.0" start="clk.clk" end="lia_1_y.clk" />
  <connection kind="clock" version="16.0" start="clk.clk" end="onchip_ram.clk1" />
  <connection
    kind="reset"
@@ -1297,6 +1397,8 @@
    version="16.0"
    start="clk.clk_reset"
    end="nco_phase_ctrl_8.reset" />
+ <connection kind="reset" version="16.0" start="clk.clk_reset" end="lia_1_x.reset" />
+ <connection kind="reset" version="16.0" start="clk.clk_reset" end="lia_1_y.reset" />
  <connection
    kind="reset"
    version="16.0"

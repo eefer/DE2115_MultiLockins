@@ -1,6 +1,8 @@
 	qsys_system u0 (
 		.clk_clk             (<connected-to-clk_clk>),             //          clk.clk
 		.gain_ctrl_export    (<connected-to-gain_ctrl_export>),    //    gain_ctrl.export
+		.lia_1_x_export      (<connected-to-lia_1_x_export>),      //      lia_1_x.export
+		.lia_1_y_export      (<connected-to-lia_1_y_export>),      //      lia_1_y.export
 		.phase_incr_1_export (<connected-to-phase_incr_1_export>), // phase_incr_1.export
 		.phase_incr_2_export (<connected-to-phase_incr_2_export>), // phase_incr_2.export
 		.phase_incr_3_export (<connected-to-phase_incr_3_export>), // phase_incr_3.export
