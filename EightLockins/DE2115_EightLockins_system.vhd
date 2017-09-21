@@ -6,7 +6,8 @@
 --
 -- Based partially on max10_top.vhd by Jesse W. Wilson jesse.wilson@colostate.edu
 -- and based partially on duallockinv2_02_sys.v by Erin Flater
-
+--
+-- Modified by Arya Chowdhury Mugdha (2017) (arya.mugdha@colostate.edu)
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -119,15 +120,7 @@ architecture arch of DE2115_EightLockins_system is
 	END COMPONENT; -- dual_lia_pkg
 	
 	
---
---	COMPONENT lpm_add IS
---	PORT
---	(
---		dataa		: IN 	STD_LOGIC_VECTOR (13 DOWNTO 0);
---		datab		: IN 	STD_LOGIC_VECTOR (13 DOWNTO 0);
---		result	: OUT STD_LOGIC_VECTOR (13 DOWNTO 0)
---	);
---	END COMPONENT; -- lpm_add;
+
 	
 	
 	COMPONENT eight_add IS

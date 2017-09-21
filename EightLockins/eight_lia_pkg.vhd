@@ -6,7 +6,8 @@
 --
 -- Based partially on m10_lia_pkg.vhd by Jesse W. Wilson jesse.wilson@colostate.edu
 -- and based partially on duallockinv2_02_sys.v by Erin Flater
-
+--
+-- Modified by Arya Chowdhury Mugdha (2017) arya.mugdha@colostate.edu
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
