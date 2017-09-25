@@ -14,7 +14,7 @@
 -- for a N=2-stage, R=1000x decimating CIC with M=1,
 -- the output gain is G=(RM)=1,000,000
 -- an additional 20 bits are needed to accomodate this gain
--- input of 12 bits; output is 16 bits
+-- input of 12 bits; output is 16 bits (after using the post lockin gain controller)
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
