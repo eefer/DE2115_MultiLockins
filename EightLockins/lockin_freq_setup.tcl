@@ -7,10 +7,10 @@ open_service master $master
 master_write_32 $master 0x00000000 13946
 #lockin 1 = 665 kHz
 
-master_write_32 $master 0x00000010 0
+master_write_32 $master 0x00000010 12500
 #lockin 2 = 670 kHz
 
-master_write_32 $master 0x00000020 0
+master_write_32 $master 0x00000020 12500
 #lockin 3 = 675 kHz
 
 master_write_32 $master 0x00000030 0
