@@ -219,6 +219,7 @@ architecture arch of DE2115_EightLockins_system is
 	signal	adc_d						:std_logic_vector(13 downto 0);		-- ADC data
 	
 	signal	analog_to_digital_over_run :	std_logic;
+	
 
 	--signal output
 
@@ -477,14 +478,14 @@ begin
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			reg_p_cosines <= p_cosines(16 downto 3);
+			reg_p_cosines <= p_cosines(16 downto 3); 
 		end if;
 	end process;
 	
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			reg_n_cosines <= n_cosines;
+			reg_n_cosines <=  n_cosines;
 		end if;
 	end process;
 	
