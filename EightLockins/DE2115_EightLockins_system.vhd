@@ -475,10 +475,17 @@ begin
 	n_cosines <= not p_cosines(16 downto 3);
 
 		
+--	process(clock_50)
+--	begin	
+--		if rising_edge(clock_50) then
+--			reg_p_cosines <= p_cosines(16 downto 3); 
+--		end if;
+--	end process;
+	
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			reg_p_cosines <= p_cosines(16 downto 3); 
+			reg_p_cosines <= add_u_cosine_1; 
 		end if;
 	end process;
 	
