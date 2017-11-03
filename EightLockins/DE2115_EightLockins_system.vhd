@@ -485,7 +485,7 @@ begin
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			reg_p_cosines <= add_u_cosine_1; 
+			reg_p_cosines <= std_logic_vector(resize(signed(reg_u_cosine_1), 14)); 
 		end if;
 	end process;
 	

@@ -53,7 +53,7 @@ module qsys_system_nco_freq_control_1 (
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
-          data_out <= 1310;
+          data_out <= 12623;
       else if (chipselect && ~write_n && (address == 0))
           data_out <= writedata[19 : 0];
     end

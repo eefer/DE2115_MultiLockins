@@ -377,7 +377,7 @@ end
 // assign for DAC output data
    assign	DA =  dac_out_a;
    assign	DB =  dac_out_b;
-		
+	
 
 
 		
