@@ -388,7 +388,7 @@ begin
 		dac_out_b   <= 14'd0;
 	end
 	else begin
-		dac_out_a	<= 14'd8191 + dac_out_a_wire ;
+		dac_out_a	<= dac_out_a_wire ;
 		dac_out_b	<= dac_out_b_wire ;
 	end
 end

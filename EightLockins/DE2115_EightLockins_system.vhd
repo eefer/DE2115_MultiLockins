@@ -311,7 +311,7 @@ begin
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			s_cosine_1 <= cosine_1;
+			s_cosine_1 <= std_logic_vector(2048 + signed(cosine_1));
 		end if;
 	end process;
 	
