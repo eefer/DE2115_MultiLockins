@@ -14,6 +14,7 @@ USE ieee.std_logic_1164.all;
 USE ieee.numeric_std.all;
 
 
+
 ENTITY DE2115_EightLockins_system IS
 
 	port(
@@ -173,7 +174,8 @@ architecture arch of DE2115_EightLockins_system is
 	signal 	i_cosine_8				:std_logic;
 	
 	
-	signal 	s_cosine_1				:std_logic_vector(12 downto 0);	-- registered cosine reference signal from lockin_1
+	signal 	s_cosine_1				:signed(13 downto 0);	-- registered cosine reference signal from lockin_1
+	signal	s_cosine_1_shifted	:std_logic_vector(26 downto 0);
 	signal 	s_cosine_2				:std_logic_vector(12 downto 0);	-- registered cosine reference signal from lockin_2
 	signal 	s_cosine_3				:std_logic_vector(12 downto 0);
 	signal 	s_cosine_4				:std_logic_vector(12 downto 0);
@@ -182,7 +184,7 @@ architecture arch of DE2115_EightLockins_system is
 	signal 	s_cosine_7				:std_logic_vector(12 downto 0);
 	signal 	s_cosine_8				:std_logic_vector(12 downto 0);
 	
-	signal 	u_cosine_1				:std_logic_vector(12 downto 0);	-- registered unsigned cosine reference signal from lockin_1
+	signal 	u_cosine_1				:std_logic_vector(13 downto 0);	-- registered unsigned cosine reference signal from lockin_1
 	signal 	u_cosine_2				:std_logic_vector(12 downto 0);	-- registered unsigned cosine reference signal from lockin_2
 	signal 	u_cosine_3				:std_logic_vector(12 downto 0);
 	signal 	u_cosine_4				:std_logic_vector(12 downto 0);
@@ -191,7 +193,7 @@ architecture arch of DE2115_EightLockins_system is
 	signal 	u_cosine_7				:std_logic_vector(12 downto 0);
 	signal 	u_cosine_8				:std_logic_vector(12 downto 0);
 		
-	signal 	reg_u_cosine_1			:std_logic_vector(12 downto 0);	-- registered unsigned cosine reference signal from lockin_1
+	signal 	reg_u_cosine_1			:std_logic_vector(13 downto 0);	-- registered unsigned cosine reference signal from lockin_1
 	signal 	reg_u_cosine_2			:std_logic_vector(12 downto 0);	-- registered unsigned cosine reference signal from lockin_2
 	signal 	reg_u_cosine_3			:std_logic_vector(12 downto 0);
 	signal 	reg_u_cosine_4			:std_logic_vector(12 downto 0);
@@ -311,7 +313,8 @@ begin
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			s_cosine_1 <= std_logic_vector(2048 + signed(cosine_1));
+			s_cosine_1 <= 1.8 * signed(cosine_1);
+--			s_cosine_1_shifted <= std_logic_vector(1.8 * s_cosine_1);
 		end if;
 	end process;
 	
@@ -365,7 +368,7 @@ begin
 	end process;
 	
 	
-	i_cosine_1 <= not s_cosine_1(12);
+	i_cosine_1 <= not s_cosine_1_shifted(13);
 	i_cosine_2 <= not s_cosine_2(12);
 	i_cosine_3 <= not s_cosine_3(12);
 	i_cosine_4 <= not s_cosine_4(12);
@@ -374,7 +377,7 @@ begin
 	i_cosine_7 <= not s_cosine_7(12);
 	i_cosine_8 <= not s_cosine_8(12);
 	
-	u_cosine_1 <= i_cosine_1 & s_cosine_1(11 downto 0);	--Create unsigned cosine 1
+	u_cosine_1 <= i_cosine_1 & s_cosine_1_shifted(12 downto 0);	--Create unsigned cosine 1
 	u_cosine_2 <= i_cosine_2 & s_cosine_2(11 downto 0);	--Create unsigned cosine 2
 	u_cosine_3 <= i_cosine_3 & s_cosine_3(11 downto 0);
 	u_cosine_4 <= i_cosine_4 & s_cosine_4(11 downto 0);
@@ -387,7 +390,7 @@ begin
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			reg_u_cosine_1 <= u_cosine_1;
+			reg_u_cosine_1 <= u_cosine_1 ;
 		end if;
 	end process;
 	
@@ -441,7 +444,8 @@ begin
 		end if;
 	end process;
 
-	add_u_cosine_1 <= '0' & reg_u_cosine_1;		--Unsigned cosine 1 ready for addition
+--	add_u_cosine_1 <=  reg_u_cosine_1 & '00';
+	add_u_cosine_1 <=  reg_u_cosine_1;		--Unsigned cosine 1 ready for addition
 	add_u_cosine_2 <= '0' & reg_u_cosine_2;		--Unsigned cosine 2 ready for addition 
 	add_u_cosine_3 <= '0' & reg_u_cosine_3;
 	add_u_cosine_4 <= '0' & reg_u_cosine_4;
@@ -485,7 +489,7 @@ begin
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			reg_p_cosines <= std_logic_vector(resize(signed(reg_u_cosine_1), 14)); 
+			reg_p_cosines <=  reg_u_cosine_1 ; 
 		end if;
 	end process;
 	
