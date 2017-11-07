@@ -313,8 +313,8 @@ begin
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			s_cosine_1 <= 11 * signed(cosine_1);
-			s_cosine_1_shifted <= std_logic_vector(s_cosine_1(22 downto 9) );
+			s_cosine_1 <= 15 * signed(cosine_1);
+			s_cosine_1_shifted <= std_logic_vector(s_cosine_1(15 downto 2) );
 		end if;
 	end process;
 	
