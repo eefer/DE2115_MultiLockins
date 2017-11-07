@@ -174,8 +174,8 @@ architecture arch of DE2115_EightLockins_system is
 	signal 	i_cosine_8				:std_logic;
 	
 	
-	signal 	s_cosine_1				:signed(13 downto 0);	-- registered cosine reference signal from lockin_1
-	signal	s_cosine_1_shifted	:std_logic_vector(26 downto 0);
+	signal 	s_cosine_1				:signed(25 downto 0);	-- registered cosine reference signal from lockin_1
+	signal	s_cosine_1_shifted	:std_logic_vector(25 downto 0);
 	signal 	s_cosine_2				:std_logic_vector(12 downto 0);	-- registered cosine reference signal from lockin_2
 	signal 	s_cosine_3				:std_logic_vector(12 downto 0);
 	signal 	s_cosine_4				:std_logic_vector(12 downto 0);
@@ -313,8 +313,8 @@ begin
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			s_cosine_1 <= 1.8 * signed(cosine_1);
---			s_cosine_1_shifted <= std_logic_vector(1.8 * s_cosine_1);
+			s_cosine_1 <= 11 * signed(cosine_1);
+			s_cosine_1_shifted <= std_logic_vector(s_cosine_1 srl 3);
 		end if;
 	end process;
 	
