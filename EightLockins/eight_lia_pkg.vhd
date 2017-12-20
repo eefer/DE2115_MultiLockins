@@ -127,6 +127,9 @@ ARCHITECTURE arch OF eight_lia_pkg IS
 						lia_1_x_export		  : in std_logic_vector(15 downto 0);
 						lia_1_y_export		  : in std_logic_vector(15 downto 0);
 						gain_ctrl_export	  : out std_logic_vector (5 downto 0);
+						
+						-- TODO: NEED TO ADD DAC GAIN CONTROL EXPORT
+						
 						reset_reset_n       : in  std_logic                     := 'X'; 	--        reset.reset_n
 						resetrequest_reset  : out std_logic                             	-- resetrequest.reset
 			);

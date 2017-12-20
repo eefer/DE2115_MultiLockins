@@ -109,6 +109,8 @@ architecture arch of DE2115_EightLockins_system is
 		dpll_cos_7	: out std_logic_vector(12 downto 0);
 		dpll_cos_8	: out std_logic_vector(12 downto 0);
 		
+		-- TODO: EXPORT DAC GAIN CONTROL HERE
+		
 		-- control lines
 --		out_sel_cycle_i	: in std_logic := '0';				-- rising edge causes output select to change
 --		incr_phase_i		: in std_logic := '0';				-- rising edge causes phase to increment
@@ -212,6 +214,12 @@ architecture arch of DE2115_EightLockins_system is
 	signal 	add_u_cosine_7			:std_logic_vector(13 downto 0);
 	signal 	add_u_cosine_8			:std_logic_vector(13 downto 0);
 	
+	-- CHANGE 20171220 
+	signal 	s_summed_cosines			: signed(20 downto 0);	-- sum of signed cosine values, before gain block
+	signal  dac_gain					: signed(7 downto 0); 	-- DAC gain multiplier
+	signal 	s_summed_cosines_gained		: signed(28 downto 0 );	-- summed cosines after gain block
+	signal 	s_summed_cosines_gained_15	: signed(14 downto 0 );	-- summed cosines after gain block, 15-bit
+	signal 	dac_data_soffs				: std_logic_vector(14 downto 0); -- DAC data, in signed offset format
 	
 	signal 	p_cosines				:std_logic_vector(16 downto 0);	-- registered sum of cosines 
 	signal 	n_cosines				:std_logic_vector(13 downto 0);	-- inverted registered sum of cosines 
@@ -313,8 +321,10 @@ begin
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			s_cosine_1 <= 15 * signed(cosine_1);
-			s_cosine_1_shifted <= std_logic_vector(s_cosine_1(15 downto 2) );
+			-- CHANGE 20171220 
+			-- s_cosine_1 <= 15 * signed(cosine_1);
+			-- s_cosine_1_shifted <= std_logic_vector(s_cosine_1(15 downto 2) );
+			s_cosine_1 <= cosine_1;
 		end if;
 	end process;
 	
@@ -366,6 +376,30 @@ begin
 			s_cosine_8 <= cosine_8;
 		end if;
 	end process;
+	
+	-- CHANGE 20171220
+	
+	-- sum of cosines
+	process( clock_50 )
+	begin	
+		if rising_edge(clock_50) then
+			s_summed_cosines <= s_cosine_1 + s_cosine_2 + s_cosine_3 + s_cosine_4 + s_cosine_5 + s_cosine_6 + s_cosine_7 + s_cosine_8;
+		end if;
+	end process;
+	
+	-- gain block
+	-- WARNING: NO OVERFLOW INDICATOR
+	process( clock_50 )
+	begin	
+		if rising_edge(clock_50) then
+			s_summed_cosines_gained <= dac_gain * s_summed_cosines;
+			s_summed_cosines_gained_15 <= s_summed_cosines_gained(27:13);
+		end if;
+	end process;
+	
+	-- TODO: convert s_summed_cosines_gained_15 to signed-offset format
+	-- then pass to DAC
+	
 	
 	
 	i_cosine_1 <= not s_cosine_1_shifted(13);
