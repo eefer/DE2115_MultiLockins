@@ -4,26 +4,25 @@ editor if you plan to continue editing the block that represents it in
 the Block Editor! File corruption is VERY likely to occur.
 */
 /*
-Copyright (C) 1991-2016 Altera Corporation. All rights reserved.
-Your use of Altera Corporation's design tools, logic functions 
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
 and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
-to the terms and conditions of the Altera Program License 
-Subscription Agreement, the Altera Quartus Prime License Agreement,
-the Altera MegaCore Function License Agreement, or other 
-applicable license agreement, including, without limitation, 
-that your use is for the sole purpose of programming logic 
-devices manufactured by Altera and sold by Altera or its 
-authorized distributors.  Please refer to the applicable 
-agreement for further details.
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 0 0 400 904)
+	(rect 0 0 400 1040)
 	(text "qsys_system" (rect 161 -1 217 11)(font "Arial" (font_size 10)))
-	(text "inst" (rect 8 888 20 900)(font "Arial" ))
+	(text "inst" (rect 8 1024 20 1036)(font "Arial" ))
 	(port
 		(pt 0 72)
 		(input)
@@ -178,6 +177,55 @@ agreement for further details.
 		(text "resetrequest_reset" (rect 304 61 412 72)(font "Arial" (font_size 8)))
 		(line (pt 400 72)(pt 240 72)(line_width 1))
 	)
+	(port
+		(pt 0 928)
+		(output)
+		(text "sram_conduit_ADDR[19..0]" (rect 0 0 114 12)(font "Arial" (font_size 8)))
+		(text "sram_conduit_ADDR[19..0]" (rect 4 917 148 928)(font "Arial" (font_size 8)))
+		(line (pt 0 928)(pt 160 928)(line_width 3))
+	)
+	(port
+		(pt 0 944)
+		(output)
+		(text "sram_conduit_LB_N" (rect 0 0 84 12)(font "Arial" (font_size 8)))
+		(text "sram_conduit_LB_N" (rect 4 933 106 944)(font "Arial" (font_size 8)))
+		(line (pt 0 944)(pt 160 944)(line_width 1))
+	)
+	(port
+		(pt 0 960)
+		(output)
+		(text "sram_conduit_UB_N" (rect 0 0 86 12)(font "Arial" (font_size 8)))
+		(text "sram_conduit_UB_N" (rect 4 949 106 960)(font "Arial" (font_size 8)))
+		(line (pt 0 960)(pt 160 960)(line_width 1))
+	)
+	(port
+		(pt 0 976)
+		(output)
+		(text "sram_conduit_CE_N" (rect 0 0 87 12)(font "Arial" (font_size 8)))
+		(text "sram_conduit_CE_N" (rect 4 965 106 976)(font "Arial" (font_size 8)))
+		(line (pt 0 976)(pt 160 976)(line_width 1))
+	)
+	(port
+		(pt 0 992)
+		(output)
+		(text "sram_conduit_OE_N" (rect 0 0 87 12)(font "Arial" (font_size 8)))
+		(text "sram_conduit_OE_N" (rect 4 981 106 992)(font "Arial" (font_size 8)))
+		(line (pt 0 992)(pt 160 992)(line_width 1))
+	)
+	(port
+		(pt 0 1008)
+		(output)
+		(text "sram_conduit_WE_N" (rect 0 0 90 12)(font "Arial" (font_size 8)))
+		(text "sram_conduit_WE_N" (rect 4 997 106 1008)(font "Arial" (font_size 8)))
+		(line (pt 0 1008)(pt 160 1008)(line_width 1))
+	)
+	(port
+		(pt 0 912)
+		(bidir)
+		(text "sram_conduit_DQ[15..0]" (rect 0 0 97 12)(font "Arial" (font_size 8)))
+		(text "sram_conduit_DQ[15..0]" (rect 4 901 136 912)(font "Arial" (font_size 8)))
+		(line (pt 0 912)(pt 160 912)(line_width 3))
+	)
 	(drawing
 		(text "clk" (rect 145 43 308 99)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "clk" (rect 165 67 348 144)(font "Arial" (color 0 0 0)))
@@ -223,11 +271,19 @@ agreement for further details.
 		(text "reset_n" (rect 165 867 372 1744)(font "Arial" (color 0 0 0)))
 		(text "resetrequest" (rect 241 43 554 99)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "reset" (rect 215 67 460 144)(font "Arial" (color 0 0 0)))
-		(text " qsys_system " (rect 338 888 754 1786)(font "Arial" ))
+		(text "sram_conduit" (rect 82 883 236 1779)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "DQ" (rect 165 907 342 1824)(font "Arial" (color 0 0 0)))
+		(text "ADDR" (rect 165 923 354 1856)(font "Arial" (color 0 0 0)))
+		(text "LB_N" (rect 165 939 354 1888)(font "Arial" (color 0 0 0)))
+		(text "UB_N" (rect 165 955 354 1920)(font "Arial" (color 0 0 0)))
+		(text "CE_N" (rect 165 971 354 1952)(font "Arial" (color 0 0 0)))
+		(text "OE_N" (rect 165 987 354 1984)(font "Arial" (color 0 0 0)))
+		(text "WE_N" (rect 165 1003 354 2016)(font "Arial" (color 0 0 0)))
+		(text " qsys_system " (rect 338 1024 754 2058)(font "Arial" ))
 		(line (pt 160 32)(pt 240 32)(line_width 1))
-		(line (pt 240 32)(pt 240 888)(line_width 1))
-		(line (pt 160 888)(pt 240 888)(line_width 1))
-		(line (pt 160 32)(pt 160 888)(line_width 1))
+		(line (pt 240 32)(pt 240 1024)(line_width 1))
+		(line (pt 160 1024)(pt 240 1024)(line_width 1))
+		(line (pt 160 32)(pt 160 1024)(line_width 1))
 		(line (pt 161 52)(pt 161 76)(line_width 1))
 		(line (pt 162 52)(pt 162 76)(line_width 1))
 		(line (pt 161 92)(pt 161 116)(line_width 1))
@@ -272,9 +328,11 @@ agreement for further details.
 		(line (pt 162 852)(pt 162 876)(line_width 1))
 		(line (pt 239 52)(pt 239 76)(line_width 1))
 		(line (pt 238 52)(pt 238 76)(line_width 1))
+		(line (pt 161 892)(pt 161 1012)(line_width 1))
+		(line (pt 162 892)(pt 162 1012)(line_width 1))
 		(line (pt 0 0)(pt 400 0)(line_width 1))
-		(line (pt 400 0)(pt 400 904)(line_width 1))
-		(line (pt 0 904)(pt 400 904)(line_width 1))
-		(line (pt 0 0)(pt 0 904)(line_width 1))
+		(line (pt 400 0)(pt 400 1040)(line_width 1))
+		(line (pt 0 1040)(pt 400 1040)(line_width 1))
+		(line (pt 0 0)(pt 0 1040)(line_width 1))
 	)
 )

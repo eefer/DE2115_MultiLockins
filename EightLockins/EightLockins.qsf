@@ -6,7 +6,7 @@ set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE115F29C7
 set_global_assignment -name TOP_LEVEL_ENTITY DE2115_EightLockins_top
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 12.0
-set_global_assignment -name LAST_QUARTUS_VERSION 16.0.0
+set_global_assignment -name LAST_QUARTUS_VERSION "17.1.0 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:17:44 FEBRUARY 22,2016"
 set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 780
@@ -1012,25 +1012,6 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIP
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id AD_2fDA
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=8192" -section_id AD_2fDA
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=8192" -section_id AD_2fDA
-set_global_assignment -name TCL_SCRIPT_FILE lockin_freq_scan.tcl
-set_global_assignment -name VHDL_FILE eight_lia_pkg.vhd
-set_global_assignment -name SDC_FILE DE2115_EightLockins_top.SDC
-set_global_assignment -name VERILOG_FILE DE2115_EightLockins_top.v
-set_global_assignment -name VHDL_FILE DE2115_EightLockins_system.vhd
-set_global_assignment -name SIGNALTAP_FILE stp3.stp
-set_global_assignment -name TCL_SCRIPT_FILE lockin_freq_setup.tcl
-set_global_assignment -name VHDL_FILE phasedet.vhd
-set_global_assignment -name VHDL_FILE nco_3p.vhd
-set_global_assignment -name VHDL_FILE lia_core.vhd
-set_global_assignment -name VHDL_FILE dpll.vhd
-set_global_assignment -name VHDL_FILE cic_gain_controller.vhd
-set_global_assignment -name VHDL_FILE cic_filter.vhd
-set_global_assignment -name QIP_FILE FIFO.qip
-set_global_assignment -name VHDL_FILE mult_13x14.vhd
-set_global_assignment -name QIP_FILE mult_13x14.qip
-set_global_assignment -name SOURCE_FILE mult_13x14.cmp
-set_global_assignment -name QIP_FILE qsys_system/synthesis/qsys_system.qip
-set_global_assignment -name QIP_FILE eight_add.qip
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[3] -to AD_2fDA|gnd -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to AD_2fDA|gnd -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to AD_2fDA|gnd -section_id AD_2fDA
@@ -1152,5 +1133,25 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[26] -
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[27] -to AD_2fDA|vcc -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[28] -to AD_2fDA|gnd -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name QIP_FILE SRAM_offset.qip
+set_global_assignment -name QIP_FILE sram_access/synthesis/sram_access.qip
+set_global_assignment -name TCL_SCRIPT_FILE lockin_freq_scan.tcl
+set_global_assignment -name VHDL_FILE eight_lia_pkg.vhd
+set_global_assignment -name SDC_FILE DE2115_EightLockins_top.SDC
+set_global_assignment -name VERILOG_FILE DE2115_EightLockins_top.v
+set_global_assignment -name VHDL_FILE DE2115_EightLockins_system.vhd
+set_global_assignment -name SIGNALTAP_FILE stp3.stp
+set_global_assignment -name TCL_SCRIPT_FILE lockin_freq_setup.tcl
+set_global_assignment -name VHDL_FILE phasedet.vhd
+set_global_assignment -name VHDL_FILE nco_3p.vhd
+set_global_assignment -name VHDL_FILE lia_core.vhd
+set_global_assignment -name VHDL_FILE dpll.vhd
+set_global_assignment -name VHDL_FILE cic_gain_controller.vhd
+set_global_assignment -name VHDL_FILE cic_filter.vhd
+set_global_assignment -name QIP_FILE FIFO.qip
+set_global_assignment -name QIP_FILE mult_13x14.qip
+set_global_assignment -name SOURCE_FILE mult_13x14.cmp
+set_global_assignment -name QIP_FILE qsys_system/synthesis/qsys_system.qip
+set_global_assignment -name QIP_FILE eight_add.qip
 set_global_assignment -name SLD_FILE db/stp3_auto_stripped.stp
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

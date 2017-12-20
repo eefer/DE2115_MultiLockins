@@ -20,6 +20,13 @@
 		.phase_offs_7_export (<connected-to-phase_offs_7_export>), // phase_offs_7.export
 		.phase_offs_8_export (<connected-to-phase_offs_8_export>), // phase_offs_8.export
 		.reset_reset_n       (<connected-to-reset_reset_n>),       //        reset.reset_n
-		.resetrequest_reset  (<connected-to-resetrequest_reset>)   // resetrequest.reset
+		.resetrequest_reset  (<connected-to-resetrequest_reset>),  // resetrequest.reset
+		.sram_conduit_DQ     (<connected-to-sram_conduit_DQ>),     // sram_conduit.DQ
+		.sram_conduit_ADDR   (<connected-to-sram_conduit_ADDR>),   //             .ADDR
+		.sram_conduit_LB_N   (<connected-to-sram_conduit_LB_N>),   //             .LB_N
+		.sram_conduit_UB_N   (<connected-to-sram_conduit_UB_N>),   //             .UB_N
+		.sram_conduit_CE_N   (<connected-to-sram_conduit_CE_N>),   //             .CE_N
+		.sram_conduit_OE_N   (<connected-to-sram_conduit_OE_N>),   //             .OE_N
+		.sram_conduit_WE_N   (<connected-to-sram_conduit_WE_N>)    //             .WE_N
 	);
 
