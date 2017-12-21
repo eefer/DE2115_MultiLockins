@@ -9,7 +9,6 @@ master_write_32 $master 0x00000000 13946
 
 master_write_32 $master 0x00000010 0
 #lockin 2 = 670 kHz
-
 master_write_32 $master 0x00000020 0
 #lockin 3 = 675 kHz
 

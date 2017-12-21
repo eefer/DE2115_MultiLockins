@@ -1,6 +1,7 @@
 	component qsys_system is
 		port (
 			clk_clk             : in    std_logic                     := 'X';             -- clk
+			dac_gain_export     : out   std_logic_vector(7 downto 0);                     -- export
 			gain_ctrl_export    : out   std_logic_vector(5 downto 0);                     -- export
 			lia_1_x_export      : in    std_logic_vector(15 downto 0) := (others => 'X'); -- export
 			lia_1_y_export      : in    std_logic_vector(15 downto 0) := (others => 'X'); -- export
@@ -35,6 +36,7 @@
 	u0 : component qsys_system
 		port map (
 			clk_clk             => CONNECTED_TO_clk_clk,             --          clk.clk
+			dac_gain_export     => CONNECTED_TO_dac_gain_export,     --     dac_gain.export
 			gain_ctrl_export    => CONNECTED_TO_gain_ctrl_export,    --    gain_ctrl.export
 			lia_1_x_export      => CONNECTED_TO_lia_1_x_export,      --      lia_1_x.export
 			lia_1_y_export      => CONNECTED_TO_lia_1_y_export,      --      lia_1_y.export

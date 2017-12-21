@@ -41,6 +41,27 @@
          type = "int";
       }
    }
+   element dac_gain
+   {
+      datum _sortIndex
+      {
+         value = "25";
+         type = "int";
+      }
+   }
+   element dac_gain.s1
+   {
+      datum _lockedAddress
+      {
+         value = "0";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "1342177280";
+         type = "String";
+      }
+   }
    element gain_controller
    {
       datum _sortIndex
@@ -53,7 +74,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -82,7 +103,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -103,7 +124,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -124,7 +145,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
    }
@@ -140,7 +161,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
    }
@@ -156,7 +177,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -177,7 +198,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -198,7 +219,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -219,7 +240,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -240,7 +261,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -261,7 +282,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -282,7 +303,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -303,7 +324,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -324,7 +345,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -345,7 +366,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -366,7 +387,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -387,7 +408,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -408,7 +429,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -429,7 +450,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -450,7 +471,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
    }
@@ -466,7 +487,7 @@
    {
       datum _lockedAddress
       {
-         value = "1";
+         value = "0";
          type = "boolean";
       }
       datum baseAddress
@@ -497,6 +518,11 @@
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk.clk_in" type="clock" dir="end" />
+ <interface
+   name="dac_gain"
+   internal="dac_gain.external_connection"
+   type="conduit"
+   dir="end" />
  <interface
    name="gain_ctrl"
    internal="gain_controller.external_connection"
@@ -671,6 +697,20 @@
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
+ <module name="dac_gain" kind="altera_avalon_pio" version="17.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="1" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
+ </module>
  <module
    name="gain_controller"
    kind="altera_avalon_pio"
@@ -762,7 +802,7 @@
   <parameter name="edgeType" value="RISING" />
   <parameter name="generateIRQ" value="false" />
   <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
+  <parameter name="resetValue" value="12623" />
   <parameter name="simDoTestBenchWiring" value="false" />
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="20" />
@@ -1238,6 +1278,11 @@
   <parameter name="baseAddress" value="0x31000000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
+ <connection kind="avalon" version="17.1" start="bfm_master.m0" end="dac_gain.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x50000000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
  <connection
    kind="avalon"
    version="17.1"
@@ -1427,6 +1472,15 @@
   <parameter name="baseAddress" value="0x31000000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
+ <connection
+   kind="avalon"
+   version="17.1"
+   start="jtag_master.master"
+   end="dac_gain.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x50000000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
  <connection kind="clock" version="17.1" start="clk.clk" end="bfm_master.clk" />
  <connection kind="clock" version="17.1" start="clk.clk" end="jtag_master.clk" />
  <connection
@@ -1490,6 +1544,7 @@
  <connection kind="clock" version="17.1" start="clk.clk" end="lia_1_y.clk" />
  <connection kind="clock" version="17.1" start="clk.clk" end="sram_0.clk" />
  <connection kind="clock" version="17.1" start="clk.clk" end="bridge_0.clk" />
+ <connection kind="clock" version="17.1" start="clk.clk" end="dac_gain.clk" />
  <connection kind="clock" version="17.1" start="clk.clk" end="onchip_ram.clk1" />
  <connection
    kind="reset"
@@ -1594,6 +1649,11 @@
    version="17.1"
    start="clk.clk_reset"
    end="bridge_0.reset" />
+ <connection
+   kind="reset"
+   version="17.1"
+   start="clk.clk_reset"
+   end="dac_gain.reset" />
  <connection
    kind="reset"
    version="17.1"

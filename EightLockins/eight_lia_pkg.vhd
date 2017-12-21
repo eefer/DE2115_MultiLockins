@@ -57,6 +57,8 @@ ENTITY eight_lia_pkg IS
 		dpll_cos_7	: out std_logic_vector(12 downto 0);
 		dpll_cos_8	: out std_logic_vector(12 downto 0);
 		
+		dac_gain		: out std_logic_vector(7 downto 0);
+		
 		overflow_dlia: out std_logic
 		
 		-- control lines
@@ -127,6 +129,7 @@ ARCHITECTURE arch OF eight_lia_pkg IS
 						lia_1_x_export		  : in std_logic_vector(15 downto 0);
 						lia_1_y_export		  : in std_logic_vector(15 downto 0);
 						gain_ctrl_export	  : out std_logic_vector (5 downto 0);
+						dac_gain_export	  : out std_logic_vector (7 downto 0);
 						
 						-- TODO: NEED TO ADD DAC GAIN CONTROL EXPORT
 						
@@ -247,6 +250,7 @@ ARCHITECTURE arch OF eight_lia_pkg IS
 		
 		signal lia_out_x_1_tx: std_logic_vector(15 downto 0);
 		signal lia_out_y_1_tx: std_logic_vector(15 downto 0);
+		signal dac_out_tx:	  std_logic_vector(7 downto 0);
 	
 BEGIN
 	
@@ -273,8 +277,9 @@ BEGIN
 	dpll_cos_8 <= dpll_lia_ref_o_8;
 	ref_o <= dpll_lia_ref_o_1(12);	-- for synchronization (use last bit so 1 for half the cycle)	
 	
---	lia_out_x_1 => lia_out_x_1_tx;
---	lia_out_y_1 => lia_out_y_1_tx;
+--	lia_out_x_1_tx <= lia_out_x_1;
+--	lia_out_y_1_tx <= lia_out_y_1;
+	dac_gain <= dac_out_tx;
 	
 -- sends the out_sel to the lia_output_state
 --	lia_output_state <= std_logic_vector(to_unsigned(out_sel,3));
@@ -504,6 +509,7 @@ BEGIN
 		lia_1_x_export		  => lia_out_x_1_tx,
 		lia_1_y_export		  => lia_out_y_1_tx,
 		
+		dac_gain_export	  => dac_out_tx,
 		gain_ctrl_export	  => gain_ctrl_tx,
 		reset_reset_n       => not areset_i,   --        reset.reset_n
 		resetrequest_reset  => resetrequest    -- resetrequest.reset

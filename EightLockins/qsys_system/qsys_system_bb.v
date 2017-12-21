@@ -1,6 +1,7 @@
 
 module qsys_system (
 	clk_clk,
+	dac_gain_export,
 	gain_ctrl_export,
 	lia_1_x_export,
 	lia_1_y_export,
@@ -31,6 +32,7 @@ module qsys_system (
 	sram_conduit_WE_N);	
 
 	input		clk_clk;
+	output	[7:0]	dac_gain_export;
 	output	[5:0]	gain_ctrl_export;
 	input	[15:0]	lia_1_x_export;
 	input	[15:0]	lia_1_y_export;

@@ -9,6 +9,7 @@ use IEEE.numeric_std.all;
 entity qsys_system is
 	port (
 		clk_clk             : in    std_logic                     := '0';             --          clk.clk
+		dac_gain_export     : out   std_logic_vector(7 downto 0);                     --     dac_gain.export
 		gain_ctrl_export    : out   std_logic_vector(5 downto 0);                     --    gain_ctrl.export
 		lia_1_x_export      : in    std_logic_vector(15 downto 0) := (others => '0'); --      lia_1_x.export
 		lia_1_y_export      : in    std_logic_vector(15 downto 0) := (others => '0'); --      lia_1_y.export
@@ -125,6 +126,19 @@ architecture rtl of qsys_system is
 		);
 	end component qsys_system_bridge_0;
 
+	component qsys_system_dac_gain is
+		port (
+			clk        : in  std_logic                     := 'X';             -- clk
+			reset_n    : in  std_logic                     := 'X';             -- reset_n
+			address    : in  std_logic_vector(1 downto 0)  := (others => 'X'); -- address
+			write_n    : in  std_logic                     := 'X';             -- write_n
+			writedata  : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
+			chipselect : in  std_logic                     := 'X';             -- chipselect
+			readdata   : out std_logic_vector(31 downto 0);                    -- readdata
+			out_port   : out std_logic_vector(7 downto 0)                      -- export
+		);
+	end component qsys_system_dac_gain;
+
 	component qsys_system_gain_controller is
 		port (
 			clk        : in  std_logic                     := 'X';             -- clk
@@ -182,7 +196,7 @@ architecture rtl of qsys_system is
 		);
 	end component qsys_system_nco_freq_control_1;
 
-	component qsys_system_nco_freq_control_2 is
+	component qsys_system_nco_freq_ctrl_3 is
 		port (
 			clk        : in  std_logic                     := 'X';             -- clk
 			reset_n    : in  std_logic                     := 'X';             -- reset_n
@@ -193,7 +207,7 @@ architecture rtl of qsys_system is
 			readdata   : out std_logic_vector(31 downto 0);                    -- readdata
 			out_port   : out std_logic_vector(19 downto 0)                     -- export
 		);
-	end component qsys_system_nco_freq_control_2;
+	end component qsys_system_nco_freq_ctrl_3;
 
 	component qsys_system_onchip_ram is
 		port (
@@ -253,6 +267,11 @@ architecture rtl of qsys_system is
 			jtag_master_master_readdatavalid                  : out std_logic;                                        -- readdatavalid
 			jtag_master_master_write                          : in  std_logic                     := 'X';             -- write
 			jtag_master_master_writedata                      : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
+			dac_gain_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			dac_gain_s1_write                                 : out std_logic;                                        -- write
+			dac_gain_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			dac_gain_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			dac_gain_s1_chipselect                            : out std_logic;                                        -- chipselect
 			gain_controller_s1_address                        : out std_logic_vector(1 downto 0);                     -- address
 			gain_controller_s1_write                          : out std_logic;                                        -- write
 			gain_controller_s1_readdata                       : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
@@ -544,6 +563,11 @@ architecture rtl of qsys_system is
 	signal mm_interconnect_0_lia_1_x_s1_address                     : std_logic_vector(1 downto 0);  -- mm_interconnect_0:lia_1_x_s1_address -> lia_1_x:address
 	signal mm_interconnect_0_lia_1_y_s1_readdata                    : std_logic_vector(31 downto 0); -- lia_1_y:readdata -> mm_interconnect_0:lia_1_y_s1_readdata
 	signal mm_interconnect_0_lia_1_y_s1_address                     : std_logic_vector(1 downto 0);  -- mm_interconnect_0:lia_1_y_s1_address -> lia_1_y:address
+	signal mm_interconnect_0_dac_gain_s1_chipselect                 : std_logic;                     -- mm_interconnect_0:dac_gain_s1_chipselect -> dac_gain:chipselect
+	signal mm_interconnect_0_dac_gain_s1_readdata                   : std_logic_vector(31 downto 0); -- dac_gain:readdata -> mm_interconnect_0:dac_gain_s1_readdata
+	signal mm_interconnect_0_dac_gain_s1_address                    : std_logic_vector(1 downto 0);  -- mm_interconnect_0:dac_gain_s1_address -> dac_gain:address
+	signal mm_interconnect_0_dac_gain_s1_write                      : std_logic;                     -- mm_interconnect_0:dac_gain_s1_write -> mm_interconnect_0_dac_gain_s1_write:in
+	signal mm_interconnect_0_dac_gain_s1_writedata                  : std_logic_vector(31 downto 0); -- mm_interconnect_0:dac_gain_s1_writedata -> dac_gain:writedata
 	signal rst_controller_reset_out_reset                           : std_logic;                     -- rst_controller:reset_out -> [bfm_master:reset, bridge_0:reset, mm_interconnect_0:bfm_master_clk_reset_reset_bridge_in_reset_reset, mm_interconnect_0:jtag_master_clk_reset_reset_bridge_in_reset_reset, onchip_ram:reset, rst_controller_reset_out_reset:in, rst_translator:in_reset, sram_0:reset]
 	signal rst_controller_reset_out_reset_req                       : std_logic;                     -- rst_controller:reset_req -> [onchip_ram:reset_req, rst_translator:reset_req_in]
 	signal reset_reset_n_ports_inv                                  : std_logic;                     -- reset_reset_n:inv -> [jtag_master:clk_reset_reset, rst_controller:reset_in0]
@@ -564,7 +588,8 @@ architecture rtl of qsys_system is
 	signal mm_interconnect_0_nco_phase_ctrl_6_s1_write_ports_inv    : std_logic;                     -- mm_interconnect_0_nco_phase_ctrl_6_s1_write:inv -> nco_phase_ctrl_6:write_n
 	signal mm_interconnect_0_nco_phase_ctrl_7_s1_write_ports_inv    : std_logic;                     -- mm_interconnect_0_nco_phase_ctrl_7_s1_write:inv -> nco_phase_ctrl_7:write_n
 	signal mm_interconnect_0_nco_phase_ctrl_8_s1_write_ports_inv    : std_logic;                     -- mm_interconnect_0_nco_phase_ctrl_8_s1_write:inv -> nco_phase_ctrl_8:write_n
-	signal rst_controller_reset_out_reset_ports_inv                 : std_logic;                     -- rst_controller_reset_out_reset:inv -> [gain_controller:reset_n, lia_1_x:reset_n, lia_1_y:reset_n, nco_freq_control_1:reset_n, nco_freq_control_2:reset_n, nco_freq_ctrl_3:reset_n, nco_freq_ctrl_4:reset_n, nco_freq_ctrl_5:reset_n, nco_freq_ctrl_6:reset_n, nco_freq_ctrl_7:reset_n, nco_freq_ctrl_8:reset_n, nco_phase_ctrl_1:reset_n, nco_phase_ctrl_2:reset_n, nco_phase_ctrl_3:reset_n, nco_phase_ctrl_4:reset_n, nco_phase_ctrl_5:reset_n, nco_phase_ctrl_6:reset_n, nco_phase_ctrl_7:reset_n, nco_phase_ctrl_8:reset_n]
+	signal mm_interconnect_0_dac_gain_s1_write_ports_inv            : std_logic;                     -- mm_interconnect_0_dac_gain_s1_write:inv -> dac_gain:write_n
+	signal rst_controller_reset_out_reset_ports_inv                 : std_logic;                     -- rst_controller_reset_out_reset:inv -> [dac_gain:reset_n, gain_controller:reset_n, lia_1_x:reset_n, lia_1_y:reset_n, nco_freq_control_1:reset_n, nco_freq_control_2:reset_n, nco_freq_ctrl_3:reset_n, nco_freq_ctrl_4:reset_n, nco_freq_ctrl_5:reset_n, nco_freq_ctrl_6:reset_n, nco_freq_ctrl_7:reset_n, nco_freq_ctrl_8:reset_n, nco_phase_ctrl_1:reset_n, nco_phase_ctrl_2:reset_n, nco_phase_ctrl_3:reset_n, nco_phase_ctrl_4:reset_n, nco_phase_ctrl_5:reset_n, nco_phase_ctrl_6:reset_n, nco_phase_ctrl_7:reset_n, nco_phase_ctrl_8:reset_n]
 
 begin
 
@@ -650,6 +675,18 @@ begin
 			read_data          => open                            --                   .export
 		);
 
+	dac_gain : component qsys_system_dac_gain
+		port map (
+			clk        => clk_clk,                                       --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,      --               reset.reset_n
+			address    => mm_interconnect_0_dac_gain_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_dac_gain_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_dac_gain_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_dac_gain_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_dac_gain_s1_readdata,        --                    .readdata
+			out_port   => dac_gain_export                                -- external_connection.export
+		);
+
 	gain_controller : component qsys_system_gain_controller
 		port map (
 			clk        => clk_clk,                                              --                 clk.clk
@@ -712,7 +749,7 @@ begin
 			out_port   => phase_incr_1_export                                      -- external_connection.export
 		);
 
-	nco_freq_control_2 : component qsys_system_nco_freq_control_2
+	nco_freq_control_2 : component qsys_system_nco_freq_control_1
 		port map (
 			clk        => clk_clk,                                                 --                 clk.clk
 			reset_n    => rst_controller_reset_out_reset_ports_inv,                --               reset.reset_n
@@ -724,7 +761,7 @@ begin
 			out_port   => phase_incr_2_export                                      -- external_connection.export
 		);
 
-	nco_freq_ctrl_3 : component qsys_system_nco_freq_control_2
+	nco_freq_ctrl_3 : component qsys_system_nco_freq_ctrl_3
 		port map (
 			clk        => clk_clk,                                              --                 clk.clk
 			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
@@ -736,7 +773,7 @@ begin
 			out_port   => phase_incr_3_export                                   -- external_connection.export
 		);
 
-	nco_freq_ctrl_4 : component qsys_system_nco_freq_control_2
+	nco_freq_ctrl_4 : component qsys_system_nco_freq_ctrl_3
 		port map (
 			clk        => clk_clk,                                              --                 clk.clk
 			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
@@ -748,7 +785,7 @@ begin
 			out_port   => phase_incr_4_export                                   -- external_connection.export
 		);
 
-	nco_freq_ctrl_5 : component qsys_system_nco_freq_control_2
+	nco_freq_ctrl_5 : component qsys_system_nco_freq_ctrl_3
 		port map (
 			clk        => clk_clk,                                              --                 clk.clk
 			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
@@ -760,7 +797,7 @@ begin
 			out_port   => phase_incr_5_export                                   -- external_connection.export
 		);
 
-	nco_freq_ctrl_6 : component qsys_system_nco_freq_control_2
+	nco_freq_ctrl_6 : component qsys_system_nco_freq_ctrl_3
 		port map (
 			clk        => clk_clk,                                              --                 clk.clk
 			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
@@ -772,7 +809,7 @@ begin
 			out_port   => phase_incr_6_export                                   -- external_connection.export
 		);
 
-	nco_freq_ctrl_7 : component qsys_system_nco_freq_control_2
+	nco_freq_ctrl_7 : component qsys_system_nco_freq_ctrl_3
 		port map (
 			clk        => clk_clk,                                              --                 clk.clk
 			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
@@ -784,7 +821,7 @@ begin
 			out_port   => phase_incr_7_export                                   -- external_connection.export
 		);
 
-	nco_freq_ctrl_8 : component qsys_system_nco_freq_control_2
+	nco_freq_ctrl_8 : component qsys_system_nco_freq_ctrl_3
 		port map (
 			clk        => clk_clk,                                              --                 clk.clk
 			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
@@ -796,7 +833,7 @@ begin
 			out_port   => phase_incr_8_export                                   -- external_connection.export
 		);
 
-	nco_phase_ctrl_1 : component qsys_system_nco_freq_control_2
+	nco_phase_ctrl_1 : component qsys_system_nco_freq_ctrl_3
 		port map (
 			clk        => clk_clk,                                               --                 clk.clk
 			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
@@ -808,7 +845,7 @@ begin
 			out_port   => phase_offs_1_export                                    -- external_connection.export
 		);
 
-	nco_phase_ctrl_2 : component qsys_system_nco_freq_control_2
+	nco_phase_ctrl_2 : component qsys_system_nco_freq_ctrl_3
 		port map (
 			clk        => clk_clk,                                               --                 clk.clk
 			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
@@ -820,7 +857,7 @@ begin
 			out_port   => phase_offs_2_export                                    -- external_connection.export
 		);
 
-	nco_phase_ctrl_3 : component qsys_system_nco_freq_control_2
+	nco_phase_ctrl_3 : component qsys_system_nco_freq_ctrl_3
 		port map (
 			clk        => clk_clk,                                               --                 clk.clk
 			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
@@ -832,7 +869,7 @@ begin
 			out_port   => phase_offs_3_export                                    -- external_connection.export
 		);
 
-	nco_phase_ctrl_4 : component qsys_system_nco_freq_control_2
+	nco_phase_ctrl_4 : component qsys_system_nco_freq_ctrl_3
 		port map (
 			clk        => clk_clk,                                               --                 clk.clk
 			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
@@ -844,7 +881,7 @@ begin
 			out_port   => phase_offs_4_export                                    -- external_connection.export
 		);
 
-	nco_phase_ctrl_5 : component qsys_system_nco_freq_control_2
+	nco_phase_ctrl_5 : component qsys_system_nco_freq_ctrl_3
 		port map (
 			clk        => clk_clk,                                               --                 clk.clk
 			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
@@ -856,7 +893,7 @@ begin
 			out_port   => phase_offs_5_export                                    -- external_connection.export
 		);
 
-	nco_phase_ctrl_6 : component qsys_system_nco_freq_control_2
+	nco_phase_ctrl_6 : component qsys_system_nco_freq_ctrl_3
 		port map (
 			clk        => clk_clk,                                               --                 clk.clk
 			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
@@ -868,7 +905,7 @@ begin
 			out_port   => phase_offs_6_export                                    -- external_connection.export
 		);
 
-	nco_phase_ctrl_7 : component qsys_system_nco_freq_control_2
+	nco_phase_ctrl_7 : component qsys_system_nco_freq_ctrl_3
 		port map (
 			clk        => clk_clk,                                               --                 clk.clk
 			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
@@ -880,7 +917,7 @@ begin
 			out_port   => phase_offs_7_export                                    -- external_connection.export
 		);
 
-	nco_phase_ctrl_8 : component qsys_system_nco_freq_control_2
+	nco_phase_ctrl_8 : component qsys_system_nco_freq_ctrl_3
 		port map (
 			clk        => clk_clk,                                               --                 clk.clk
 			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
@@ -948,6 +985,11 @@ begin
 			jtag_master_master_readdatavalid                  => jtag_master_master_readdatavalid,                         --                                            .readdatavalid
 			jtag_master_master_write                          => jtag_master_master_write,                                 --                                            .write
 			jtag_master_master_writedata                      => jtag_master_master_writedata,                             --                                            .writedata
+			dac_gain_s1_address                               => mm_interconnect_0_dac_gain_s1_address,                    --                                 dac_gain_s1.address
+			dac_gain_s1_write                                 => mm_interconnect_0_dac_gain_s1_write,                      --                                            .write
+			dac_gain_s1_readdata                              => mm_interconnect_0_dac_gain_s1_readdata,                   --                                            .readdata
+			dac_gain_s1_writedata                             => mm_interconnect_0_dac_gain_s1_writedata,                  --                                            .writedata
+			dac_gain_s1_chipselect                            => mm_interconnect_0_dac_gain_s1_chipselect,                 --                                            .chipselect
 			gain_controller_s1_address                        => mm_interconnect_0_gain_controller_s1_address,             --                          gain_controller_s1.address
 			gain_controller_s1_write                          => mm_interconnect_0_gain_controller_s1_write,               --                                            .write
 			gain_controller_s1_readdata                       => mm_interconnect_0_gain_controller_s1_readdata,            --                                            .readdata
@@ -1153,6 +1195,8 @@ begin
 	mm_interconnect_0_nco_phase_ctrl_7_s1_write_ports_inv <= not mm_interconnect_0_nco_phase_ctrl_7_s1_write;
 
 	mm_interconnect_0_nco_phase_ctrl_8_s1_write_ports_inv <= not mm_interconnect_0_nco_phase_ctrl_8_s1_write;
+
+	mm_interconnect_0_dac_gain_s1_write_ports_inv <= not mm_interconnect_0_dac_gain_s1_write;
 
 	rst_controller_reset_out_reset_ports_inv <= not rst_controller_reset_out_reset;
 
