@@ -4,7 +4,7 @@ set master [lindex $masters 0]
 
 open_service master $master
 
-master_write_32 $master 0x20000000 8
+master_write_32 $master 0x20000000 6
 
 set filename "test.txt"
 set fileId [open $filename "w"]
