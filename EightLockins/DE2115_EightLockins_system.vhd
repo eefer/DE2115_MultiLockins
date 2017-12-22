@@ -215,8 +215,11 @@ architecture arch of DE2115_EightLockins_system is
 	
 	-- CHANGE 20171220 
 	signal 	s_summed_cosines				: std_logic_vector(20 downto 0);	-- sum of signed cosine values, before gain block
+	signal	signed_res_cosines			: signed(20 downto 0);
 	signal   dac_gain							: std_logic_vector(7 downto 0); 	-- DAC gain multiplier
-	signal 	s_summed_cosines_gained		: signed(28 downto 0 );	-- summed cosines after gain block
+	signal   dac_gain_signed				: signed(7 downto 0);
+	signal 	s_summed_cosines_gained		: signed(41 downto 0 );	-- summed cosines after gain block
+--	attribute keep of s_summed_cosines_gained : signal is true;
 	signal 	s_summed_cosines_gained_14	: signed(12 downto 0 );	-- summed cosines after gain block, 14-bit
 	
 	signal 	i_s_summed_cosines_gained_14	: std_logic;
@@ -405,18 +408,61 @@ begin
 	
 	-- gain block
 	-- WARNING: NO OVERFLOW INDICATOR
-	process( clock_50 )
-	begin	
-		if rising_edge(clock_50) then
-			s_summed_cosines_gained  <= signed(dac_gain) * signed(s_summed_cosines);
-			s_summed_cosines_gained_14  <=  s_summed_cosines_gained(23 downto 11);
-		end if;
-	end process;
+	
+	
+	
+--	process( clock_50 )
+--	begin	
+--		if rising_edge(clock_50) then
+--			s_summed_cosines_gained  <= signed(dac_gain) * signed(s_summed_cosines);
+----			s_summed_cosines_gained_14  <=  s_summed_cosines_gained(23 downto 11);
+--			s_summed_cosines_gained_14  <=  signed(s_summed_cosines(13 downto 1));
+--		end if;
+--	end process;
 	
 	-- TODO: convert s_summed_cosines_gained_15 to signed-offset format
 	-- then pass to DAC
 	
-	i_s_summed_cosines_gained_14 <= not s_summed_cosines_gained_14(12);
+-- multiply with fixed gain	
+	
+	process(clock_50)
+	begin	
+		if rising_edge(clock_50) then
+		
+	signed_res_cosines <= signed(s_summed_cosines);
+	
+	s_summed_cosines_gained  <=  20 * signed_res_cosines;
+	
+	s_summed_cosines_gained_14  <=  signed(s_summed_cosines(14 downto 2));
+	
+
+		end if;
+	end process;
+	
+		i_s_summed_cosines_gained_14 <= not s_summed_cosines_gained_14(12);
+	
+	u_summed_cosines_gained_14 <= i_s_summed_cosines_gained_14 & std_logic_vector(s_summed_cosines_gained_14);
+	
+-- multiply with variable gain	
+--	process(clock_50)
+--	begin	
+--		if rising_edge(clock_50) then
+--		
+--	signed_res_cosines <= signed(s_summed_cosines);
+--	
+--	dac_gain_signed <=	signed(dac_gain);
+--		
+--	s_summed_cosines_gained  <= dac_gain_signed * signed_res_cosines;
+--	
+--	s_summed_cosines_gained_14  <=  signed(s_summed_cosines(14 downto 2));
+
+--		end if;
+--	end process;
+
+--	
+--	i_s_summed_cosines_gained_14 <= not s_summed_cosines_gained_14(12);
+--	
+--	u_summed_cosines_gained_14 <= i_s_summed_cosines_gained_14 & std_logic_vector(s_summed_cosines_gained_14);
 	
 --	
 --	i_cosine_1 <= not s_cosine_1_shifted(13);
@@ -428,7 +474,7 @@ begin
 --	i_cosine_7 <= not s_cosine_7(12);
 --	i_cosine_8 <= not s_cosine_8(12);
 	
-	u_summed_cosines_gained_14 <= i_s_summed_cosines_gained_14 & std_logic_vector(s_summed_cosines_gained_14);
+	
 	
 --	u_cosine_1 <= i_cosine_1 & s_cosine_1(11 downto 0);	--Create unsigned cosine 1
 --	u_cosine_2 <= i_cosine_2 & s_cosine_2(11 downto 0);	--Create unsigned cosine 2

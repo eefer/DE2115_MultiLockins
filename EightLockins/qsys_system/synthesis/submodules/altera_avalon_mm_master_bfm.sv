@@ -1,19 +1,19 @@
-// (C) 2001-2017 Intel Corporation. All rights reserved.
+// (C) 2001-2016 Intel Corporation. All rights reserved.
 // Your use of Intel Corporation's design tools, logic functions and other 
 // software and tools, and its AMPP partner logic functions, and any output 
-// files from any of the foregoing (including device programming or simulation 
+// files any of the foregoing (including device programming or simulation 
 // files), and any associated documentation or information are expressly subject 
 // to the terms and conditions of the Intel Program License Subscription 
-// Agreement, Intel FPGA IP License Agreement, or other applicable 
+// Agreement, Intel MegaCore Function License Agreement, or other applicable 
 // license agreement, including, without limitation, that your use is for the 
 // sole purpose of programming logic devices manufactured by Intel and sold by 
 // Intel or its authorized distributors.  Please refer to the applicable 
 // agreement for further details.
 
 
-// $Id: //acds/rel/17.1std/ip/sopc/components/verification/altera_avalon_mm_master_bfm/altera_avalon_mm_master_bfm.sv#1 $
+// $Id: //acds/rel/16.1/ip/sopc/components/verification/altera_avalon_mm_master_bfm/altera_avalon_mm_master_bfm.sv#1 $
 // $Revision: #1 $
-// $Date: 2017/07/30 $
+// $Date: 2016/08/07 $
 // $Author: swbranch $
 //-----------------------------------------------------------------------------
 // =head1 NAME
@@ -398,7 +398,7 @@ module altera_avalon_mm_master_bfm(
 
    function automatic string get_version();  // public
       // Return BFM version string. For example, version 9.1 sp1 is "9.1sp1"
-      string ret_version = "17.1";
+      string ret_version = "16.1";
       return ret_version;
    endfunction
 
@@ -1212,7 +1212,7 @@ module altera_avalon_mm_master_bfm(
       print(VERBOSITY_INFO, message);
       $sformat(message, "%m: -   $Revision: #1 $");
       print(VERBOSITY_INFO, message);
-      $sformat(message, "%m: -   $Date: 2017/07/30 $");
+      $sformat(message, "%m: -   $Date: 2016/08/07 $");
       print(VERBOSITY_INFO, message);
       $sformat(message, "%m: -   AV_ADDRESS_W             = %0d",
                AV_ADDRESS_W);

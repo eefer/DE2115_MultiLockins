@@ -313,8 +313,8 @@ BEGIN
 		samp_clk_i		=> samp_clk_i,				-- forward sample clock from ADC		
 		input				=> input,					-- forward sampled data from the ADC
 		samp_clk_o		=> samp_clk_o,				-- lock-in output sample clock
-		out_x				=> lia_out_x_1_tx,			-- direct x output to internal signal line
-		out_y			   => lia_out_y_1_tx,			-- direct y output to internal signal line
+		out_x				=> lia_out_x_1,			-- direct x output to internal signal line
+		out_y			   => lia_out_y_1,			-- direct y output to internal signal line
 		overflow_lia	=> overflow_lia_1
 --		cic_x_in_sel_i	=> cic_x_in_sel
 
