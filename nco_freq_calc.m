@@ -1,4 +1,4 @@
-%%NCO frequency calculations
+4%%NCO frequency calculations
 
 clk = 50 * 10^6;
 ph_incr = 20;
