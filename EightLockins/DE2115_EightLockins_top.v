@@ -497,48 +497,48 @@ end
 //							
 //						};
 //end
-
-reg [127:0] encoded_data = 128'd0;
-
-always @ (negedge lia_out_valid)
-begin
-encoded_data <= {	lia_out_y_8,lia_out_x_8,
-
-						lia_out_y_7,lia_out_x_6,
-
-						lia_out_y_5,lia_out_x_5,
-
-						lia_out_y_4,lia_out_x_4,
-
-						lia_out_y_3,lia_out_x_3,						
-
-						lia_out_y_2,lia_out_x_2,
-						
-					   lia_out_y_1, lia_out_x_1		//MSB				
-							
-						};
-end
-
-
-
-//pass to FIFO
-
-
- FIFO fifo_1 (
-	.data(encoded_data),
-	.rdclk(GPIO[8]),
-	.rdreq(1'b1),
-	.wrclk(lia_out_valid),
-	.wrreq(1'b1),
-	.q(GPIO[7:0]),   
-	.rdempty(GPIO[11]),
-	.wrfull(GPIO[10])
-	);
-	
-always @ (posedge lia_out_valid)	
-begin
-temp_counter = temp_counter + 2'b01;
-end
+//
+//reg [127:0] encoded_data = 128'd0;
+//
+//always @ (negedge lia_out_valid)
+//begin
+//encoded_data <= {	lia_out_y_8,lia_out_x_8,
+//
+//						lia_out_y_7,lia_out_x_6,
+//
+//						lia_out_y_5,lia_out_x_5,
+//
+//						lia_out_y_4,lia_out_x_4,
+//
+//						lia_out_y_3,lia_out_x_3,						
+//
+//						lia_out_y_2,lia_out_x_2,
+//						
+//					   lia_out_y_1, lia_out_x_1		//MSB				
+//							
+//						};
+//end
+//
+//
+//
+////pass to FIFO
+//
+//
+// FIFO fifo_1 (
+//	.data(encoded_data),
+//	.rdclk(GPIO[8]),
+//	.rdreq(1'b1),
+//	.wrclk(lia_out_valid),
+//	.wrreq(1'b1),
+//	.q(GPIO[7:0]),   
+//	.rdempty(GPIO[11]),
+//	.wrfull(GPIO[10])
+//	);
+//	
+//always @ (posedge lia_out_valid)	
+//begin
+//temp_counter = temp_counter + 2'b01;
+//end
 
 
 
@@ -659,5 +659,132 @@ DE2115_EightLockins_system DE2115_EightLockins_system_inst(
 				.overflow			(LEDR[0])
 				
 );
-				
+
+/// PLL INSTANTIATION////////////////////////////////////////////
+
+
+PLL pll_abc (
+	.inclk0(CLOCK_50),
+	.c0(FIFO_CLOCK_25));
+	
+	
+/////////////////////////////////////////////////////////////////////////////
+
+// single-shot counter
+// for CIC out parallel-to-serial
+reg l_lia_out_valid;
+
+always @ (posedge CLOCK_50)
+begin
+l_lia_out_valid <= lia_out_valid;
+end
+
+(*noprune*) reg [3:0] cnt = 4'd0;
+(*noprune*)reg fifo_load  = 1'b0;  // This variable envelopes 16 system clk cycles for a burst transfer
+
+always @ (posedge FIFO_CLOCK_25)
+begin
+	if (l_lia_out_valid == 1'b1) //Checking lia_out_valid on 25 MHz clk might not be a good idea
+	begin
+		cnt <= 4'd0;
+		fifo_load <= 1'b1;
+	end
+	else if (cnt < 4'd15)
+	begin
+		cnt <= cnt + 1'b1;
+	end
+	else if (cnt == 4'd15)
+	begin
+		fifo_load <= 1'b0;
+	end
+end
+
+(*keep*)wire fifo_write;
+(*noprune*)reg [15:0] q_out;
+
+assign fifo_write = fifo_load & ~FIFO_CLOCK_25;
+reg l_fifo_write;
+reg ll_fifo_write;
+
+always @ (posedge CLOCK_50)
+begin
+l_fifo_write <= fifo_write;
+ll_fifo_write <= l_fifo_write;
+end
+
+
+
+always @ (posedge fifo_write)
+begin
+	case (cnt)
+		4'd0:  begin	q_out  <= lia_out_x_1; end
+		4'd1:  begin	q_out  <= lia_out_y_1; end
+		4'd2:  begin	q_out  <= lia_out_x_2; end
+		4'd3:  begin	q_out  <= lia_out_y_2; end
+		4'd4:  begin	q_out  <= lia_out_x_3; end
+		4'd5:  begin	q_out  <= lia_out_y_3; end
+		4'd6:  begin	q_out  <= lia_out_x_4; end
+		4'd7:  begin	q_out  <= lia_out_y_4; end
+		4'd8:  begin	q_out  <= lia_out_x_5; end
+		4'd9:  begin	q_out  <= lia_out_y_5; end
+		4'd10: begin 	q_out  <= lia_out_x_6; end
+		4'd11: begin 	q_out  <= lia_out_y_6; end
+		4'd12: begin 	q_out  <= lia_out_x_7; end
+		4'd13: begin 	q_out  <= lia_out_y_7; end
+		4'd14: begin 	q_out  <= lia_out_x_8; end
+		4'd15: begin 	q_out  <= lia_out_y_8; end																																
+	endcase
+end				
+
+///////////////////////////PROTOCOL//////////////////////////////////////////////////////////
+//Adapted from the Adaptive filter project intended for RPi data transfer
+//Developed by William Hudson and Saurabh Gupta
+
+reg [47:0] cic_encoded_data = 48'd0;
+reg overflw_reg;
+wire overflow;
+wire dummy;
+wire markXin;
+reg markXin_reg;
+wire markYin;
+reg markYin_reg;
+
+
+assign markXin = GPIO[14];
+assign markYin = GPIO[15];
+
+always @ (negedge fifo_write)
+begin
+cic_encoded_data <= {1'd0,overflw_reg,markYin_reg,markXin_reg,cnt,q_out[3:0],
+							1'd0,overflw_reg,markYin_reg,markXin_reg,cnt,q_out[7:4],
+							1'd0,overflw_reg,markYin_reg,markXin_reg,cnt,q_out[11:8],
+							1'd0,overflw_reg,markYin_reg,markXin_reg,cnt,q_out[15:12]			//MSB				
+							};
+end
+
+//pass to FIFO
+
+
+ FIFO fifo_1 (
+	.data(cic_encoded_data),
+	.rdclk(GPIO[8]),
+	.rdreq(1'b1),
+	.wrclk(ll_fifo_write), //NEED TO INSPECT LATER
+	.wrreq(1'b1),
+	.q({dummy,GPIO[10],GPIO[13],GPIO[12],GPIO[7:0]}),   
+	.rdempty(GPIO[11]),
+	.wrfull(overflow)
+	);
+	
+
+	
+always @(posedge ll_fifo_write) // NEEDS TO MATCH FIFO WRITE CLK
+begin
+overflw_reg <= overflow;
+markXin_reg <= markXin;
+markYin_reg <= markYin;
+end
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 endmodule

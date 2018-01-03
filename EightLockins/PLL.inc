@@ -14,17 +14,11 @@
 --agreement for further details.
 
 
-FUNCTION FIFO 
+FUNCTION PLL 
 (
-	data[47..0],
-	rdclk,
-	rdreq,
-	wrclk,
-	wrreq
+	inclk0
 )
 
 RETURNS (
-	q[11..0],
-	rdempty,
-	wrfull
+	c0
 );
