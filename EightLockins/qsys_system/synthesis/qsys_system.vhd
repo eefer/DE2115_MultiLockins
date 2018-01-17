@@ -592,17 +592,17 @@ begin
 			avm_writeresponse      => "00000000"                      -- (terminated)
 		);
 
---	dac_gain : component qsys_system_dac_gain
---		port map (
---			clk        => clk_clk,                                       --                 clk.clk
---			reset_n    => rst_controller_reset_out_reset_ports_inv,      --               reset.reset_n
---			address    => mm_interconnect_0_dac_gain_s1_address,         --                  s1.address
---			write_n    => mm_interconnect_0_dac_gain_s1_write_ports_inv, --                    .write_n
---			writedata  => mm_interconnect_0_dac_gain_s1_writedata,       --                    .writedata
---			chipselect => mm_interconnect_0_dac_gain_s1_chipselect,      --                    .chipselect
---			readdata   => mm_interconnect_0_dac_gain_s1_readdata,        --                    .readdata
---			out_port   => dac_gain_export                                -- external_connection.export
---		);
+	dac_gain : component qsys_system_dac_gain
+		port map (
+			clk        => clk_clk,                                       --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,      --               reset.reset_n
+			address    => mm_interconnect_0_dac_gain_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_dac_gain_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_dac_gain_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_dac_gain_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_dac_gain_s1_readdata,        --                    .readdata
+			out_port   => dac_gain_export                                -- external_connection.export
+		);
 
 	gain_controller : component qsys_system_gain_controller
 		port map (
@@ -636,23 +636,23 @@ begin
 			master_reset_reset   => resetrequest_reset                -- master_reset.reset
 		);
 
---	lia_1_x : component qsys_system_lia_1_x
---		port map (
---			clk      => clk_clk,                                  --                 clk.clk
---			reset_n  => rst_controller_reset_out_reset_ports_inv, --               reset.reset_n
---			address  => mm_interconnect_0_lia_1_x_s1_address,     --                  s1.address
---			readdata => mm_interconnect_0_lia_1_x_s1_readdata,    --                    .readdata
---			in_port  => lia_1_x_export                            -- external_connection.export
---		);
---
---	lia_1_y : component qsys_system_lia_1_x
---		port map (
---			clk      => clk_clk,                                  --                 clk.clk
---			reset_n  => rst_controller_reset_out_reset_ports_inv, --               reset.reset_n
---			address  => mm_interconnect_0_lia_1_y_s1_address,     --                  s1.address
---			readdata => mm_interconnect_0_lia_1_y_s1_readdata,    --                    .readdata
---			in_port  => lia_1_y_export                            -- external_connection.export
---		);
+	lia_1_x : component qsys_system_lia_1_x
+		port map (
+			clk      => clk_clk,                                  --                 clk.clk
+			reset_n  => rst_controller_reset_out_reset_ports_inv, --               reset.reset_n
+			address  => mm_interconnect_0_lia_1_x_s1_address,     --                  s1.address
+			readdata => mm_interconnect_0_lia_1_x_s1_readdata,    --                    .readdata
+			in_port  => lia_1_x_export                            -- external_connection.export
+		);
+
+	lia_1_y : component qsys_system_lia_1_x
+		port map (
+			clk      => clk_clk,                                  --                 clk.clk
+			reset_n  => rst_controller_reset_out_reset_ports_inv, --               reset.reset_n
+			address  => mm_interconnect_0_lia_1_y_s1_address,     --                  s1.address
+			readdata => mm_interconnect_0_lia_1_y_s1_readdata,    --                    .readdata
+			in_port  => lia_1_y_export                            -- external_connection.export
+		);
 
 	nco_freq_control_1 : component qsys_system_nco_freq_control_1
 		port map (
@@ -678,173 +678,173 @@ begin
 			out_port   => phase_incr_2_export                                      -- external_connection.export
 		);
 
---	nco_freq_ctrl_3 : component qsys_system_nco_freq_ctrl_3
---		port map (
---			clk        => clk_clk,                                              --                 clk.clk
---			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
---			address    => mm_interconnect_0_nco_freq_ctrl_3_s1_address,         --                  s1.address
---			write_n    => mm_interconnect_0_nco_freq_ctrl_3_s1_write_ports_inv, --                    .write_n
---			writedata  => mm_interconnect_0_nco_freq_ctrl_3_s1_writedata,       --                    .writedata
---			chipselect => mm_interconnect_0_nco_freq_ctrl_3_s1_chipselect,      --                    .chipselect
---			readdata   => mm_interconnect_0_nco_freq_ctrl_3_s1_readdata,        --                    .readdata
---			out_port   => phase_incr_3_export                                   -- external_connection.export
---		);
---
---	nco_freq_ctrl_4 : component qsys_system_nco_freq_ctrl_3
---		port map (
---			clk        => clk_clk,                                              --                 clk.clk
---			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
---			address    => mm_interconnect_0_nco_freq_ctrl_4_s1_address,         --                  s1.address
---			write_n    => mm_interconnect_0_nco_freq_ctrl_4_s1_write_ports_inv, --                    .write_n
---			writedata  => mm_interconnect_0_nco_freq_ctrl_4_s1_writedata,       --                    .writedata
---			chipselect => mm_interconnect_0_nco_freq_ctrl_4_s1_chipselect,      --                    .chipselect
---			readdata   => mm_interconnect_0_nco_freq_ctrl_4_s1_readdata,        --                    .readdata
---			out_port   => phase_incr_4_export                                   -- external_connection.export
---		);
---
---	nco_freq_ctrl_5 : component qsys_system_nco_freq_ctrl_3
---		port map (
---			clk        => clk_clk,                                              --                 clk.clk
---			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
---			address    => mm_interconnect_0_nco_freq_ctrl_5_s1_address,         --                  s1.address
---			write_n    => mm_interconnect_0_nco_freq_ctrl_5_s1_write_ports_inv, --                    .write_n
---			writedata  => mm_interconnect_0_nco_freq_ctrl_5_s1_writedata,       --                    .writedata
---			chipselect => mm_interconnect_0_nco_freq_ctrl_5_s1_chipselect,      --                    .chipselect
---			readdata   => mm_interconnect_0_nco_freq_ctrl_5_s1_readdata,        --                    .readdata
---			out_port   => phase_incr_5_export                                   -- external_connection.export
---		);
---
---	nco_freq_ctrl_6 : component qsys_system_nco_freq_ctrl_3
---		port map (
---			clk        => clk_clk,                                              --                 clk.clk
---			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
---			address    => mm_interconnect_0_nco_freq_ctrl_6_s1_address,         --                  s1.address
---			write_n    => mm_interconnect_0_nco_freq_ctrl_6_s1_write_ports_inv, --                    .write_n
---			writedata  => mm_interconnect_0_nco_freq_ctrl_6_s1_writedata,       --                    .writedata
---			chipselect => mm_interconnect_0_nco_freq_ctrl_6_s1_chipselect,      --                    .chipselect
---			readdata   => mm_interconnect_0_nco_freq_ctrl_6_s1_readdata,        --                    .readdata
---			out_port   => phase_incr_6_export                                   -- external_connection.export
---		);
---
---	nco_freq_ctrl_7 : component qsys_system_nco_freq_ctrl_3
---		port map (
---			clk        => clk_clk,                                              --                 clk.clk
---			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
---			address    => mm_interconnect_0_nco_freq_ctrl_7_s1_address,         --                  s1.address
---			write_n    => mm_interconnect_0_nco_freq_ctrl_7_s1_write_ports_inv, --                    .write_n
---			writedata  => mm_interconnect_0_nco_freq_ctrl_7_s1_writedata,       --                    .writedata
---			chipselect => mm_interconnect_0_nco_freq_ctrl_7_s1_chipselect,      --                    .chipselect
---			readdata   => mm_interconnect_0_nco_freq_ctrl_7_s1_readdata,        --                    .readdata
---			out_port   => phase_incr_7_export                                   -- external_connection.export
---		);
---
---	nco_freq_ctrl_8 : component qsys_system_nco_freq_ctrl_3
---		port map (
---			clk        => clk_clk,                                              --                 clk.clk
---			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
---			address    => mm_interconnect_0_nco_freq_ctrl_8_s1_address,         --                  s1.address
---			write_n    => mm_interconnect_0_nco_freq_ctrl_8_s1_write_ports_inv, --                    .write_n
---			writedata  => mm_interconnect_0_nco_freq_ctrl_8_s1_writedata,       --                    .writedata
---			chipselect => mm_interconnect_0_nco_freq_ctrl_8_s1_chipselect,      --                    .chipselect
---			readdata   => mm_interconnect_0_nco_freq_ctrl_8_s1_readdata,        --                    .readdata
---			out_port   => phase_incr_8_export                                   -- external_connection.export
---		);
+	nco_freq_ctrl_3 : component qsys_system_nco_freq_ctrl_3
+		port map (
+			clk        => clk_clk,                                              --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
+			address    => mm_interconnect_0_nco_freq_ctrl_3_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_freq_ctrl_3_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_freq_ctrl_3_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_freq_ctrl_3_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_freq_ctrl_3_s1_readdata,        --                    .readdata
+			out_port   => phase_incr_3_export                                   -- external_connection.export
+		);
 
---	nco_phase_ctrl_1 : component qsys_system_nco_freq_ctrl_3
---		port map (
---			clk        => clk_clk,                                               --                 clk.clk
---			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
---			address    => mm_interconnect_0_nco_phase_ctrl_1_s1_address,         --                  s1.address
---			write_n    => mm_interconnect_0_nco_phase_ctrl_1_s1_write_ports_inv, --                    .write_n
---			writedata  => mm_interconnect_0_nco_phase_ctrl_1_s1_writedata,       --                    .writedata
---			chipselect => mm_interconnect_0_nco_phase_ctrl_1_s1_chipselect,      --                    .chipselect
---			readdata   => mm_interconnect_0_nco_phase_ctrl_1_s1_readdata,        --                    .readdata
---			out_port   => phase_offs_1_export                                    -- external_connection.export
---		);
---
---	nco_phase_ctrl_2 : component qsys_system_nco_freq_ctrl_3
---		port map (
---			clk        => clk_clk,                                               --                 clk.clk
---			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
---			address    => mm_interconnect_0_nco_phase_ctrl_2_s1_address,         --                  s1.address
---			write_n    => mm_interconnect_0_nco_phase_ctrl_2_s1_write_ports_inv, --                    .write_n
---			writedata  => mm_interconnect_0_nco_phase_ctrl_2_s1_writedata,       --                    .writedata
---			chipselect => mm_interconnect_0_nco_phase_ctrl_2_s1_chipselect,      --                    .chipselect
---			readdata   => mm_interconnect_0_nco_phase_ctrl_2_s1_readdata,        --                    .readdata
---			out_port   => phase_offs_2_export                                    -- external_connection.export
---		);
+	nco_freq_ctrl_4 : component qsys_system_nco_freq_ctrl_3
+		port map (
+			clk        => clk_clk,                                              --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
+			address    => mm_interconnect_0_nco_freq_ctrl_4_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_freq_ctrl_4_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_freq_ctrl_4_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_freq_ctrl_4_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_freq_ctrl_4_s1_readdata,        --                    .readdata
+			out_port   => phase_incr_4_export                                   -- external_connection.export
+		);
 
---	nco_phase_ctrl_3 : component qsys_system_nco_freq_ctrl_3
---		port map (
---			clk        => clk_clk,                                               --                 clk.clk
---			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
---			address    => mm_interconnect_0_nco_phase_ctrl_3_s1_address,         --                  s1.address
---			write_n    => mm_interconnect_0_nco_phase_ctrl_3_s1_write_ports_inv, --                    .write_n
---			writedata  => mm_interconnect_0_nco_phase_ctrl_3_s1_writedata,       --                    .writedata
---			chipselect => mm_interconnect_0_nco_phase_ctrl_3_s1_chipselect,      --                    .chipselect
---			readdata   => mm_interconnect_0_nco_phase_ctrl_3_s1_readdata,        --                    .readdata
---			out_port   => phase_offs_3_export                                    -- external_connection.export
---		);
---
---	nco_phase_ctrl_4 : component qsys_system_nco_freq_ctrl_3
---		port map (
---			clk        => clk_clk,                                               --                 clk.clk
---			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
---			address    => mm_interconnect_0_nco_phase_ctrl_4_s1_address,         --                  s1.address
---			write_n    => mm_interconnect_0_nco_phase_ctrl_4_s1_write_ports_inv, --                    .write_n
---			writedata  => mm_interconnect_0_nco_phase_ctrl_4_s1_writedata,       --                    .writedata
---			chipselect => mm_interconnect_0_nco_phase_ctrl_4_s1_chipselect,      --                    .chipselect
---			readdata   => mm_interconnect_0_nco_phase_ctrl_4_s1_readdata,        --                    .readdata
---			out_port   => phase_offs_4_export                                    -- external_connection.export
---		);
---
---	nco_phase_ctrl_5 : component qsys_system_nco_freq_ctrl_3
---		port map (
---			clk        => clk_clk,                                               --                 clk.clk
---			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
---			address    => mm_interconnect_0_nco_phase_ctrl_5_s1_address,         --                  s1.address
---			write_n    => mm_interconnect_0_nco_phase_ctrl_5_s1_write_ports_inv, --                    .write_n
---			writedata  => mm_interconnect_0_nco_phase_ctrl_5_s1_writedata,       --                    .writedata
---			chipselect => mm_interconnect_0_nco_phase_ctrl_5_s1_chipselect,      --                    .chipselect
---			readdata   => mm_interconnect_0_nco_phase_ctrl_5_s1_readdata,        --                    .readdata
---			out_port   => phase_offs_5_export                                    -- external_connection.export
---		);
---
---	nco_phase_ctrl_6 : component qsys_system_nco_freq_ctrl_3
---		port map (
---			clk        => clk_clk,                                               --                 clk.clk
---			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
---			address    => mm_interconnect_0_nco_phase_ctrl_6_s1_address,         --                  s1.address
---			write_n    => mm_interconnect_0_nco_phase_ctrl_6_s1_write_ports_inv, --                    .write_n
---			writedata  => mm_interconnect_0_nco_phase_ctrl_6_s1_writedata,       --                    .writedata
---			chipselect => mm_interconnect_0_nco_phase_ctrl_6_s1_chipselect,      --                    .chipselect
---			readdata   => mm_interconnect_0_nco_phase_ctrl_6_s1_readdata,        --                    .readdata
---			out_port   => phase_offs_6_export                                    -- external_connection.export
---		);
---
---	nco_phase_ctrl_7 : component qsys_system_nco_freq_ctrl_3
---		port map (
---			clk        => clk_clk,                                               --                 clk.clk
---			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
---			address    => mm_interconnect_0_nco_phase_ctrl_7_s1_address,         --                  s1.address
---			write_n    => mm_interconnect_0_nco_phase_ctrl_7_s1_write_ports_inv, --                    .write_n
---			writedata  => mm_interconnect_0_nco_phase_ctrl_7_s1_writedata,       --                    .writedata
---			chipselect => mm_interconnect_0_nco_phase_ctrl_7_s1_chipselect,      --                    .chipselect
---			readdata   => mm_interconnect_0_nco_phase_ctrl_7_s1_readdata,        --                    .readdata
---			out_port   => phase_offs_7_export                                    -- external_connection.export
---		);
---
---	nco_phase_ctrl_8 : component qsys_system_nco_freq_ctrl_3
---		port map (
---			clk        => clk_clk,                                               --                 clk.clk
---			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
---			address    => mm_interconnect_0_nco_phase_ctrl_8_s1_address,         --                  s1.address
---			write_n    => mm_interconnect_0_nco_phase_ctrl_8_s1_write_ports_inv, --                    .write_n
---			writedata  => mm_interconnect_0_nco_phase_ctrl_8_s1_writedata,       --                    .writedata
---			chipselect => mm_interconnect_0_nco_phase_ctrl_8_s1_chipselect,      --                    .chipselect
---			readdata   => mm_interconnect_0_nco_phase_ctrl_8_s1_readdata,        --                    .readdata
---			out_port   => phase_offs_8_export                                    -- external_connection.export
---		);
+	nco_freq_ctrl_5 : component qsys_system_nco_freq_ctrl_3
+		port map (
+			clk        => clk_clk,                                              --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
+			address    => mm_interconnect_0_nco_freq_ctrl_5_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_freq_ctrl_5_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_freq_ctrl_5_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_freq_ctrl_5_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_freq_ctrl_5_s1_readdata,        --                    .readdata
+			out_port   => phase_incr_5_export                                   -- external_connection.export
+		);
+
+	nco_freq_ctrl_6 : component qsys_system_nco_freq_ctrl_3
+		port map (
+			clk        => clk_clk,                                              --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
+			address    => mm_interconnect_0_nco_freq_ctrl_6_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_freq_ctrl_6_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_freq_ctrl_6_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_freq_ctrl_6_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_freq_ctrl_6_s1_readdata,        --                    .readdata
+			out_port   => phase_incr_6_export                                   -- external_connection.export
+		);
+
+	nco_freq_ctrl_7 : component qsys_system_nco_freq_ctrl_3
+		port map (
+			clk        => clk_clk,                                              --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
+			address    => mm_interconnect_0_nco_freq_ctrl_7_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_freq_ctrl_7_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_freq_ctrl_7_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_freq_ctrl_7_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_freq_ctrl_7_s1_readdata,        --                    .readdata
+			out_port   => phase_incr_7_export                                   -- external_connection.export
+		);
+
+	nco_freq_ctrl_8 : component qsys_system_nco_freq_ctrl_3
+		port map (
+			clk        => clk_clk,                                              --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,             --               reset.reset_n
+			address    => mm_interconnect_0_nco_freq_ctrl_8_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_freq_ctrl_8_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_freq_ctrl_8_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_freq_ctrl_8_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_freq_ctrl_8_s1_readdata,        --                    .readdata
+			out_port   => phase_incr_8_export                                   -- external_connection.export
+		);
+
+	nco_phase_ctrl_1 : component qsys_system_nco_freq_ctrl_3
+		port map (
+			clk        => clk_clk,                                               --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
+			address    => mm_interconnect_0_nco_phase_ctrl_1_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_phase_ctrl_1_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_phase_ctrl_1_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_phase_ctrl_1_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_phase_ctrl_1_s1_readdata,        --                    .readdata
+			out_port   => phase_offs_1_export                                    -- external_connection.export
+		);
+
+	nco_phase_ctrl_2 : component qsys_system_nco_freq_ctrl_3
+		port map (
+			clk        => clk_clk,                                               --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
+			address    => mm_interconnect_0_nco_phase_ctrl_2_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_phase_ctrl_2_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_phase_ctrl_2_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_phase_ctrl_2_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_phase_ctrl_2_s1_readdata,        --                    .readdata
+			out_port   => phase_offs_2_export                                    -- external_connection.export
+		);
+
+	nco_phase_ctrl_3 : component qsys_system_nco_freq_ctrl_3
+		port map (
+			clk        => clk_clk,                                               --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
+			address    => mm_interconnect_0_nco_phase_ctrl_3_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_phase_ctrl_3_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_phase_ctrl_3_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_phase_ctrl_3_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_phase_ctrl_3_s1_readdata,        --                    .readdata
+			out_port   => phase_offs_3_export                                    -- external_connection.export
+		);
+
+	nco_phase_ctrl_4 : component qsys_system_nco_freq_ctrl_3
+		port map (
+			clk        => clk_clk,                                               --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
+			address    => mm_interconnect_0_nco_phase_ctrl_4_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_phase_ctrl_4_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_phase_ctrl_4_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_phase_ctrl_4_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_phase_ctrl_4_s1_readdata,        --                    .readdata
+			out_port   => phase_offs_4_export                                    -- external_connection.export
+		);
+
+	nco_phase_ctrl_5 : component qsys_system_nco_freq_ctrl_3
+		port map (
+			clk        => clk_clk,                                               --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
+			address    => mm_interconnect_0_nco_phase_ctrl_5_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_phase_ctrl_5_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_phase_ctrl_5_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_phase_ctrl_5_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_phase_ctrl_5_s1_readdata,        --                    .readdata
+			out_port   => phase_offs_5_export                                    -- external_connection.export
+		);
+
+	nco_phase_ctrl_6 : component qsys_system_nco_freq_ctrl_3
+		port map (
+			clk        => clk_clk,                                               --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
+			address    => mm_interconnect_0_nco_phase_ctrl_6_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_phase_ctrl_6_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_phase_ctrl_6_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_phase_ctrl_6_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_phase_ctrl_6_s1_readdata,        --                    .readdata
+			out_port   => phase_offs_6_export                                    -- external_connection.export
+		);
+
+	nco_phase_ctrl_7 : component qsys_system_nco_freq_ctrl_3
+		port map (
+			clk        => clk_clk,                                               --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
+			address    => mm_interconnect_0_nco_phase_ctrl_7_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_phase_ctrl_7_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_phase_ctrl_7_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_phase_ctrl_7_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_phase_ctrl_7_s1_readdata,        --                    .readdata
+			out_port   => phase_offs_7_export                                    -- external_connection.export
+		);
+
+	nco_phase_ctrl_8 : component qsys_system_nco_freq_ctrl_3
+		port map (
+			clk        => clk_clk,                                               --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,              --               reset.reset_n
+			address    => mm_interconnect_0_nco_phase_ctrl_8_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_nco_phase_ctrl_8_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_nco_phase_ctrl_8_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_nco_phase_ctrl_8_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_nco_phase_ctrl_8_s1_readdata,        --                    .readdata
+			out_port   => phase_offs_8_export                                    -- external_connection.export
+		);
 
 	onchip_ram : component qsys_system_onchip_ram
 		port map (
