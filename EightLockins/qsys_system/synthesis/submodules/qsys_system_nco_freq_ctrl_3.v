@@ -18,7 +18,7 @@
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030 
 
-module qsys_system_gain_controller (
+module qsys_system_nco_freq_ctrl_3 (
                                      // inputs:
                                       address,
                                       chipselect,
@@ -33,7 +33,7 @@ module qsys_system_gain_controller (
                                    )
 ;
 
-  output  [  5: 0] out_port;
+  output  [ 19: 0] out_port;
   output  [ 31: 0] readdata;
   input   [  1: 0] address;
   input            chipselect;
@@ -43,19 +43,19 @@ module qsys_system_gain_controller (
   input   [ 31: 0] writedata;
 
   wire             clk_en;
-  reg     [  5: 0] data_out;
-  wire    [  5: 0] out_port;
-  wire    [  5: 0] read_mux_out;
+  reg     [ 19: 0] data_out;
+  wire    [ 19: 0] out_port;
+  wire    [ 19: 0] read_mux_out;
   wire    [ 31: 0] readdata;
   assign clk_en = 1;
   //s1, which is an e_avalon_slave
-  assign read_mux_out = {6 {(address == 0)}} & data_out;
+  assign read_mux_out = {20 {(address == 0)}} & data_out;
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
           data_out <= 0;
       else if (chipselect && ~write_n && (address == 0))
-          data_out <= writedata[5 : 0];
+          data_out <= writedata[19 : 0];
     end
 
 
