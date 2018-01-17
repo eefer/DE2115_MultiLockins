@@ -80,7 +80,7 @@ ARCHITECTURE arch OF lia_core IS
 		PORT(
 			clk_sys_in		: IN 	std_logic;
 			clk_in			: IN  std_logic;								-- input sample rate clock
-			data_in			: IN  std_logic_vector(11 downto 0);	-- sample data in, Q12._
+			data_in			: IN  std_logic_vector(26 downto 0);	-- sample data in, Q12._
 			gain_ctrl_cic	: IN  std_logic_vector (5 downto 0);
 			clk_out 			: OUT std_logic;								-- output clock (clk_in / 1000)
 			data_out			: OUT std_logic_vector(15 downto 0);		-- data out
@@ -109,20 +109,20 @@ ARCHITECTURE arch OF lia_core IS
 		
 --		SIGNAL		q12_refwave_i								: std_logic_vector(11 downto 0);
 		SIGNAL 		q27_mixer_i_product					  	: std_logic_vector(26 downto 0);
-		SIGNAL		mixer_i_scaled								: std_logic_vector(11 downto 0);
+		SIGNAL		mixer_i_scaled								: std_logic_vector(26 downto 0);
 		SIGNAL 		q27_mixer_q_product					  	: std_logic_vector(26 downto 0);
-		SIGNAL		mixer_q_scaled								: std_logic_vector(11 downto 0);
+		SIGNAL		mixer_q_scaled								: std_logic_vector(26 downto 0);
 		
 			attribute 	keep of mixer_i_scaled: signal is true; 
 			attribute 	keep of mixer_q_scaled: signal is true; 
 		
 
-		SIGNAL		cic_x_in				: std_logic_vector(11 downto 0);
+		SIGNAL		cic_x_in				: std_logic_vector(26 downto 0);
 		SIGNAL		cic_x_out_valid 	: std_logic := '0'; 						-- CIC out sample clock
 		SIGNAL 		cic_x_out 			: STD_LOGIC_VECTOR(15 downto 0);
 			attribute	keep of cic_x_out: signal is true;
 			
-		SIGNAL		cic_y_in				: std_logic_vector(11 downto 0);
+		SIGNAL		cic_y_in				: std_logic_vector(26 downto 0);
 		SIGNAL		cic_y_out_valid 	: std_logic := '0'; 						-- CIC out sample clock
 		SIGNAL 		cic_y_out 			: STD_LOGIC_VECTOR(15 downto 0);
 			attribute	keep of cic_y_out: signal is true;
@@ -158,7 +158,7 @@ ARCHITECTURE arch OF lia_core IS
 		cos_o				=> dpll_cos,				-- phase-shifted cos
 		sin_o				=> dpll_sin,				-- phase-shifted sin
 		ref_o				=> dpll_ref					-- reference wave out instantiation for dpll
-		--- lactch cos and sine (edited version)
+		--- latch cos and sine (edited version)
 		
 		
 	);
@@ -198,7 +198,7 @@ ARCHITECTURE arch OF lia_core IS
         if areset_i = '1' then
             mixer_i_scaled <= (others => '0');
         else 
-				mixer_i_scaled <= q27_mixer_i_product(26 downto 15); -- tune for post-mixer gain
+				mixer_i_scaled <= q27_mixer_i_product; -- tune for post-mixer gain
         end if;
 	end process;	
 
@@ -222,7 +222,7 @@ ARCHITECTURE arch OF lia_core IS
         if areset_i = '1' then
             mixer_q_scaled <= (others => '0');
         else 
-				mixer_q_scaled <= q27_mixer_q_product(26 downto 15);  -- tune for post-mixer gain
+				mixer_q_scaled <= q27_mixer_q_product;  -- tune for post-mixer gain
         end if;
 	end process;
 	
@@ -230,17 +230,27 @@ ARCHITECTURE arch OF lia_core IS
 --	cic_x_in	<=	mixer_i_scaled;	-- feed mixer product to the CIC filter
 
 	-- CIC x-channel input select mux
-	cic_x_in_sel_mux : process( sys_clk_i )
+--	cic_x_in_sel_mux : process( sys_clk_i )
+--	begin
+--		if rising_edge( sys_clk_i ) then
+--			if cic_x_in_sel_i = 0 then 
+--				cic_x_in	<=	mixer_i_scaled;	-- feed mixer product to the CIC filter
+--			else
+--				cic_x_in	<= input (13 downto 2);				-- feed ADC raw data to tho CIC filter
+--			end if;
+--		end if;
+--	end process;
+--	
+	cic_data_latch : process ( sys_clk_i )
 	begin
 		if rising_edge( sys_clk_i ) then
-			if cic_x_in_sel_i = 0 then 
+			 
 				cic_x_in	<=	mixer_i_scaled;	-- feed mixer product to the CIC filter
-			else
-				cic_x_in	<= input (13 downto 2);				-- feed ADC raw data to tho CIC filter
+				cic_y_in <= mixer_q_scaled;
+			
 			end if;
-		end if;
 	end process;
---	
+
 	
 	-- latch
 	nco_latch : process ( samp_clk_i )
@@ -269,7 +279,7 @@ ARCHITECTURE arch OF lia_core IS
 	
 	
 	-- CIC y-channel input
-	cic_y_in	<= mixer_q_scaled;
+--	cic_y_in	<= mixer_q_scaled;
 	
 	-- CIC low-pass filter, y-channel
 	cic_y : cic_filter

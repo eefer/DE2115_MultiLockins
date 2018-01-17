@@ -24,7 +24,7 @@ ENTITY cic_filter IS
 	PORT(
 		clk_sys_in		: IN 	std_logic;														-- system clk		
 		clk_in			: IN  std_logic;														-- input sample rate clock
-		data_in			: IN  std_logic_vector(11 downto 0):= (others => '0');	-- sample data in.
+		data_in			: IN  std_logic_vector(26 downto 0):= (others => '0');	-- sample data in.
 		gain_ctrl_cic	: IN  std_logic_vector (5 downto 0);
 		clk_out 			: OUT std_logic;														-- output clock (clk_in / 1000)
 		data_out			: OUT std_logic_vector(15 downto 0);								-- data out
@@ -36,20 +36,20 @@ ARCHITECTURE arch OF cic_filter IS
 
 
 	-- latched, 32-bit data in
-	signal l_data_in											: signed(43 downto 0);
-	signal data_in_gc											: std_logic_vector(43 downto 0);
+	signal l_data_in											: signed(58 downto 0);
+	signal data_in_gc											: std_logic_vector(58 downto 0);
 
 	-- outputs for each integrator stage
-	signal integrator_out_1, integrator_in_1, integrator_in_2,	integrator_out_2		: signed(43 downto 0) := (others => '0');
+	signal integrator_out_1, integrator_in_1, integrator_in_2,	integrator_out_2		: signed(58 downto 0) := (others => '0');
 	
 	-- delayed outputs for each integrator stage
-	signal l_integrator_out_1, 	l_integrator_out_2 	: signed(43 downto 0) := (others => '0');
+	signal l_integrator_out_1, 	l_integrator_out_2 	: signed(58 downto 0) := (others => '0');
 	
 	-- inputs for each comb stage
-	signal comb_in_1,		comb_out_1,		comb_in_2 				: signed(43 downto 0) := (others => '0');
+	signal comb_in_1,		comb_out_1,		comb_in_2 				: signed(58 downto 0) := (others => '0');
 	
 	-- delayed inputs for each comb stage
-	signal l_comb_in_1,			l_comb_in_2 			: signed(43 downto 0) := (others => '0');
+	signal l_comb_in_1,			l_comb_in_2 			: signed(58 downto 0) := (others => '0');
 	
 	-- decimation clock
 	signal clk_decimated										: std_logic;
@@ -59,7 +59,7 @@ ARCHITECTURE arch OF cic_filter IS
 	COMPONENT cic_gain_controller IS
 		PORT(
 			clk_in		: IN  std_logic;								-- input sample rate clock
-			data_in		: IN  std_logic_vector(43 downto 0);	-- sample data in, Q12._
+			data_in		: IN  std_logic_vector(58 downto 0);	-- sample data in, Q12._
 			gain			: IN  std_logic_vector (5 downto 0);
 			data_out_g	: OUT std_logic_vector(15 downto 0);		-- data out
 			ovrflw		: OUT std_logic
@@ -71,7 +71,7 @@ begin
 
 
 	
-	l_data_in <= resize(signed(data_in),44);
+	l_data_in <= resize(signed(data_in),59);
 	
 		
 	integrator : process( clk_in )
