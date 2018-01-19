@@ -36,7 +36,7 @@ ENTITY lia_core IS
 		out_y			: out std_logic_vector(15 downto 0);	-- quadrature lock-in output signal
 		
 		-- other options
-		cic_x_in_sel_i	: in natural range 0 to 1 := 0;			-- CIC filter x input select
+		cic_x_in_sel_i	: in natural range 0 to 1 := 1;			-- CIC filter x input select
 																				--  0: in-phase mixer (default)
 																				--  1: input signal (bypass mixer to debug CIC filter behavior)		
 		gain_ctrl	: IN  std_logic_vector (5 downto 0);
@@ -230,26 +230,18 @@ ARCHITECTURE arch OF lia_core IS
 --	cic_x_in	<=	mixer_i_scaled;	-- feed mixer product to the CIC filter
 
 	-- CIC x-channel input select mux
---	cic_x_in_sel_mux : process( sys_clk_i )
---	begin
---		if rising_edge( sys_clk_i ) then
---			if cic_x_in_sel_i = 0 then 
---				cic_x_in	<=	mixer_i_scaled;	-- feed mixer product to the CIC filter
---			else
---				cic_x_in	<= input (13 downto 2);				-- feed ADC raw data to tho CIC filter
---			end if;
---		end if;
---	end process;
---	
-	cic_data_latch : process ( sys_clk_i )
+	cic_x_in_sel_mux : process( sys_clk_i )
 	begin
 		if rising_edge( sys_clk_i ) then
-			 
+			if cic_x_in_sel_i = 0 then 
 				cic_x_in	<=	mixer_i_scaled;	-- feed mixer product to the CIC filter
-				cic_y_in <= mixer_q_scaled;
-			
+			else
+				cic_x_in(26 downto 13)	<= input;				-- feed ADC raw data to tho CIC filter
+				cic_x_in(12 downto 0)   <= (others => '0');   -- zero padding LSBs for proof of concept experiment of CIC filter...
 			end if;
+		end if;
 	end process;
+
 
 	
 	-- latch
@@ -279,7 +271,7 @@ ARCHITECTURE arch OF lia_core IS
 	
 	
 	-- CIC y-channel input
---	cic_y_in	<= mixer_q_scaled;
+	cic_y_in	<= mixer_q_scaled;
 	
 	-- CIC low-pass filter, y-channel
 	cic_y : cic_filter

@@ -7,7 +7,7 @@ open_service master $master
 # the following lines determine the frequencies of the 8 lockins respectively
 
 #lockin 1
-master_write_32 $master 0x00000000 2
+master_write_32 $master 0x00000000 25
 
 #lockin 2
 master_write_32 $master 0x00000010 0
