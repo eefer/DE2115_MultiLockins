@@ -36,10 +36,11 @@ module qsys_system_lia_1_x (
   input   [ 15: 0] in_port;
   input            reset_n;
 
-  wire             clk_en;
-  wire    [ 15: 0] data_in;
-  wire    [ 15: 0] read_mux_out;
-  reg     [ 31: 0] readdata;
+
+wire             clk_en;
+wire    [ 15: 0] data_in;
+wire    [ 15: 0] read_mux_out;
+reg     [ 31: 0] readdata;
   assign clk_en = 1;
   //s1, which is an e_avalon_slave
   assign read_mux_out = {16 {(address == 0)}} & data_in;
