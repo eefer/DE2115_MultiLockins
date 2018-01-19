@@ -4,43 +4,59 @@ set master [lindex $masters 0]
 
 open_service master $master
 
-master_write_32 $master 0x00000000 13946
-#lockin 1 = 665 kHz
+# the following lines determine the frequencies of the 8 lockins respectively
 
-master_write_32 $master 0x00000010 13946
-#lockin 2 = 670 kHz
-master_write_32 $master 0x00000020 13946
-#lockin 3 = 675 kHz
+#lockin 1
+master_write_32 $master 0x00000000 2
 
-master_write_32 $master 0x00000030 13946
-#lockin 4 = 680 kHz
+#lockin 2
+master_write_32 $master 0x00000010 0
 
-master_write_32 $master 0x00000040 13946
-#lockin 5 = 685 kHz
+#lockin 3
+master_write_32 $master 0x00000020 0
 
-master_write_32 $master 0x00000050 13946
-#lockin 6 = 690 kHz
+#lockin 4
+master_write_32 $master 0x00000030 0
 
-master_write_32 $master 0x00000060 13946
-#lockin 7 = 695 kHz
+#lockin 5
+master_write_32 $master 0x00000040 0
 
-master_write_32 $master 0x00000070 13946
-#lockin 8 = 700 kHz
+#lockin 6
+master_write_32 $master 0x00000050 0
 
+#lockin 7
+master_write_32 $master 0x00000060 0
+
+#lockin 8
+master_write_32 $master 0x00000070 0
+
+# the following lines determine the phase offsets of the 8 lockins respectively
+
+#lockin 1
 master_write_32 $master 0x10000000 0
 
+#lockin 2
 master_write_32 $master 0x10000010 0
 
+#lockin 3
 master_write_32 $master 0x10000020 0
 
+#lockin 4
 master_write_32 $master 0x10000030 0
 
+#lockin 5
 master_write_32 $master 0x10000040 0
 
+#lockin 6
 master_write_32 $master 0x10000050 0
 
+#lockin 7
 master_write_32 $master 0x10000060 0
 
+#lockin 8
 master_write_32 $master 0x10000070 0
 
-master_write_32 $master 0x20000000 8
+
+# the following line determines the post cic bit slice selection
+
+master_write_32 $master 0x20000000 0
