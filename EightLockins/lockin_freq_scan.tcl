@@ -1,4 +1,4 @@
-# frequency sweep for FPGA lock-in
+# single lockin frequency sweep for FPGA lock-in
 # (Wilson lab, ECE Dept, Colorado State University)
 # 
 # qsys avalon memory addresses / registers
