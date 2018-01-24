@@ -1,3 +1,7 @@
+# eight lockins frequency comb for FPGA lock-ins
+# (Wilson lab, ECE Dept, Colorado State University)
+# 
+
 set masters [get_service_paths master]
 
 set master [lindex $masters 0]
