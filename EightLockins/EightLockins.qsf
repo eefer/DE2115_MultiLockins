@@ -1174,7 +1174,6 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=00
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=249" -section_id auto_signaltap_7
 set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id AD_2fDA
 set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id AD_2fDA
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to CLOCK_50 -section_id AD_2fDA
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to DA[0] -section_id AD_2fDA
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[1] -to DA[10] -section_id AD_2fDA
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[2] -to DA[11] -section_id AD_2fDA
@@ -1925,18 +1924,10 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[0] -t
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[1] -to AD_2fDA|gnd -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[2] -to AD_2fDA|gnd -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[3] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[4] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[5] -to AD_2fDA|vcc -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[6] -to AD_2fDA|vcc -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[7] -to AD_2fDA|vcc -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[8] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[9] -to AD_2fDA|gnd -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[10] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[11] -to AD_2fDA|gnd -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -to AD_2fDA|gnd -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to AD_2fDA|gnd -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[14] -to AD_2fDA|gnd -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to AD_2fDA|gnd -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[16] -to AD_2fDA|gnd -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[17] -to AD_2fDA|gnd -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[18] -to AD_2fDA|gnd -section_id AD_2fDA
@@ -1983,5 +1974,14 @@ set_global_assignment -name SOURCE_FILE mult_13x14.cmp
 set_global_assignment -name QIP_FILE qsys_system/synthesis/qsys_system.qip
 set_global_assignment -name QIP_FILE eight_add.qip
 set_global_assignment -name QIP_FILE PLL.qip
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "DE2115_EightLockins_system:DE2115_EightLockins_system_inst|eight_lia_pkg:eight_lia_inst|lia_core:lockin_1|cic_filter:cic_x|clk_decimated" -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[4] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[5] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[9] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[10] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[11] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[14] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to AD_2fDA|vcc -section_id AD_2fDA
 set_global_assignment -name SLD_FILE db/stp3_auto_stripped.stp
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
