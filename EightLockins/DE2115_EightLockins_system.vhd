@@ -431,7 +431,7 @@ begin
 		
 	signed_res_cosines <= signed(s_summed_cosines);
 	
-	s_summed_cosines_gained  <=  20 * signed_res_cosines;
+	s_summed_cosines_gained  <=  15 * signed_res_cosines;
 	
 	s_summed_cosines_gained_14  <=  signed(s_summed_cosines(14 downto 2));
 	
