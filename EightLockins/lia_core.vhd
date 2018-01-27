@@ -192,12 +192,12 @@ ARCHITECTURE arch OF lia_core IS
 			result	=> q27_mixer_i_product
 		);
 	
-	
+	-- i mixer output latch, with async reset
 	process (sys_clk_i, areset_i) is
 		begin
         if areset_i = '1' then
             mixer_i_scaled <= (others => '0');
-        else 
+        elsif rising_edge( sys_clk_i ) then			-- modified JWW 20180127
 				mixer_i_scaled <= q27_mixer_i_product; -- tune for post-mixer gain
         end if;
 	end process;	
@@ -215,13 +215,12 @@ ARCHITECTURE arch OF lia_core IS
 			result	=> q27_mixer_q_product
 		);
 	
-	-- quadrature rescaler (fixed gain, for now)
-	
+	-- q mixer output latch, with async reset
 	process (sys_clk_i, areset_i) is
 		begin
         if areset_i = '1' then
             mixer_q_scaled <= (others => '0');
-        else 
+        elsif rising_edge( sys_clk_i ) then			-- modified JWW 20180127 
 				mixer_q_scaled <= q27_mixer_q_product;  -- tune for post-mixer gain
         end if;
 	end process;

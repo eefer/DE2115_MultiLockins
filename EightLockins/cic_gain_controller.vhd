@@ -69,24 +69,25 @@ signal overflow: std_logic;
 
 begin
 
+	-- programmable gain process
 	process(clk_in) is
   
 		begin
 		
 		if rising_edge( clk_in ) then
-  	
+			-- convert gain factor to an integer
 			gain_s		<=		signed(gain);
-				
 			g		<= 	to_integer(gain_s);
-	
+			
+			-- perform 2^g gain by selecting a bit slice from data_in
 			data_out_g <= data_in((58-g) downto (58-g-15)); 
 			
 		end if;
 	
 	end process;
   
-  
-	process (data_in) is
+	-- overflow calculation process
+	process (clk_in) is -- modified JWW 20180127
   
 		begin
 		
