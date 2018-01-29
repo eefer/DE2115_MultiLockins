@@ -7,12 +7,12 @@
 -- Modified by Arya Chowdhury Mugdha (2017) (arya.mugdha@colostate.edu)
 --
 -- cascaded integrator comb filter for a lock-in amplifier
--- Initial implementation: 2-stage, 1000x decimator
+-- Initial implementation: 2-stage, 50,000x decimator
 -- should have about 26 dB nearest-sideband suppression
--- Intended to drop 1 MS/s to 1 kS/s sample rate. Effectively a ~0.5 kHz low-pass
+-- Intended to drop 50 MS/s to 1 kS/s sample rate. Effectively a ?? kHz low-pass
 --
--- for a N=2-stage, R=1000x decimating CIC with M=1,
--- the output gain is G=(RM)=1,000,000
+-- for a N=2-stage, R=50,000x decimating CIC with M=1,
+-- the output gain is G=(RM)=??
 -- an additional 20 bits are needed to accomodate this gain
 -- input of 12 bits; output is 16 bits (after using the post lockin gain controller)
 
@@ -26,7 +26,7 @@ ENTITY cic_filter IS
 		clk_in			: IN  std_logic;														-- input sample rate clock
 		data_in			: IN  std_logic_vector(26 downto 0):= (others => '0');	-- sample data in.
 		gain_ctrl_cic	: IN  std_logic_vector (5 downto 0);
-		clk_out 			: OUT std_logic;														-- output clock (clk_in / 1000)
+		clk_out 			: OUT std_logic;														-- output clock (clk_in / 50,000)
 		data_out			: OUT std_logic_vector(15 downto 0);								-- data out
 		overflow			: OUT std_logic
 	);
