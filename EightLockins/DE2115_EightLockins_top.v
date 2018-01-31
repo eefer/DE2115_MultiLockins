@@ -631,7 +631,7 @@ end
 
 	
 
-DE2115_EightLockins_system DE2115_EightLockins_system_inst(
+eight_lia_pkg_merged eight_lia_pkg_merged_inst(
 				.clock_50			(CLOCK_50),
 				.fpga_resetn		(reset_n),
 				.reg_p_cosines		(dac_out_a_wire),
@@ -640,17 +640,17 @@ DE2115_EightLockins_system DE2115_EightLockins_system_inst(
 				.lia_out_y_1 		(lia_out_y_1),		// lock-in y output signal for lockin_1
 				.lia_out_x_2 		(lia_out_x_2),		// lock-in x output signal for lockin_2
 				.lia_out_y_2 		(lia_out_y_2),		// lock-in y output signal for lockin_2
-				.lia_out_x_3 		(lia_out_x_3),		// lock-in x output signal for lockin_2
+				.lia_out_x_3 		(lia_out_x_3),		// lock-in x output signal for lockin_3
 				.lia_out_y_3 		(lia_out_y_3),
-				.lia_out_x_4 		(lia_out_x_4),		// lock-in x output signal for lockin_2
+				.lia_out_x_4 		(lia_out_x_4),		// lock-in x output signal for lockin_4
 				.lia_out_y_4 		(lia_out_y_4),
-				.lia_out_x_5 		(lia_out_x_5),		// lock-in x output signal for lockin_2
+				.lia_out_x_5 		(lia_out_x_5),		// lock-in x output signal for lockin_5
 				.lia_out_y_5 		(lia_out_y_5),
-				.lia_out_x_6 		(lia_out_x_6),		// lock-in x output signal for lockin_2
+				.lia_out_x_6 		(lia_out_x_6),		// lock-in x output signal for lockin_6
 				.lia_out_y_6 		(lia_out_y_6),
-				.lia_out_x_7 		(lia_out_x_7),		// lock-in x output signal for lockin_2
+				.lia_out_x_7 		(lia_out_x_7),		// lock-in x output signal for lockin_7
 				.lia_out_y_7 		(lia_out_y_7),
-				.lia_out_x_8 		(lia_out_x_8),		// lock-in x output signal for lockin_2
+				.lia_out_x_8 		(lia_out_x_8),		// lock-in x output signal for lockin_8
 				.lia_out_y_8 		(lia_out_y_8),
 				.lia_out_valid 	(lia_out_valid),				
 				.adc_data			(adc_data_in),

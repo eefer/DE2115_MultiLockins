@@ -1,7 +1,10 @@
 #**************************************************************
 # This .sdc file is created by Terasic Tool.
 # Users are recommended to modify this file to match users logic.
-# Modified by E. Flater (2017)
+# Modified by E. Flater (2017,2018)
+# 
+# Modified by Arya Chowdhury Mugdha (2018),	arya.mugdha@colostate.edu
+# Wilson Lab, ECE Dept., Colorado State University
 #**************************************************************
 
 #**************************************************************
@@ -17,27 +20,27 @@ create_clock -period 20 [get_ports FPGA_CLK_A_N]
 create_clock -period 20 [get_ports FPGA_CLK_B_P]
 create_clock -period 20 [get_ports FPGA_CLK_B_N]
 create_clock -period 20 [get_ports ll_fifo_write]
-create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_1|cic_x|clk_decimated}]
-create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_1|cic_y|clk_decimated}]
-create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_2|cic_x|clk_decimated}]
-create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_2|cic_y|clk_decimated}]
-create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_3|cic_x|clk_decimated}]
-create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_3|cic_y|clk_decimated}]
-create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_4|cic_x|clk_decimated}]
-create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_4|cic_y|clk_decimated}]
-create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_5|cic_x|clk_decimated}]
-create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_5|cic_y|clk_decimated}]
-create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_6|cic_x|clk_decimated}]
-create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_6|cic_y|clk_decimated}]
-create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_7|cic_x|clk_decimated}]
-create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_7|cic_y|clk_decimated}]
-create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_8|cic_x|clk_decimated}]
-#create_clock  -period 1000000.000 [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_8|cic_y|clk_decimated}]
-
-create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {DE2115_EightLockins_system_inst|eight_lia_inst|lockin_8|cic_y|clk_decimated}]
 
 
 create_clock -period 100 [get_ports GPIO[8]]
+
+create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_1|cic_x|clk_decimated}]
+create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_1|cic_y|clk_decimated}]
+create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_2|cic_x|clk_decimated}]
+create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_2|cic_y|clk_decimated}]
+create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_3|cic_x|clk_decimated}]
+create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_3|cic_y|clk_decimated}]
+create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_4|cic_x|clk_decimated}]
+create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_4|cic_y|clk_decimated}]
+create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_5|cic_x|clk_decimated}]
+create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_5|cic_y|clk_decimated}]
+create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_6|cic_x|clk_decimated}]
+create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_6|cic_y|clk_decimated}]
+create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_7|cic_x|clk_decimated}]
+create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_7|cic_y|clk_decimated}]
+create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_8|cic_x|clk_decimated}]
+create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_8|cic_y|clk_decimated}]
+
 
 
 #**************************************************************

@@ -11,19 +11,19 @@ USE ieee.numeric_std.all;
 entity cic_gain_controller is
 port(
   clk_in			: in  std_logic;		
-  data_in: in std_logic_vector(58 downto 0);
-  gain     : in std_logic_vector (5 downto 0);
-  data_out_g: out std_logic_vector(15 downto 0);
-  ovrflw: out std_logic 
+  data_in		: in std_logic_vector(58 downto 0);
+  gain     		: in std_logic_vector (5 downto 0);
+  data_out_g	: out std_logic_vector(15 downto 0);
+  ovrflw			: out std_logic 
   );
 end cic_gain_controller;
 
 architecture behavior of cic_gain_controller is
 
 signal gain_s		:	signed(5 downto 0);
-signal g  : integer range 0 to 32;
-signal result: std_logic;  	 
-signal overflow: std_logic;
+signal g  			: integer range 0 to 32;
+signal result		: std_logic;  	 
+signal overflow	: std_logic;
 
   
   
@@ -77,10 +77,10 @@ begin
 		if rising_edge( clk_in ) then
 			-- convert gain factor to an integer
 			gain_s		<=		signed(gain);
-			g		<= 	to_integer(gain_s);
+			g				<= 	to_integer(gain_s);
 			
 			-- perform 2^g gain by selecting a bit slice from data_in
-			data_out_g <= data_in((58-g) downto (58-g-15)); 
+			data_out_g 	<= data_in((58-g) downto (58-g-15)); 
 			
 		end if;
 	
