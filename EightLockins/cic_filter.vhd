@@ -7,12 +7,12 @@
 -- Modified by Arya Chowdhury Mugdha (2017) (arya.mugdha@colostate.edu)
 --
 -- cascaded integrator comb filter for a lock-in amplifier
--- Initial implementation: 2-stage, 1000x decimator
+-- Initial implementation: 2-stage, 50,000x decimator
 -- should have about 26 dB nearest-sideband suppression
--- Intended to drop 1 MS/s to 1 kS/s sample rate. Effectively a ~0.5 kHz low-pass
+-- Intended to drop 50 MS/s to 1 kS/s sample rate. Effectively a ?? kHz low-pass
 --
--- for a N=2-stage, R=1000x decimating CIC with M=1,
--- the output gain is G=(RM)=1,000,000
+-- for a N=2-stage, R=50,000x decimating CIC with M=1,
+-- the output gain is G=(RM)=??
 -- an additional 20 bits are needed to accomodate this gain
 -- input of 12 bits; output is 16 bits (after using the post lockin gain controller)
 
@@ -26,7 +26,7 @@ ENTITY cic_filter IS
 		clk_in			: IN  std_logic;														-- input sample rate clock
 		data_in			: IN  std_logic_vector(26 downto 0):= (others => '0');	-- sample data in.
 		gain_ctrl_cic	: IN  std_logic_vector (5 downto 0);
-		clk_out 			: OUT std_logic;														-- output clock (clk_in / 1000)
+		clk_out 			: OUT std_logic;														-- output clock (clk_in / 50,000)
 		data_out			: OUT std_logic_vector(15 downto 0);								-- data out
 		overflow			: OUT std_logic
 	);
@@ -36,20 +36,20 @@ ARCHITECTURE arch OF cic_filter IS
 
 
 	-- latched, 32-bit data in
-	signal l_data_in											: signed(57 downto 0);
-	signal data_in_gc											: std_logic_vector(57 downto 0);
+	signal l_data_in											: signed(58 downto 0);
+	signal data_in_gc											: std_logic_vector(58 downto 0);
 
 	-- outputs for each integrator stage
-	signal integrator_out_1, integrator_in_1, integrator_in_2,	integrator_out_2		: signed(57 downto 0) := (others => '0');
+	signal integrator_out_1, integrator_in_1, integrator_in_2,	integrator_out_2		: signed(58 downto 0) := (others => '0');
 	
 	-- delayed outputs for each integrator stage
-	signal l_integrator_out_1, 	l_integrator_out_2 	: signed(57 downto 0) := (others => '0');
+	signal l_integrator_out_1, 	l_integrator_out_2 	: signed(58 downto 0) := (others => '0');
 	
 	-- inputs for each comb stage
-	signal comb_in_1,		comb_out_1,		comb_in_2 				: signed(57 downto 0) := (others => '0');
+	signal comb_in_1,		comb_out_1,		comb_in_2 				: signed(58 downto 0) := (others => '0');
 	
 	-- delayed inputs for each comb stage
-	signal l_comb_in_1,			l_comb_in_2 			: signed(57 downto 0) := (others => '0');
+	signal l_comb_in_1,			l_comb_in_2 			: signed(58 downto 0) := (others => '0');
 	
 	-- decimation clock
 	signal clk_decimated										: std_logic;
@@ -59,7 +59,7 @@ ARCHITECTURE arch OF cic_filter IS
 	COMPONENT cic_gain_controller IS
 		PORT(
 			clk_in		: IN  std_logic;								-- input sample rate clock
-			data_in		: IN  std_logic_vector(57 downto 0);	-- sample data in, Q12._
+			data_in		: IN  std_logic_vector(58 downto 0);	-- sample data in, Q12._
 			gain			: IN  std_logic_vector (5 downto 0);
 			data_out_g	: OUT std_logic_vector(15 downto 0);		-- data out
 			ovrflw		: OUT std_logic
@@ -71,7 +71,7 @@ begin
 
 
 	
-	l_data_in <= resize(signed(data_in),58);
+	l_data_in <= resize(signed(data_in),59);
 	
 		
 	integrator : process( clk_in )
