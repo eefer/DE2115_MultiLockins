@@ -40,3 +40,7 @@ greybox_tmp
 lockin_freq_setup.tcl.bak
 lockin_freq_scan.tcl.bak
 EightLockins.ipregen.rpt
+cic_gain_controller.vhd.bak
+EightLockins.qsf.bak
+lia_core.vhd.bak
+qsys_system.BAK.qsys
