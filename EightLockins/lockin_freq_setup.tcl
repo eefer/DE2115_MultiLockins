@@ -11,28 +11,28 @@ open_service master $master
 # the following lines determine the frequencies of the 8 lockins respectively
 
 #lockin 1
-master_write_32 $master 0x00000000 10000
+master_write_32 $master 0x00000000 13946
 
 #lockin 2
-master_write_32 $master 0x00000010 10000
+master_write_32 $master 0x00000010 14051
 
 #lockin 3
-master_write_32 $master 0x00000020 10000
+master_write_32 $master 0x00000020 14156
 
 #lockin 4
-master_write_32 $master 0x00000030 10000
+master_write_32 $master 0x00000030 14261
 
 #lockin 5
-master_write_32 $master 0x00000040 10000
+master_write_32 $master 0x00000040 14365
 
 #lockin 6
-master_write_32 $master 0x00000050 10000
+master_write_32 $master 0x00000050 14470
 
 #lockin 7
-master_write_32 $master 0x00000060 10000
+master_write_32 $master 0x00000060 14575
 
 #lockin 8
-master_write_32 $master 0x00000070 10000
+master_write_32 $master 0x00000070 14680
 
 # the following lines determine the phase offsets of the 8 lockins respectively
 
