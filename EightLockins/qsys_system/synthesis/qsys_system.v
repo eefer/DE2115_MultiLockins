@@ -5,6 +5,7 @@
 `timescale 1 ps / 1 ps
 module qsys_system (
 		input  wire        clk_clk,             //          clk.clk
+		output wire [7:0]  dac_div_export,      //      dac_div.export
 		output wire [7:0]  dac_gain_export,     //     dac_gain.export
 		output wire [5:0]  gain_ctrl_export,    //    gain_ctrl.export
 		input  wire [15:0] lia_1_x_export,      //      lia_1_x.export
@@ -146,7 +147,12 @@ module qsys_system (
 	wire   [1:0] mm_interconnect_0_dac_gain_s1_address;              // mm_interconnect_0:dac_gain_s1_address -> dac_gain:address
 	wire         mm_interconnect_0_dac_gain_s1_write;                // mm_interconnect_0:dac_gain_s1_write -> dac_gain:write_n
 	wire  [31:0] mm_interconnect_0_dac_gain_s1_writedata;            // mm_interconnect_0:dac_gain_s1_writedata -> dac_gain:writedata
-	wire         rst_controller_reset_out_reset;                     // rst_controller:reset_out -> [bfm_master:reset, dac_gain:reset_n, gain_controller:reset_n, lia_1_x:reset_n, lia_1_y:reset_n, mm_interconnect_0:bfm_master_clk_reset_reset_bridge_in_reset_reset, mm_interconnect_0:jtag_master_clk_reset_reset_bridge_in_reset_reset, nco_freq_control_1:reset_n, nco_freq_control_2:reset_n, nco_freq_ctrl_3:reset_n, nco_freq_ctrl_4:reset_n, nco_freq_ctrl_5:reset_n, nco_freq_ctrl_6:reset_n, nco_freq_ctrl_7:reset_n, nco_freq_ctrl_8:reset_n, nco_phase_ctrl_1:reset_n, nco_phase_ctrl_2:reset_n, nco_phase_ctrl_3:reset_n, nco_phase_ctrl_4:reset_n, nco_phase_ctrl_5:reset_n, nco_phase_ctrl_6:reset_n, nco_phase_ctrl_7:reset_n, nco_phase_ctrl_8:reset_n, onchip_ram:reset, rst_translator:in_reset]
+	wire         mm_interconnect_0_dac_div_s1_chipselect;            // mm_interconnect_0:dac_div_s1_chipselect -> dac_div:chipselect
+	wire  [31:0] mm_interconnect_0_dac_div_s1_readdata;              // dac_div:readdata -> mm_interconnect_0:dac_div_s1_readdata
+	wire   [1:0] mm_interconnect_0_dac_div_s1_address;               // mm_interconnect_0:dac_div_s1_address -> dac_div:address
+	wire         mm_interconnect_0_dac_div_s1_write;                 // mm_interconnect_0:dac_div_s1_write -> dac_div:write_n
+	wire  [31:0] mm_interconnect_0_dac_div_s1_writedata;             // mm_interconnect_0:dac_div_s1_writedata -> dac_div:writedata
+	wire         rst_controller_reset_out_reset;                     // rst_controller:reset_out -> [bfm_master:reset, dac_div:reset_n, dac_gain:reset_n, gain_controller:reset_n, lia_1_x:reset_n, lia_1_y:reset_n, mm_interconnect_0:bfm_master_clk_reset_reset_bridge_in_reset_reset, mm_interconnect_0:jtag_master_clk_reset_reset_bridge_in_reset_reset, nco_freq_control_1:reset_n, nco_freq_control_2:reset_n, nco_freq_ctrl_3:reset_n, nco_freq_ctrl_4:reset_n, nco_freq_ctrl_5:reset_n, nco_freq_ctrl_6:reset_n, nco_freq_ctrl_7:reset_n, nco_freq_ctrl_8:reset_n, nco_phase_ctrl_1:reset_n, nco_phase_ctrl_2:reset_n, nco_phase_ctrl_3:reset_n, nco_phase_ctrl_4:reset_n, nco_phase_ctrl_5:reset_n, nco_phase_ctrl_6:reset_n, nco_phase_ctrl_7:reset_n, nco_phase_ctrl_8:reset_n, onchip_ram:reset, rst_translator:in_reset]
 	wire         rst_controller_reset_out_reset_req;                 // rst_controller:reset_req -> [onchip_ram:reset_req, rst_translator:reset_req_in]
 
 	altera_avalon_mm_master_bfm #(
@@ -207,6 +213,17 @@ module qsys_system (
 		.avm_writeresponsevalid (1'b0),                           // (terminated)
 		.avm_readresponse       (8'b00000000),                    // (terminated)
 		.avm_writeresponse      (8'b00000000)                     // (terminated)
+	);
+
+	qsys_system_dac_div dac_div (
+		.clk        (clk_clk),                                 //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),         //               reset.reset_n
+		.address    (mm_interconnect_0_dac_div_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_dac_div_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_dac_div_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_dac_div_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_dac_div_s1_readdata),   //                    .readdata
+		.out_port   (dac_div_export)                           // external_connection.export
 	);
 
 	qsys_system_dac_gain dac_gain (
@@ -475,6 +492,11 @@ module qsys_system (
 		.jtag_master_master_readdatavalid                  (jtag_master_master_readdatavalid),                   //                                            .readdatavalid
 		.jtag_master_master_write                          (jtag_master_master_write),                           //                                            .write
 		.jtag_master_master_writedata                      (jtag_master_master_writedata),                       //                                            .writedata
+		.dac_div_s1_address                                (mm_interconnect_0_dac_div_s1_address),               //                                  dac_div_s1.address
+		.dac_div_s1_write                                  (mm_interconnect_0_dac_div_s1_write),                 //                                            .write
+		.dac_div_s1_readdata                               (mm_interconnect_0_dac_div_s1_readdata),              //                                            .readdata
+		.dac_div_s1_writedata                              (mm_interconnect_0_dac_div_s1_writedata),             //                                            .writedata
+		.dac_div_s1_chipselect                             (mm_interconnect_0_dac_div_s1_chipselect),            //                                            .chipselect
 		.dac_gain_s1_address                               (mm_interconnect_0_dac_gain_s1_address),              //                                 dac_gain_s1.address
 		.dac_gain_s1_write                                 (mm_interconnect_0_dac_gain_s1_write),                //                                            .write
 		.dac_gain_s1_readdata                              (mm_interconnect_0_dac_gain_s1_readdata),             //                                            .readdata

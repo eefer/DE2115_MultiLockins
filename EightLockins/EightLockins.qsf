@@ -1212,11 +1212,8 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -s
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id AD_2fDA
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id AD_2fDA
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INCREMENTAL_ROUTING=1" -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[3] -to AD_2fDA|vcc -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[17] -to AD_2fDA|gnd -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[19] -to AD_2fDA|gnd -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[27] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[28] -to AD_2fDA|gnd -section_id AD_2fDA
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id AD_2fDA
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id AD_2fDA
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_PIPELINE=0" -section_id AD_2fDA
@@ -1244,7 +1241,6 @@ set_global_assignment -name SOURCE_FILE mult_13x14.cmp
 set_global_assignment -name QIP_FILE qsys_system/synthesis/qsys_system.qip
 set_global_assignment -name QIP_FILE eight_add.qip
 set_global_assignment -name QIP_FILE PLL.qip
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[4] -to AD_2fDA|gnd -section_id AD_2fDA
 set_global_assignment -name VHDL_FILE eight_lia_pkg_merged.vhd
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to CLOCK_50 -section_id AD_2fDA
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[14] -to a2da_data[0] -section_id AD_2fDA
@@ -1339,20 +1335,8 @@ set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[56] -t
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[57] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|lia_core:lockin_1|out_y[7]" -section_id AD_2fDA
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[58] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|lia_core:lockin_1|out_y[8]" -section_id AD_2fDA
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[59] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|lia_core:lockin_1|out_y[9]" -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[7] -to AD_2fDA|gnd -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[10] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[11] -to AD_2fDA|gnd -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[18] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[23] -to AD_2fDA|gnd -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to AD_2fDA|vcc -section_id AD_2fDA
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=4096" -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[20] -to AD_2fDA|gnd -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[21] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[22] -to AD_2fDA|gnd -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[26] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[29] -to AD_2fDA|gnd -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -to AD_2fDA|gnd -section_id AD_2fDA
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=4096" -section_id AD_2fDA
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[60] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|lia_core:lockin_2|out_x[0]" -section_id AD_2fDA
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[61] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|lia_core:lockin_2|out_x[10]" -section_id AD_2fDA
@@ -1802,23 +1786,123 @@ set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[280] -
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[281] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|lia_core:lockin_8|out_y[7]" -section_id AD_2fDA
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[282] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|lia_core:lockin_8|out_y[8]" -section_id AD_2fDA
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[283] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|lia_core:lockin_8|out_y[9]" -section_id AD_2fDA
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=284" -section_id AD_2fDA
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=284" -section_id AD_2fDA
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_BITS=284" -section_id AD_2fDA
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id AD_2fDA
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=878" -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[0] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[1] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[2] -to AD_2fDA|gnd -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[5] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[6] -to AD_2fDA|gnd -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[8] -to AD_2fDA|gnd -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[9] -to AD_2fDA|gnd -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[14] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to AD_2fDA|vcc -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[16] -to AD_2fDA|gnd -section_id AD_2fDA
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[24] -to AD_2fDA|vcc -section_id AD_2fDA
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[30] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[2] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[9] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[16] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[18] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[22] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[24] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[0] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[1] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[6] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[10] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[14] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[23] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[28] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[29] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[284] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|qsys_system:qsys|dac_gain_export[0]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[285] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|qsys_system:qsys|dac_gain_export[1]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[286] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|qsys_system:qsys|dac_gain_export[2]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[287] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|qsys_system:qsys|dac_gain_export[3]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[288] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|qsys_system:qsys|dac_gain_export[4]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[289] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|qsys_system:qsys|dac_gain_export[5]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[290] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|qsys_system:qsys|dac_gain_export[6]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[291] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|qsys_system:qsys|dac_gain_export[7]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[292] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[0]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[293] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[10]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[294] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[11]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[295] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[12]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[296] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[13]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[297] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[14]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[298] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[15]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[299] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[16]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[300] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[17]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[301] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[18]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[302] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[19]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[303] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[1]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[304] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[20]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[305] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[2]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[306] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[3]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[307] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[4]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[308] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[5]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[309] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[6]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[310] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[7]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[311] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[8]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[312] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[9]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[313] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[0]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[314] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[10]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[315] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[11]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[316] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[12]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[317] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[1]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[318] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[2]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[319] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[3]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[320] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[4]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[321] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[5]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[322] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[6]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[323] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[7]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[324] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[8]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[325] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[9]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[284] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|qsys_system:qsys|dac_gain_export[0]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[285] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|qsys_system:qsys|dac_gain_export[1]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[286] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|qsys_system:qsys|dac_gain_export[2]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[287] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|qsys_system:qsys|dac_gain_export[3]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[288] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|qsys_system:qsys|dac_gain_export[4]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[289] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|qsys_system:qsys|dac_gain_export[5]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[290] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|qsys_system:qsys|dac_gain_export[6]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[291] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|qsys_system:qsys|dac_gain_export[7]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[292] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[0]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[293] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[10]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[294] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[11]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[295] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[12]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[296] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[13]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[297] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[14]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[298] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[15]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[299] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[16]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[300] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[17]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[301] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[18]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[302] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[19]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[303] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[1]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[304] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[20]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[305] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[2]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[306] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[3]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[307] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[4]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[308] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[5]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[309] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[6]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[310] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[7]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[311] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[8]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[312] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines[9]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[313] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[0]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[314] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[10]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[315] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[11]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[316] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[12]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[317] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[1]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[318] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[2]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[319] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[3]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[320] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[4]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[321] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[5]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[322] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[6]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[323] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[7]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[324] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[8]" -section_id AD_2fDA
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[325] -to "eight_lia_pkg_merged:eight_lia_pkg_merged_inst|s_summed_cosines_gained_14[9]" -section_id AD_2fDA
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=326" -section_id AD_2fDA
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=326" -section_id AD_2fDA
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_BITS=326" -section_id AD_2fDA
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id AD_2fDA
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=1004" -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[3] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[4] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[7] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[8] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[11] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[20] -to AD_2fDA|vcc -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[21] -to AD_2fDA|gnd -section_id AD_2fDA
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[27] -to AD_2fDA|gnd -section_id AD_2fDA
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE db/stp3_auto_stripped.stp

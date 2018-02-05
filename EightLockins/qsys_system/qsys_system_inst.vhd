@@ -22,7 +22,8 @@
 			phase_offs_7_export : out std_logic_vector(19 downto 0);                    -- export
 			phase_offs_8_export : out std_logic_vector(19 downto 0);                    -- export
 			reset_reset_n       : in  std_logic                     := 'X';             -- reset_n
-			resetrequest_reset  : out std_logic                                         -- reset
+			resetrequest_reset  : out std_logic;                                        -- reset
+			dac_div_export      : out std_logic_vector(7 downto 0)                      -- export
 		);
 	end component qsys_system;
 
@@ -50,6 +51,7 @@
 			phase_offs_7_export => CONNECTED_TO_phase_offs_7_export, -- phase_offs_7.export
 			phase_offs_8_export => CONNECTED_TO_phase_offs_8_export, -- phase_offs_8.export
 			reset_reset_n       => CONNECTED_TO_reset_reset_n,       --        reset.reset_n
-			resetrequest_reset  => CONNECTED_TO_resetrequest_reset   -- resetrequest.reset
+			resetrequest_reset  => CONNECTED_TO_resetrequest_reset,  -- resetrequest.reset
+			dac_div_export      => CONNECTED_TO_dac_div_export       --      dac_div.export
 		);
 

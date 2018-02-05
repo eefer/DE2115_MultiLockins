@@ -14,25 +14,25 @@ open_service master $master
 master_write_32 $master 0x00000000 13946
 
 #lockin 2
-master_write_32 $master 0x00000010 14051
+master_write_32 $master 0x00000010 13946
 
 #lockin 3
-master_write_32 $master 0x00000020 14156
+master_write_32 $master 0x00000020 13946
 
 #lockin 4
-master_write_32 $master 0x00000030 14261
+master_write_32 $master 0x00000030 13946
 
 #lockin 5
-master_write_32 $master 0x00000040 14365
+master_write_32 $master 0x00000040 13946
 
 #lockin 6
-master_write_32 $master 0x00000050 14470
+master_write_32 $master 0x00000050 13946
 
 #lockin 7
-master_write_32 $master 0x00000060 14575
+master_write_32 $master 0x00000060 13946
 
 #lockin 8
-master_write_32 $master 0x00000070 14680
+master_write_32 $master 0x00000070 13946
 
 # the following lines determine the phase offsets of the 8 lockins respectively
 

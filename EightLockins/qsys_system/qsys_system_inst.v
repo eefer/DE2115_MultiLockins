@@ -21,6 +21,7 @@
 		.phase_offs_7_export (<connected-to-phase_offs_7_export>), // phase_offs_7.export
 		.phase_offs_8_export (<connected-to-phase_offs_8_export>), // phase_offs_8.export
 		.reset_reset_n       (<connected-to-reset_reset_n>),       //        reset.reset_n
-		.resetrequest_reset  (<connected-to-resetrequest_reset>)   // resetrequest.reset
+		.resetrequest_reset  (<connected-to-resetrequest_reset>),  // resetrequest.reset
+		.dac_div_export      (<connected-to-dac_div_export>)       //      dac_div.export
 	);
 

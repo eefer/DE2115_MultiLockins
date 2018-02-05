@@ -22,7 +22,8 @@ module qsys_system (
 	phase_offs_7_export,
 	phase_offs_8_export,
 	reset_reset_n,
-	resetrequest_reset);	
+	resetrequest_reset,
+	dac_div_export);	
 
 	input		clk_clk;
 	output	[7:0]	dac_gain_export;
@@ -47,4 +48,5 @@ module qsys_system (
 	output	[19:0]	phase_offs_8_export;
 	input		reset_reset_n;
 	output		resetrequest_reset;
+	output	[7:0]	dac_div_export;
 endmodule

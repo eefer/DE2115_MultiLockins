@@ -128,7 +128,7 @@ architecture arch of eight_lia_pkg_merged is
 						lia_1_y_export		  : in std_logic_vector(15 downto 0);
 						gain_ctrl_export	  : out std_logic_vector (5 downto 0);
 						dac_gain_export	  : out std_logic_vector (7 downto 0);
-						
+						dac_div_export		  : out std_logic_vector (7 downto 0);
 						-- TODO: NEED TO ADD DAC GAIN CONTROL EXPORT
 						
 						reset_reset_n       : in  std_logic                     := 'X'; 	--        reset.reset_n
@@ -218,12 +218,23 @@ architecture arch of eight_lia_pkg_merged is
 	signal 	add_u_cosine_8			:std_logic_vector(13 downto 0);
 	
 	-- CHANGE 20171220 
+	
+	attribute 	keep : boolean;  -- used to keep quartus from synthesizing away nodes I want to debug
+
+	
 	signal 	s_summed_cosines				: std_logic_vector(20 downto 0);	-- sum of signed cosine values, before gain block
+	attribute keep  of s_summed_cosines : signal is true;
+	
+	
 	signal	signed_res_cosines			: signed(20 downto 0);
-	signal   dac_gain							: std_logic_vector(7 downto 0); 	-- DAC gain multiplier
-	signal   dac_gain_signed				: signed(7 downto 0);
+	
+	signal   dac_mult_in_integer			: natural range 1 to 128; 	-- DAC gain multiplier
+	
+	signal   div								: natural range 1 to 128;  -- DAC gain divider 
+	
 	signal 	s_summed_cosines_gained		: signed(41 downto 0 );	-- summed cosines after gain block
---	attribute keep of s_summed_cosines_gained : signal is true;
+	attribute keep  of s_summed_cosines_gained : signal is true;
+	
 	signal 	s_summed_cosines_gained_14	: signed(12 downto 0 );	-- summed cosines after gain block, 14-bit
 	
 	signal 	i_s_summed_cosines_gained_14	: std_logic;
@@ -332,9 +343,22 @@ architecture arch of eight_lia_pkg_merged is
 		signal overflow_lia_7: std_logic;
 		signal overflow_lia_8: std_logic;
 		
-		signal lia_out_x_1_tx: std_logic_vector(15 downto 0);
-		signal lia_out_y_1_tx: std_logic_vector(15 downto 0);
-		signal dac_out_tx:	  std_logic_vector(7 downto 0);
+		signal lia_out_x_1_tx: 		std_logic_vector(15 downto 0);
+		signal lia_out_y_1_tx: 		std_logic_vector(15 downto 0);
+		signal dac_mult_in	:	  	std_logic_vector(7 downto 0);
+		signal dac_mult_in_signed	:	  	signed(7 downto 0);
+		
+		attribute keep  of dac_mult_in : signal is true;
+		attribute keep  of dac_mult_in_signed : signal is true;
+		
+		signal dac_div_in	:	  	std_logic_vector(7 downto 0);
+		signal dac_div_in_signed	:	  	signed(7 downto 0);
+		
+		attribute keep  of dac_div_in : signal is true;
+		attribute keep  of dac_div_in_signed : signal is true;
+		
+		signal control_bits	:	std_logic_vector(7 downto 0) := (others => '0');
+	
 	
 BEGIN
 	
@@ -354,7 +378,7 @@ BEGIN
 --	ref_o <= dpll_lia_ref_o_1(12);	-- for synchronization (use last bit so 1 for half the cycle)	
 	
 
-	dac_gain <= dac_out_tx;
+
 	
 
 	
@@ -570,7 +594,8 @@ BEGIN
 		lia_1_x_export		  => lia_out_x_1_tx,
 		lia_1_y_export		  => lia_out_y_1_tx,
 		
-		dac_gain_export	  => dac_out_tx,
+		dac_gain_export	  => dac_mult_in,
+		dac_div_export		  => dac_div_in,
 		gain_ctrl_export	  => gain_ctrl_tx,
 		reset_reset_n       => fpga_resetn,   	--        reset.reset_n
 		resetrequest_reset  => resetrequest    -- resetrequest.reset
@@ -602,9 +627,6 @@ BEGIN
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			-- CHANGE 20171220 
-			-- s_cosine_1 <= 15 * signed(cosine_1);
-			-- s_cosine_1_shifted <= std_logic_vector(s_cosine_1(15 downto 2) );
 			s_cosine_1 <= cosine_1;
 		end if;
 	end process;
@@ -640,21 +662,40 @@ BEGIN
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			s_cosine_6 <= cosine_6;
+			if (control_bits(5) = '1') then
+				s_cosine_6 <= cosine_6;
+			
+			else 
+				s_cosine_6 <= (others => '0');
+				
+			end if;
 		end if;
 	end process;
 	
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			s_cosine_7 <= cosine_7;
+			if (control_bits(6) = '1') then
+				s_cosine_7 <= cosine_7;
+			
+			else 
+				s_cosine_7 <= (others => '0');
+				
+			end if;
 		end if;
 	end process;
 	
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			s_cosine_8 <= cosine_8;
+			if (control_bits(7) = '1') then
+				s_cosine_8 <= cosine_8;
+			
+			else 
+				s_cosine_8 <= (others => '0');
+				
+			end if;
+				
 		end if;
 	end process;
 	
@@ -664,7 +705,7 @@ BEGIN
 	
 		sum_cosines : eight_add
 	port map(
-		data0x	=>	s_cosine_1,
+		data0x	=>	s_cosine_1 ,
 		data1x	=>	s_cosine_2,
 		data2x	=>	s_cosine_3,
 		data3x	=>	s_cosine_4,
@@ -686,30 +727,33 @@ BEGIN
 	-- WARNING: NO OVERFLOW INDICATOR
 	
 	
+	process(clock_50)
 	
---	process( clock_50 )
---	begin	
---		if rising_edge(clock_50) then
---			s_summed_cosines_gained  <= signed(dac_gain) * signed(s_summed_cosines);
-----			s_summed_cosines_gained_14  <=  s_summed_cosines_gained(23 downto 11);
---			s_summed_cosines_gained_14  <=  signed(s_summed_cosines(13 downto 1));
---		end if;
---	end process;
+	begin	
+		
+		if rising_edge(clock_50) then
 	
-	-- TODO: convert s_summed_cosines_gained_15 to signed-offset format
-	-- then pass to DAC
+			dac_mult_in_signed		<=		signed(dac_mult_in);
+			
+			dac_mult_in_integer		<= 	to_integer(dac_mult_in_signed);
+			
+			dac_div_in_signed		   <=		signed(dac_div_in);
+			
+			div		<= 	to_integer(dac_div_in_signed);
+			
 	
--- multiply with fixed gain	
+		end if;
+	end process;
 	
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
 		
 	signed_res_cosines <= signed(s_summed_cosines);
+
+	s_summed_cosines_gained  <=  dac_mult_in_integer * signed_res_cosines;  -- multiply with variable gain
 	
-	s_summed_cosines_gained  <=  20 * signed_res_cosines;
-	
-	s_summed_cosines_gained_14  <=  signed(s_summed_cosines(14 downto 2));
+	s_summed_cosines_gained_14  <=  signed(s_summed_cosines_gained((41-29+div) downto div));  -- choose the variable bit slice that performs the operation of multiplying of dividing by a factor of 2
 	
 
 		end if;
@@ -719,137 +763,7 @@ BEGIN
 	
 	u_summed_cosines_gained_14 <= i_s_summed_cosines_gained_14 & std_logic_vector(s_summed_cosines_gained_14);
 	
--- multiply with variable gain	
---	process(clock_50)
---	begin	
---		if rising_edge(clock_50) then
---		
---	signed_res_cosines <= signed(s_summed_cosines);
---	
---	dac_gain_signed <=	signed(dac_gain);
---		
---	s_summed_cosines_gained  <= dac_gain_signed * signed_res_cosines;
---	
---	s_summed_cosines_gained_14  <=  signed(s_summed_cosines(14 downto 2));
 
---		end if;
---	end process;
-
---	
---	i_s_summed_cosines_gained_14 <= not s_summed_cosines_gained_14(12);
---	
---	u_summed_cosines_gained_14 <= i_s_summed_cosines_gained_14 & std_logic_vector(s_summed_cosines_gained_14);
-	
---	
---	i_cosine_1 <= not s_cosine_1_shifted(13);
---	i_cosine_2 <= not s_cosine_2(12);
---	i_cosine_3 <= not s_cosine_3(12);
---	i_cosine_4 <= not s_cosine_4(12);
---	i_cosine_5 <= not s_cosine_5(12);
---	i_cosine_6 <= not s_cosine_6(12);
---	i_cosine_7 <= not s_cosine_7(12);
---	i_cosine_8 <= not s_cosine_8(12);
-	
-	
-	
---	u_cosine_1 <= i_cosine_1 & s_cosine_1(11 downto 0);	--Create unsigned cosine 1
---	u_cosine_2 <= i_cosine_2 & s_cosine_2(11 downto 0);	--Create unsigned cosine 2
---	u_cosine_3 <= i_cosine_3 & s_cosine_3(11 downto 0);
---	u_cosine_4 <= i_cosine_4 & s_cosine_4(11 downto 0);
---	u_cosine_5 <= i_cosine_5 & s_cosine_5(11 downto 0);
---	u_cosine_6 <= i_cosine_6 & s_cosine_6(11 downto 0);
---	u_cosine_7 <= i_cosine_7 & s_cosine_7(11 downto 0);
---	u_cosine_8 <= i_cosine_8 & s_cosine_8(11 downto 0);
-
-	
---	process(clock_50)
---	begin	
---		if rising_edge(clock_50) then
---			reg_u_cosine_1 <= u_cosine_1 ;
---		end if;
---	end process;
---	
---		
---	process(clock_50)
---	begin	
---		if rising_edge(clock_50) then
---			reg_u_cosine_2 <= u_cosine_2;
---		end if;
---	end process;
---	
---	process(clock_50)
---	begin	
---		if rising_edge(clock_50) then
---			reg_u_cosine_3 <= u_cosine_3;
---		end if;
---	end process;
---	
---	process(clock_50)
---	begin	
---		if rising_edge(clock_50) then
---			reg_u_cosine_4 <= u_cosine_4;
---		end if;
---	end process;
---	
---	process(clock_50)
---	begin	
---		if rising_edge(clock_50) then
---			reg_u_cosine_5 <= u_cosine_5;
---		end if;
---	end process;
---	
---	process(clock_50)
---	begin	
---		if rising_edge(clock_50) then
---			reg_u_cosine_6 <= u_cosine_6;
---		end if;
---	end process;
---	
---	process(clock_50)
---	begin	
---		if rising_edge(clock_50) then
---			reg_u_cosine_7 <= u_cosine_7;
---		end if;
---	end process;
---	
---	process(clock_50)
---	begin	
---		if rising_edge(clock_50) then
---			reg_u_cosine_8 <= u_cosine_8;
---		end if;
---	end process;
-
---	add_u_cosine_1 <=  reg_u_cosine_1 & '00';
---	add_u_cosine_1 <=  reg_u_cosine_1;		--Unsigned cosine 1 ready for addition
---	add_u_cosine_2 <= '0' & reg_u_cosine_2;		--Unsigned cosine 2 ready for addition 
---	add_u_cosine_3 <= '0' & reg_u_cosine_3;
---	add_u_cosine_4 <= '0' & reg_u_cosine_4;
---	add_u_cosine_5 <= '0' & reg_u_cosine_5;
---	add_u_cosine_6 <= '0' & reg_u_cosine_6;
---	add_u_cosine_7 <= '0' & reg_u_cosine_7;
---	add_u_cosine_8 <= '0' & reg_u_cosine_8;
-	
---	
---	sum_cosines : lpm_add
---	port map(
---		dataa		=>		add_u_cosine_1,
---		datab		=>		add_u_cosine_2,
---		result	=>		p_cosines
---		
---	);
-	
---	sum_cosines : eight_add
---	port map(
---		data0x	=>	add_u_cosine_1,
---		data1x	=>	add_u_cosine_2,
---		data2x	=>	add_u_cosine_3,
---		data3x	=>	add_u_cosine_4,
---		data4x	=>	add_u_cosine_5,
---		data5x	=>	add_u_cosine_6,
---		data6x	=>	add_u_cosine_7,
---		data7x	=>	add_u_cosine_8,
---	--   result	=>		p_cosines
---		);
 	
 	
 	p_cosines  <= u_summed_cosines_gained_14;
@@ -857,12 +771,6 @@ BEGIN
 	n_cosines <= not p_cosines;
 
 		
---	process(clock_50)
---	begin	
---		if rising_edge(clock_50) then
---			reg_p_cosines <= p_cosines(16 downto 3); 
---		end if;
---	end process;
 	
 	process(clock_50)
 	begin	
