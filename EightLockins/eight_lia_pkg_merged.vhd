@@ -625,6 +625,8 @@ BEGIN
 
 
 	--- register the 8 cosine signals coming out of eight_lia_pkg
+	-- modification 02/06/2018: control bits added which can turn on or off a specific lockin - ACM
+	
 	
 	process(clock_50)
 	begin	
@@ -749,15 +751,7 @@ BEGIN
 	   result	=>	s_summed_cosines
 		);
 	
---	process( clock_50 )
---	begin	
---		if rising_edge(clock_50) then
---			s_summed_cosines <= signed(s_cosine_1) + signed(s_cosine_2) + signed(s_cosine_3) + signed(s_cosine_4) + signed(s_cosine_5) + signed(s_cosine_6) + signed(s_cosine_7) + signed(s_cosine_8);
---		end if;
---	end process;
-	
-	-- gain block
-	-- WARNING: NO OVERFLOW INDICATOR
+
 	
 	
 	process(clock_50)
@@ -786,18 +780,17 @@ BEGIN
 
 	s_summed_cosines_gained  <=  dac_mult_in_integer * signed_res_cosines;  -- multiply with variable gain
 	
-	s_summed_cosines_gained_14  <=  signed(s_summed_cosines_gained((41-29+div) downto div));  -- choose the variable bit slice that performs the operation of multiplying of dividing by a factor of 2
+	s_summed_cosines_gained_14  <=  signed(s_summed_cosines_gained((41 - 29 + div) downto div));  -- choose the variable bit slice that performs the operation of multiplying of dividing by a factor of 2
 	
 
 		end if;
 	end process;
 	
-		i_s_summed_cosines_gained_14 <= not s_summed_cosines_gained_14(12);
+	i_s_summed_cosines_gained_14 <= not s_summed_cosines_gained_14(12);
 	
 	u_summed_cosines_gained_14 <= i_s_summed_cosines_gained_14 & std_logic_vector(s_summed_cosines_gained_14);
 	
 
-	
 	
 	p_cosines  <= u_summed_cosines_gained_14;
 	

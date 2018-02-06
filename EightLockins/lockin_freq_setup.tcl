@@ -8,7 +8,7 @@ set master [lindex $masters 0]
 
 open_service master $master
 
-# the following lines determine the frequencies of the 8 lockins respectively
+# the following codes determine the frequencies of the 8 lockins respectively
 
 #lockin 1
 master_write_32 $master 0x00000000 13946
@@ -34,7 +34,7 @@ master_write_32 $master 0x00000060 13946
 #lockin 8
 master_write_32 $master 0x00000070 13946
 
-# the following lines determine the phase offsets of the 8 lockins respectively
+# the following codes determine the phase offsets of the 8 lockins respectively
 
 #lockin 1
 master_write_32 $master 0x10000000 0
@@ -61,22 +61,25 @@ master_write_32 $master 0x10000060 0
 master_write_32 $master 0x10000070 0
 
 
-# the following line determines the post cic bit slice selection
+# the following code determines the post cic bit slice selection
 # example: when selected 0, MSB downto (MSB - 16) output bits from the cic filter is selected and fed to the lockin outputs
 #			  when selected 1, MSB-1 downto (MSB - 16) - 1 output bits from the cic filter is selected and fed to the lockin outputs
 # increasing this value performs the operation of division by powers of 2
 
 master_write_32 $master 0x20000000 0
 
-# the following line determines the integer multiplier of the DAC output
+# the following code determines the integer multiplier of the DAC output
 
 master_write_32 $master 0x50000000 5
 
-# the following line determines the bit slice selector (division by a factor of 2)
+# the following code determines the bit slice selector (division by a factor of 2)
+# the integer multiplier and bit slice selector need to be adjusted together to obtain the suitable amount of output dynamic range from the DAC
 
 master_write_32 $master 0x51000000 2
 
-# the following line determines which lockins are turned on or off
-
+# the following code determines which lockins are turned on or off
+# example: putting in 255 decimal = 11111111 binary, means all the 8 lockins are active
+#			  putting in 15 decimal = 1111 binary, means lockins 1 to 4 out of the 8 lockins are active
+# 			  putting in 17 decimal = 10001 binary, means lockins 1 and 5 are active
 
 master_write_32 $master 0x52000000 255
