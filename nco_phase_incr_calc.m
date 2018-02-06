@@ -1,3 +1,3 @@
 %%NCO phase incr calc
-f0 = 700e3;
-ph_incr = ((2^20)*f0)/5e6
+f0 = 1000e3;
+ph_incr = ((2^20)*f0)/50e6
