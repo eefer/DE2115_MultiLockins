@@ -62,5 +62,21 @@ master_write_32 $master 0x10000070 0
 
 
 # the following line determines the post cic bit slice selection
+# example: when selected 0, MSB downto (MSB - 16) output bits from the cic filter is selected and fed to the lockin outputs
+#			  when selected 1, MSB-1 downto (MSB - 16) - 1 output bits from the cic filter is selected and fed to the lockin outputs
+# increasing this value performs the operation of division by powers of 2
 
 master_write_32 $master 0x20000000 0
+
+# the following line determines the integer multiplier of the DAC output
+
+master_write_32 $master 0x50000000 5
+
+# the following line determines the bit slice selector (division by a factor of 2)
+
+master_write_32 $master 0x51000000 2
+
+# the following line determines which lockins are turned on or off
+
+
+master_write_32 $master 0x52000000 255

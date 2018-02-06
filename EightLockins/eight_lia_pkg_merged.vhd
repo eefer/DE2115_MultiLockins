@@ -129,6 +129,7 @@ architecture arch of eight_lia_pkg_merged is
 						gain_ctrl_export	  : out std_logic_vector (5 downto 0);
 						dac_gain_export	  : out std_logic_vector (7 downto 0);
 						dac_div_export		  : out std_logic_vector (7 downto 0);
+						control_bits_export : out std_logic_vector (7 downto 0);
 						-- TODO: NEED TO ADD DAC GAIN CONTROL EXPORT
 						
 						reset_reset_n       : in  std_logic                     := 'X'; 	--        reset.reset_n
@@ -597,7 +598,8 @@ BEGIN
 		dac_gain_export	  => dac_mult_in,
 		dac_div_export		  => dac_div_in,
 		gain_ctrl_export	  => gain_ctrl_tx,
-		reset_reset_n       => fpga_resetn,   	--        reset.reset_n
+		reset_reset_n       => fpga_resetn,		-- reset.reset_n
+		control_bits_export => control_bits,
 		resetrequest_reset  => resetrequest    -- resetrequest.reset
 	);
 
@@ -627,36 +629,67 @@ BEGIN
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			s_cosine_1 <= cosine_1;
+			if (control_bits(0) = '1') then
+				s_cosine_1 <= cosine_1;
+			
+			else 
+				s_cosine_1 <= (others => '0');
+				
+			end if;
 		end if;
 	end process;
 	
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			s_cosine_2 <= cosine_2;
+			if (control_bits(1) = '1') then
+				s_cosine_2 <= cosine_2;
+			
+			else 
+				s_cosine_2 <= (others => '0');
+				
+			end if;
 		end if;
 	end process;
 	
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			s_cosine_3 <= cosine_3;
+			if (control_bits(2) = '1') then
+				s_cosine_3 <= cosine_3;
+			
+			else 
+				s_cosine_3 <= (others => '0');
+				
+			end if;
 		end if;
 	end process;
 	
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			s_cosine_4 <= cosine_4;
+			if (control_bits(3) = '1') then
+				s_cosine_4 <= cosine_4;
+			
+			else 
+				s_cosine_4 <= (others => '0');
+				
+			end if;
 		end if;
 	end process;
 	
 	process(clock_50)
 	begin	
 		if rising_edge(clock_50) then
-			s_cosine_5 <= cosine_5;
-		end if;
+			if (control_bits(4) = '1') then
+				s_cosine_5 <= cosine_5;
+			
+			else 
+				s_cosine_5 <= (others => '0');
+				
+			end if;
+	
+	end if;
 	end process;
 	
 	process(clock_50)

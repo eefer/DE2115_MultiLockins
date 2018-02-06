@@ -1,6 +1,7 @@
 
 module qsys_system (
 	clk_clk,
+	dac_div_export,
 	dac_gain_export,
 	gain_ctrl_export,
 	lia_1_x_export,
@@ -23,9 +24,10 @@ module qsys_system (
 	phase_offs_8_export,
 	reset_reset_n,
 	resetrequest_reset,
-	dac_div_export);	
+	control_bits_export);	
 
 	input		clk_clk;
+	output	[7:0]	dac_div_export;
 	output	[7:0]	dac_gain_export;
 	output	[5:0]	gain_ctrl_export;
 	input	[15:0]	lia_1_x_export;
@@ -48,5 +50,5 @@ module qsys_system (
 	output	[19:0]	phase_offs_8_export;
 	input		reset_reset_n;
 	output		resetrequest_reset;
-	output	[7:0]	dac_div_export;
+	output	[7:0]	control_bits_export;
 endmodule

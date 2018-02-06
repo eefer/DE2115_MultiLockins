@@ -1,6 +1,7 @@
 	component qsys_system is
 		port (
 			clk_clk             : in  std_logic                     := 'X';             -- clk
+			dac_div_export      : out std_logic_vector(7 downto 0);                     -- export
 			dac_gain_export     : out std_logic_vector(7 downto 0);                     -- export
 			gain_ctrl_export    : out std_logic_vector(5 downto 0);                     -- export
 			lia_1_x_export      : in  std_logic_vector(15 downto 0) := (others => 'X'); -- export
@@ -23,13 +24,14 @@
 			phase_offs_8_export : out std_logic_vector(19 downto 0);                    -- export
 			reset_reset_n       : in  std_logic                     := 'X';             -- reset_n
 			resetrequest_reset  : out std_logic;                                        -- reset
-			dac_div_export      : out std_logic_vector(7 downto 0)                      -- export
+			control_bits_export : out std_logic_vector(7 downto 0)                      -- export
 		);
 	end component qsys_system;
 
 	u0 : component qsys_system
 		port map (
 			clk_clk             => CONNECTED_TO_clk_clk,             --          clk.clk
+			dac_div_export      => CONNECTED_TO_dac_div_export,      --      dac_div.export
 			dac_gain_export     => CONNECTED_TO_dac_gain_export,     --     dac_gain.export
 			gain_ctrl_export    => CONNECTED_TO_gain_ctrl_export,    --    gain_ctrl.export
 			lia_1_x_export      => CONNECTED_TO_lia_1_x_export,      --      lia_1_x.export
@@ -52,6 +54,6 @@
 			phase_offs_8_export => CONNECTED_TO_phase_offs_8_export, -- phase_offs_8.export
 			reset_reset_n       => CONNECTED_TO_reset_reset_n,       --        reset.reset_n
 			resetrequest_reset  => CONNECTED_TO_resetrequest_reset,  -- resetrequest.reset
-			dac_div_export      => CONNECTED_TO_dac_div_export       --      dac_div.export
+			control_bits_export => CONNECTED_TO_control_bits_export  -- control_bits.export
 		);
 

@@ -41,6 +41,22 @@
          type = "int";
       }
    }
+   element control_bits
+   {
+      datum _sortIndex
+      {
+         value = "27";
+         type = "int";
+      }
+   }
+   element control_bits.s1
+   {
+      datum baseAddress
+      {
+         value = "1375731712";
+         type = "String";
+      }
+   }
    element dac_div
    {
       datum _sortIndex
@@ -540,6 +556,11 @@
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk.clk_in" type="clock" dir="end" />
  <interface
+   name="control_bits"
+   internal="control_bits.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
    name="dac_div"
    internal="dac_div.external_connection"
    type="conduit"
@@ -718,6 +739,24 @@
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module
+   name="control_bits"
+   kind="altera_avalon_pio"
+   version="16.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
  </module>
  <module name="dac_div" kind="altera_avalon_pio" version="16.1" enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="false" />
@@ -1327,6 +1366,15 @@
  <connection
    kind="avalon"
    version="16.1"
+   start="bfm_master.m0"
+   end="control_bits.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x52000000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.1"
    start="jtag_master.master"
    end="sram_0.avalon_sram_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1531,6 +1579,15 @@
   <parameter name="baseAddress" value="0x51000000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
+ <connection
+   kind="avalon"
+   version="16.1"
+   start="jtag_master.master"
+   end="control_bits.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x52000000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
  <connection kind="clock" version="16.1" start="clk.clk" end="bfm_master.clk" />
  <connection kind="clock" version="16.1" start="clk.clk" end="jtag_master.clk" />
  <connection
@@ -1596,6 +1653,7 @@
  <connection kind="clock" version="16.1" start="clk.clk" end="bridge_0.clk" />
  <connection kind="clock" version="16.1" start="clk.clk" end="dac_gain.clk" />
  <connection kind="clock" version="16.1" start="clk.clk" end="dac_div.clk" />
+ <connection kind="clock" version="16.1" start="clk.clk" end="control_bits.clk" />
  <connection kind="clock" version="16.1" start="clk.clk" end="onchip_ram.clk1" />
  <connection
    kind="reset"
@@ -1706,6 +1764,11 @@
    start="clk.clk_reset"
    end="dac_gain.reset" />
  <connection kind="reset" version="16.1" start="clk.clk_reset" end="dac_div.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk.clk_reset"
+   end="control_bits.reset" />
  <connection
    kind="reset"
    version="16.1"

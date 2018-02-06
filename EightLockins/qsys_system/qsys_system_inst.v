@@ -1,5 +1,6 @@
 	qsys_system u0 (
 		.clk_clk             (<connected-to-clk_clk>),             //          clk.clk
+		.dac_div_export      (<connected-to-dac_div_export>),      //      dac_div.export
 		.dac_gain_export     (<connected-to-dac_gain_export>),     //     dac_gain.export
 		.gain_ctrl_export    (<connected-to-gain_ctrl_export>),    //    gain_ctrl.export
 		.lia_1_x_export      (<connected-to-lia_1_x_export>),      //      lia_1_x.export
@@ -22,6 +23,6 @@
 		.phase_offs_8_export (<connected-to-phase_offs_8_export>), // phase_offs_8.export
 		.reset_reset_n       (<connected-to-reset_reset_n>),       //        reset.reset_n
 		.resetrequest_reset  (<connected-to-resetrequest_reset>),  // resetrequest.reset
-		.dac_div_export      (<connected-to-dac_div_export>)       //      dac_div.export
+		.control_bits_export (<connected-to-control_bits_export>)  // control_bits.export
 	);
 
