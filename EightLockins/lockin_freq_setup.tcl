@@ -14,25 +14,25 @@ open_service master $master
 master_write_32 $master 0x00000000 13946
 
 #lockin 2
-master_write_32 $master 0x00000010 13946
+master_write_32 $master 0x00000010 14051
 
 #lockin 3
-master_write_32 $master 0x00000020 13946
+master_write_32 $master 0x00000020 14156
 
 #lockin 4
-master_write_32 $master 0x00000030 13946
+master_write_32 $master 0x00000030 14261
 
 #lockin 5
-master_write_32 $master 0x00000040 13946
+master_write_32 $master 0x00000040 14365
 
 #lockin 6
-master_write_32 $master 0x00000050 13946
+master_write_32 $master 0x00000050 14470
 
 #lockin 7
-master_write_32 $master 0x00000060 13946
+master_write_32 $master 0x00000060 14575
 
 #lockin 8
-master_write_32 $master 0x00000070 13946
+master_write_32 $master 0x00000070 14680
 
 # the following codes determine the phase offsets of the 8 lockins respectively
 
@@ -68,16 +68,17 @@ master_write_32 $master 0x10000070 0
 
 master_write_32 $master 0x20000000 0
 
+
 # the following code determines the integer multiplier of the DAC output (range 0 to 255)
 
-master_write_32 $master 0x50000000 5
+master_write_32 $master 0x50000000 2
+
 
 # the following code determines the bit slice selector (division by a factor of 2)
 # the integer multiplier and bit slice selector need to be adjusted together to obtain the suitable amount of output dynamic range from the DAC
-# 
-
 
 master_write_32 $master 0x51000000 2
+
 
 # the following code determines which lockins are turned on or off (MSB => lockin 8, LSB => lockin 1)
 # example: putting in 255 decimal = 11111111 binary, means all the 8 lockins are active
