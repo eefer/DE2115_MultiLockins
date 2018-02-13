@@ -10,29 +10,29 @@ open_service master $master
 
 # the following codes determine the frequencies of the 8 lockins respectively
 
-#lockin 1
-master_write_32 $master 0x00000000 13946
+#lockin 1 = 2 MHz
+master_write_32 $master 0x00000000 41943
 
-#lockin 2
-master_write_32 $master 0x00000010 14051
+#lockin 2 = 1 MHz
+master_write_32 $master 0x00000010 20972
 
-#lockin 3
-master_write_32 $master 0x00000020 14156
+#lockin 3 = 500 kHz
+master_write_32 $master 0x00000020 10486
 
-#lockin 4
-master_write_32 $master 0x00000030 14261
+#lockin 4 = 250 kHz
+master_write_32 $master 0x00000030 5242
 
-#lockin 5
-master_write_32 $master 0x00000040 14365
+#lockin 5 = 125 kHz
+master_write_32 $master 0x00000040 2621
 
-#lockin 6
-master_write_32 $master 0x00000050 14470
+#lockin 6 = 67.5 kHz
+master_write_32 $master 0x00000050 1415
 
-#lockin 7
-master_write_32 $master 0x00000060 14575
+#lockin 7 = 33.75 kHz
+master_write_32 $master 0x00000060 707
 
-#lockin 8
-master_write_32 $master 0x00000070 14680
+#lockin 8 = 16.8 kHz
+master_write_32 $master 0x00000070 353
 
 # the following codes determine the phase offsets of the 8 lockins respectively
 
@@ -66,18 +66,19 @@ master_write_32 $master 0x10000070 0
 #			  when selected 1, MSB-1 downto (MSB - 16) - 1 output bits from the cic filter is selected and fed to the lockin outputs
 # increasing this value performs the operation of division by powers of 2
 
-master_write_32 $master 0x20000000 0
+master_write_32 $master 0x20000000 6
 
 
 # the following code determines the integer multiplier of the DAC output (range 0 to 255)
 
-master_write_32 $master 0x50000000 2
+master_write_32 $master 0x50000000 4
 
 
 # the following code determines the bit slice selector (division by a factor of 2)
 # the integer multiplier and bit slice selector need to be adjusted together to obtain the suitable amount of output dynamic range from the DAC
+# example: if the number in 0x50000000 address is G and 0x51000000 address is M and the DAC output is Y, then final DAC output = G * Y / (2^M)
 
-master_write_32 $master 0x51000000 2
+master_write_32 $master 0x51000000 3
 
 
 # the following code determines which lockins are turned on or off (MSB => lockin 8, LSB => lockin 1)
