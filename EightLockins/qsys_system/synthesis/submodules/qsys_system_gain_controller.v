@@ -42,12 +42,11 @@ module qsys_system_gain_controller (
   input            write_n;
   input   [ 31: 0] writedata;
 
-
-wire             clk_en;
-reg     [  5: 0] data_out;
-wire    [  5: 0] out_port;
-wire    [  5: 0] read_mux_out;
-wire    [ 31: 0] readdata;
+  wire             clk_en;
+  reg     [  5: 0] data_out;
+  wire    [  5: 0] out_port;
+  wire    [  5: 0] read_mux_out;
+  wire    [ 31: 0] readdata;
   assign clk_en = 1;
   //s1, which is an e_avalon_slave
   assign read_mux_out = {6 {(address == 0)}} & data_out;

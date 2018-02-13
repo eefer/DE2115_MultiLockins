@@ -236,7 +236,7 @@ architecture arch of eight_lia_pkg_merged is
 	signal 	s_summed_cosines_gained		: signed(41 downto 0 );	-- summed cosines after gain block
 	attribute keep  of s_summed_cosines_gained : signal is true;
 	
-	signal 	s_summed_cosines_gained_14	: signed(12 downto 0 );	-- summed cosines after gain block, 14-bit
+	signal 	s_summed_cosines_gained_14	: signed(13 downto 0 );	-- summed cosines after gain block
 	
 	signal 	i_s_summed_cosines_gained_14	: std_logic;
 	
@@ -776,19 +776,19 @@ BEGIN
 	begin	
 		if rising_edge(clock_50) then
 		
-	signed_res_cosines <= signed(s_summed_cosines);
+			signed_res_cosines <= signed(s_summed_cosines);
 
-	s_summed_cosines_gained  <=  dac_mult_in_integer * signed_res_cosines;  -- multiply with variable gain
+			s_summed_cosines_gained  <=  dac_mult_in_integer * signed_res_cosines;  -- multiply with variable gain
 	
-	s_summed_cosines_gained_14  <=  signed(s_summed_cosines_gained((41 - 29 + div) downto div));  -- choose the variable bit slice that performs the operation of multiplying of dividing by a factor of 2
+			s_summed_cosines_gained_14  <=  signed(s_summed_cosines_gained((41 - 28 + div) downto div));  -- choose the variable bit slice that performs the operation of multiplying of dividing by a factor of 2
 	
 
 		end if;
 	end process;
 	
-	i_s_summed_cosines_gained_14 <= not s_summed_cosines_gained_14(12);
+	i_s_summed_cosines_gained_14 <= not s_summed_cosines_gained_14(13);
 	
-	u_summed_cosines_gained_14 <= i_s_summed_cosines_gained_14 & std_logic_vector(s_summed_cosines_gained_14);
+	u_summed_cosines_gained_14 <= i_s_summed_cosines_gained_14 & std_logic_vector(s_summed_cosines_gained_14(12 downto 0));
 	
 
 	
