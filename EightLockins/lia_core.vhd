@@ -40,7 +40,9 @@ ENTITY lia_core IS
 																				--  0: in-phase mixer (default)
 																				--  1: input signal (bypass mixer to debug CIC filter behavior)		
 		gain_ctrl	: IN  std_logic_vector (5 downto 0);
-		overflow_lia : OUT std_logic
+		overflow_lia : OUT std_logic;
+		r				: OUT STD_LOGIC_VECTOR(15 downto 0);
+		theta			: OUT STD_LOGIC_VECTOR(10 downto 0)
 	);
 END lia_core;
 
@@ -85,6 +87,19 @@ ARCHITECTURE arch OF lia_core IS
 			clk_out 			: OUT std_logic;								-- output clock (clk_in / 1000)
 			data_out			: OUT std_logic_vector(15 downto 0);		-- data out
 			overflow			: OUT std_logic
+		);
+		END component;
+		
+		component xytortheta is
+		port(
+		aclr					: IN STD_LOGIC;
+		clk					: IN STD_LOGIC;
+		ena					: IN STD_LOGIC;
+		clk_sig_in			: IN STD_LOGIC;
+		x						: IN STD_LOGIC_VECTOR(15 downto 0);
+		y						: IN STD_LOGIC_VECTOR(15 downto 0);
+		r_out					: OUT STD_LOGIC_VECTOR(15 downto 0);
+		theta_out			: OUT STD_LOGIC_VECTOR(10 downto 0)
 		);
 		END component;
 		
@@ -312,6 +327,17 @@ ARCHITECTURE arch OF lia_core IS
 													-- into a FIFO and reading out on a common clock to avoid sync
 													-- problems with the two CICs
 
-	
+	xytortheta_inst: xytortheta
+	port map
+	(
+		aclr				=> areset_i,
+		clk				=> sys_clk_i,
+		ena				=> '1',
+		clk_sig_in		=> cic_x_out_valid,
+		x					=> cic_x_out,
+		y					=> cic_y_out,
+		r_out				=> r,
+		theta_out		=> theta
+	);
 --	
 END arch;
