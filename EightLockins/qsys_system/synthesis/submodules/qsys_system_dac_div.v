@@ -18,19 +18,19 @@
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030 
 
-module qsys_system_control_bits (
-                                  // inputs:
-                                   address,
-                                   chipselect,
-                                   clk,
-                                   reset_n,
-                                   write_n,
-                                   writedata,
+module qsys_system_dac_div (
+                             // inputs:
+                              address,
+                              chipselect,
+                              clk,
+                              reset_n,
+                              write_n,
+                              writedata,
 
-                                  // outputs:
-                                   out_port,
-                                   readdata
-                                )
+                             // outputs:
+                              out_port,
+                              readdata
+                           )
 ;
 
   output  [  7: 0] out_port;
