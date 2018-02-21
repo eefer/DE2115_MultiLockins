@@ -357,7 +357,7 @@ begin
 	end
 end
 
-always @(negedge reset_n or posedge sys_clk)
+always @(negedge reset_n or posedge sys_clk)  
 begin
 	if (!reset_n) begin
 		a2da_data	<= 14'd0;
@@ -744,12 +744,15 @@ reg [47:0] cic_encoded_data = 48'd0;
 reg overflw_reg;
 wire overflow;
 wire dummy;
-wire markXin;
+(*keep*)wire markXin;
 reg markXin_reg;
-wire markYin;
+(*keep*)wire markYin;
 reg markYin_reg;
+(*noprune*)reg markX_toggle = 1'b0;
+(*noprune*)reg markY_toggle = 1'b0;
+(*keep*)wire pi_reset_n;
 
-
+assign pi_reset_n = GPIO[17];
 assign markXin = GPIO[14];
 assign markYin = GPIO[15];
 
@@ -780,10 +783,34 @@ end
 	
 always @(posedge ll_fifo_write) // NEEDS TO MATCH FIFO WRITE CLK
 begin
-overflw_reg <= overflow;
-markXin_reg <= markXin;
-markYin_reg <= markYin;
+	overflw_reg <= overflow;
+	markXin_reg <= SW[17]? markX_toggle : markXin ;
+	markYin_reg <= SW[17]? markY_toggle : markYin ;
 end
+
+always @(negedge pi_reset_n or negedge markXin)  /////using negedge for schmitt trigger to capture data
+begin
+	if (!pi_reset_n) begin
+		markX_toggle	<= 1'd0;
+	end
+	else begin
+		markX_toggle	<=  ~markX_toggle;
+	end
+end
+
+
+
+always @(negedge pi_reset_n or negedge markYin)  
+begin
+	if (!pi_reset_n) begin
+		markY_toggle	<= 1'd0;
+	end
+	else begin
+		markY_toggle	<=  ~markY_toggle;
+	end
+end
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

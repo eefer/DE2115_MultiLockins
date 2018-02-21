@@ -23,6 +23,7 @@ create_clock -period 20 [get_ports ll_fifo_write]
 
 
 create_clock -period 100 [get_ports GPIO[8]]
+create_clock -period 100 [get_ports GPIO[17]]
 
 create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_1|cic_x|clk_decimated}]
 create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_1|cic_y|clk_decimated}]
@@ -115,7 +116,9 @@ set_output_delay -clock FPGA_CLK_B_P -min 0.0 {DA[*] DB[*]}
 #**************************************************************
 # Set Clock Groups
 #**************************************************************
-#set_clock_groups -asynchronous -group {GPIO[8]}
+set_clock_groups -asynchronous -group {GPIO[8]}
+
+set_clock_groups -asynchronous -group {GPIO[17]}
 
 
 #**************************************************************
