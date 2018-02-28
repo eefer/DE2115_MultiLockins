@@ -784,8 +784,8 @@ end
 always @(posedge ll_fifo_write) // NEEDS TO MATCH FIFO WRITE CLK
 begin
 	overflw_reg <= overflow;
-	markXin_reg <= SW[17]? markX_toggle : markXin ;
-	markYin_reg <= SW[17]? markY_toggle : markYin ;
+	markXin_reg <= SW[17]? (SW[16]? markX_stretch : markX_toggle) : markXin ;
+	markYin_reg <= SW[17]?                          markY_toggle  : markYin ;
 end
 
 always @(negedge pi_reset_n or negedge markXin)  /////using negedge for schmitt trigger to capture data
@@ -798,6 +798,26 @@ begin
 	end
 end
 
+reg [17:0] markX_stretch_cnt = 18'd0;
+reg markX_stretch;
+
+always @ (posedge CLOCK_50)
+begin
+	if (markXin == 1'b0)
+	begin
+		markX_stretch_cnt <= 18'd0;
+		markX_stretch <= 1'b1;
+	end
+	else if (markX_stretch_cnt < 18'd100000)
+	begin
+		markX_stretch_cnt <= markX_stretch_cnt + 1'b1;
+	end
+	else 
+	begin
+		markX_stretch <= 1'b0;
+	end	
+
+end
 
 
 always @(negedge pi_reset_n or negedge markYin)  
