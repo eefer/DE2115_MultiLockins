@@ -272,7 +272,7 @@ reg		[13:0]  dac_out_b_unsigned;
 reg l_CLOCK_50;
 reg ll_CLOCK_50;
 reg lll_CLOCK_50;
-reg [1:0] temp_counter = 2'd0;
+//reg [1:0] temp_counter = 2'd0;
 
 
 
