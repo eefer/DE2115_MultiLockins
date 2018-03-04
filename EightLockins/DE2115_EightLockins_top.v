@@ -672,6 +672,7 @@ PLL pll_abc (
 
 // single-shot counter
 // for CIC out parallel-to-serial
+//Developed by Saurabh Gupta and William Hudson
 reg l_lia_out_valid;
 
 always @ (posedge CLOCK_50)
