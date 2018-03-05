@@ -25,9 +25,9 @@ create_clock -period 40 [get_nets ll_fifo_write]
 
 
 create_clock -period 100 [get_ports {GPIO[8]}]
-create_clock -period 256KHz [get_ports {GPIO[17]}]
-create_clock -period 256KHz [get_ports {GPIO[14]}]
-create_clock -period 64000KHz [get_ports {GPIO[15]}]
+create_clock -period 1KHz [get_ports {GPIO[17]}]
+create_clock -period 1KHz [get_ports {GPIO[14]}]
+create_clock -period 1KHz [get_ports {GPIO[15]}]
 
 create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_1|cic_x|clk_decimated}]
 create_generated_clock -edges {1 3 100001} -source [get_ports ADA_DCO] [get_nets {eight_lia_pkg_merged_inst|lockin_1|cic_y|clk_decimated}]
