@@ -6,14 +6,14 @@ function selectRectangle(pos,obj)
     hLine2 = findobj(obj, 'Tag', 'phaseLine');
     
     % calculate mean of roi
-    minx = floor(pos(1,2));
-    maxx = floor(pos(1,2)+pos(1,4));
-    miny = floor(pos(1,1));
-    maxy = floor(pos(1,1)+pos(1,3)) ;
+    miny = round(pos(1,2));
+    maxy = round(pos(1,2)+pos(1,4));
+    minx = round(pos(1,1));
+    maxx = round(pos(1,1)+pos(1,3)) ;
     area = (maxx - minx) * (maxy - miny);
     
-    roi_mean_amp = squeeze(sum(sum(lockin_amp_mat(minx:maxx,miny:maxy,:),1),2))./area;
-    roi_mean_phase = squeeze(sum(sum(lockin_phase_mat(minx:maxx,miny:maxy,:),1),2))./area;
+    roi_mean_amp = squeeze(sum(sum(lockin_amp_mat(miny:maxy-1,minx:maxx-1,:),1),2))./area;
+    roi_mean_phase = squeeze(sum(sum(lockin_phase_mat(miny:maxy-1,minx:maxx-1,:),1),2))./area;
     
     % update 
     set(hLine1,'YData', roi_mean_amp);
