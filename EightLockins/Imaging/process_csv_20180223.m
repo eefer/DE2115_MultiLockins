@@ -11,12 +11,11 @@
 %   > HAVE FUN!
 %%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-clc; clear all; close all;
+% clc; clear all; close all;
 
 % TODO: MOVE SETTINGS FOR ALL FILE-DEPENDENT PARAMETERS HERE
 
-load('T:\projects\WilsonGroup\8 lockins\data\NIST data 13mar18\NIST data 13mar18\z5.mat');
-
+load('T:\projects\WilsonGroup\8 lockins\data\NIST Data 2018_03_05\NIST Data\x5.mat');
 
 %%
 
@@ -53,7 +52,7 @@ set(h,'Tag','ampImage');
 colorbar;
 set(gca,'DataAspectRatio',[aspectRatio,1,1]);
 % caxis([0,max(max ([lockin_amp{:}]))]);
-caxis([0,20000]);
+caxis([0,1000]);
 hrect = imrect(gca,[20,40,1,1]);
 
 subplot( 2,2,2 );
