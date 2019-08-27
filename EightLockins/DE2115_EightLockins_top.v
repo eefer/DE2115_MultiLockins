@@ -4,7 +4,7 @@
 //=======================================================
 /////////////////////////////**************************************////////////////////////////////
 /////////////////////////////****************************************//////////////////////////////
-//*********  Top level file adapted from the Adaptive filtering project by Saurabh  *********/////
+//******  Top level file adapted from the Adaptive filtering project by Saurabh & Jesse, CSU**/////
 //*********  Modified by: Saurabh Gupta & William Hudson, Wilson Lab, CSU 			*********///// 
 //////////////////////////////****************************************////////////////////////////
 
@@ -73,23 +73,7 @@ module DE2115_EightLockins_top(
 	SRAM_LB_N,
 	SRAM_OE_N,
 	SRAM_UB_N,
-	SRAM_WE_N,
-	
-		// Ethernet 0
-//  ENET0_MDC,
-//  ENET0_MDIO,
-//  ENET0_RESET_N,
-//	
-//	// Ethernet 1
-//  ENET1_GTX_CLK,
-//  ENET1_MDC,
-//  ENET1_MDIO,
-//  ENET1_RESET_N,
-//  ENET1_RX_CLK,
-//  ENET1_RX_DATA,
-//  ENET1_RX_DV,
-//  ENET1_TX_DATA,
-//   ENET1_TX_EN,
+	SRAM_WE_N,		
 
 	//////////// HSMC, HSMC connect to DCC - High Speed ADC/DAC //////////
 	AD_SCLK,
@@ -122,23 +106,7 @@ module DE2115_EightLockins_top(
 	J1_152,
 	XT_IN_N,
 	XT_IN_P
-//	NCO_OUT,
-// clk_1khz,
-//	ast_source_data,
-//	ast_source_valid,
-//	ast_source_error,
-//	DFF_ast_source_data,
-//	CLOCK_20,
-//	test_out_data,
-//	adaptive_out_data,
-//	error_adaptive_out,
-//	emu
 );
-
-//=======================================================
-//  PARAMETER declarations
-//=======================================================
-
 
 //=======================================================
 //  PORT declarations
@@ -241,23 +209,6 @@ inout 		          		J1_152;
 input 		          		XT_IN_N;
 input 		          		XT_IN_P;
 
-		// Ethernet 0
-//output        ENET0_MDC;
-//inout         ENET0_MDIO;
-//output        ENET0_RESET_N;
-//	
-//	// Ethernet 1
-//output        ENET1_GTX_CLK;
-//output        ENET1_MDC;
-//inout         ENET1_MDIO;
-//output        ENET1_RESET_N;
-//input         ENET1_RX_CLK;
-//input  [3: 0] ENET1_RX_DATA;
-//input         ENET1_RX_DV;
-//output [3: 0] ENET1_TX_DATA;
-//output        ENET1_TX_EN;
-
-
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
@@ -277,10 +228,6 @@ reg		[13:0]  dac_out_b_unsigned;
 reg l_CLOCK_50;
 reg ll_CLOCK_50;
 reg lll_CLOCK_50;
-//reg [1:0] temp_counter = 2'd0;
-
-
-
 
 //=======================================================
 //  Structural coding
@@ -304,13 +251,13 @@ assign 	LEDR[17:1]		=  17'b0;
 
 
 assign	HEX0[6:0]		=	7'b1111111;
-assign  	HEX1[6:0]		=	7'b1111111;
+assign 	HEX1[6:0]		=	7'b1111111;
 assign	HEX2[6:0]		=	7'b1111111;
 assign	HEX3[6:0]		=	7'b1111111;
 assign	HEX4[6:0]		=	7'b1111111;
 assign	HEX5[6:0]		=	7'b1111111;
 assign	HEX6[6:0]		=	7'b1111111;
-assign  	HEX7[6:0]		=	7'b1111111;
+assign 	HEX7[6:0]		=	7'b1111111;
 
  // assign for ADC control signal
 assign	AD_SCLK			= 1'b1;			// (DFS)Data Format Select
@@ -372,8 +319,6 @@ begin
 	end
 end
 
-
-
 /*	//--- Channel B
 always @(negedge reset_n or posedge ADB_DCO)
 begin
@@ -400,8 +345,6 @@ end
 // assign for DAC output data
    assign	DA =  dac_out_a;
    assign	DB =  dac_out_b;
-	
-
 
 		
 always @(negedge reset_n or posedge FPGA_CLK_B_P) //DAC output should be run using the DAC clock
@@ -415,226 +358,8 @@ begin
 		dac_out_b	<= dac_out_b_wire ;
 	end
 end
-								
-
-
-								
-								
-
-
 
 ///////////////////////////PROTOCOL To transfer data to a Rasp Pi/////////////////////
-//From Saurabh Gupta's adaptive filter design
-
-//reg [127:0] encoded_data = 128'd0;
-//
-//always @ (negedge lia_out_valid)
-//begin
-//encoded_data <= {	temp_counter,2'b11,lia_out_y_8[3:0],
-//						temp_counter,2'b11,lia_out_y_8[7:4],
-//						temp_counter,2'b11,lia_out_y_8[11:8],
-//						temp_counter,2'b11,lia_out_y_8[15:12],
-//						
-//						temp_counter,2'b10,lia_out_x_8[3:0],
-//						temp_counter,2'b10,lia_out_x_8[7:4],
-//						temp_counter,2'b10,lia_out_x_8[11:8],
-//						temp_counter,2'b10,lia_out_x_8[15:12],
-//						
-//						temp_counter,2'b11,lia_out_y_7[3:0],
-//						temp_counter,2'b11,lia_out_y_7[7:4],
-//						temp_counter,2'b11,lia_out_y_7[11:8],
-//						temp_counter,2'b11,lia_out_y_7[15:12],
-//						
-//						temp_counter,2'b10,lia_out_x_6[3:0],
-//						temp_counter,2'b10,lia_out_x_6[7:4],
-//						temp_counter,2'b10,lia_out_x_6[11:8],
-//						temp_counter,2'b10,lia_out_x_6[15:12],
-//						
-//						temp_counter,2'b11,lia_out_y_5[3:0],
-//						temp_counter,2'b11,lia_out_y_5[7:4],
-//						temp_counter,2'b11,lia_out_y_5[11:8],
-//						temp_counter,2'b11,lia_out_y_5[15:12],
-//						
-//						temp_counter,2'b10,lia_out_x_5[3:0],
-//						temp_counter,2'b10,lia_out_x_5[7:4],
-//						temp_counter,2'b10,lia_out_x_5[11:8],
-//						temp_counter,2'b10,lia_out_x_5[15:12],
-//						
-//						temp_counter,2'b11,lia_out_y_4[3:0],
-//						temp_counter,2'b11,lia_out_y_4[7:4],
-//						temp_counter,2'b11,lia_out_y_4[11:8],
-//						temp_counter,2'b11,lia_out_y_4[15:12],
-//						
-//						temp_counter,2'b10,lia_out_x_4[3:0],
-//						temp_counter,2'b10,lia_out_x_4[7:4],
-//						temp_counter,2'b10,lia_out_x_4[11:8],
-//						temp_counter,2'b10,lia_out_x_4[15:12],
-//						
-//						temp_counter,2'b11,lia_out_y_3[3:0],
-//						temp_counter,2'b11,lia_out_y_3[7:4],
-//						temp_counter,2'b11,lia_out_y_3[11:8],
-//						temp_counter,2'b11,lia_out_y_3[15:12],
-//						
-//						temp_counter,2'b10,lia_out_x_3[3:0],
-//						temp_counter,2'b10,lia_out_x_3[7:4],
-//						temp_counter,2'b10,lia_out_x_3[11:8],
-//						temp_counter,2'b10,lia_out_x_3[15:12],						
-//												
-//						temp_counter,2'b11,lia_out_y_2[3:0],
-//						temp_counter,2'b11,lia_out_y_2[7:4],
-//						temp_counter,2'b11,lia_out_y_2[11:8],
-//						temp_counter,2'b11,lia_out_y_2[15:12],
-//						
-//						temp_counter,2'b10,lia_out_x_2[3:0],
-//						temp_counter,2'b10,lia_out_x_2[7:4],
-//						temp_counter,2'b10,lia_out_x_2[11:8],
-//						temp_counter,2'b10,lia_out_x_2[15:12],
-//						
-//						temp_counter,2'b01,lia_out_y_1[3:0],
-//						temp_counter,2'b01,lia_out_y_1[7:4],
-//						temp_counter,2'b01,lia_out_y_1[11:8],
-//						temp_counter,2'b01,lia_out_y_1[15:12],
-//						
-//						temp_counter,2'b00,lia_out_x_1[3:0],
-//						temp_counter,2'b00,lia_out_x_1[7:4],
-//						temp_counter,2'b00,lia_out_x_1[11:8],
-//						temp_counter,2'b00,lia_out_x_1[15:12]		//MSB				
-//							
-//						};
-//end
-//
-//reg [127:0] encoded_data = 128'd0;
-//
-//always @ (negedge lia_out_valid)
-//begin
-//encoded_data <= {	lia_out_y_8,lia_out_x_8,
-//
-//						lia_out_y_7,lia_out_x_6,
-//
-//						lia_out_y_5,lia_out_x_5,
-//
-//						lia_out_y_4,lia_out_x_4,
-//
-//						lia_out_y_3,lia_out_x_3,						
-//
-//						lia_out_y_2,lia_out_x_2,
-//						
-//					   lia_out_y_1, lia_out_x_1		//MSB				
-//							
-//						};
-//end
-//
-//
-//
-////pass to FIFO
-//
-//
-// FIFO fifo_1 (
-//	.data(encoded_data),
-//	.rdclk(GPIO[8]),
-//	.rdreq(1'b1),
-//	.wrclk(lia_out_valid),
-//	.wrreq(1'b1),
-//	.q(GPIO[7:0]),   
-//	.rdempty(GPIO[11]),
-//	.wrfull(GPIO[10])
-//	);
-//	
-//always @ (posedge lia_out_valid)	
-//begin
-//temp_counter = temp_counter + 2'b01;
-//end
-
-
-
-////////////Transfer to SRAM////////////////////////////
-
-//(*noprune*) reg [21:0] sram_address = 22'd0;
-//
-//
-//sram_access sram_abc (
-//							.bridge_input_conduit_address((sram_write_done) ? 21'bzzzzzzzzzzzzzzzzzzzz : sram_address),     // bridge_input_conduit.address
-//							.bridge_input_conduit_byte_enable((sram_write_done) ? 2'bzz : 2'b11), //                     .byte_enable
-//							.bridge_input_conduit_read(),        //                     .read
-//							.bridge_input_conduit_write((sram_write_done) ? 1'bz : lia_out_valid),       //                     .write
-//							.bridge_input_conduit_write_data((sram_write_done) ? 16'bzzzzzzzzzzzzzzzz : out_data),  //                     .write_data
-//							.bridge_input_conduit_acknowledge(), //                     .acknowledge
-//							.bridge_input_conduit_read_data(),   //                     .read_data
-//							.clk_clk(CLOCK_50),                          //                  clk.clk
-//							.sram_conduit_DQ(SRAM_DQ),                  //         sram_conduit.DQ
-//							.sram_conduit_ADDR(SRAM_ADDR),                //                     .ADDR
-//							.sram_conduit_LB_N(SRAM_LB_N),                //                     .LB_N
-//							.sram_conduit_UB_N(SRAM_UB_N),                //                     .UB_N
-//							.sram_conduit_CE_N(SRAM_CE_N),                //                     .CE_N
-//							.sram_conduit_OE_N(SRAM_OE_N),                //                     .OE_N
-//							.sram_conduit_WE_N(SRAM_WE_N),                 //                     .WE_N
-////							.vga_conduit_CLK(VGA_CLK),                  //          vga_conduit.CLK
-////							.vga_conduit_HS(VGA_HS),                   //                     .HS
-////							.vga_conduit_VS(VGA_VS),                   //                     .VS
-////							.vga_conduit_BLANK(VGA_BLANK_N),                //                     .BLANK
-////							.vga_conduit_SYNC(VGA_SYNC_N),                 //                     .SYNC
-////							.vga_conduit_R(VGA_R),                    //                     .R
-////							.vga_conduit_G(VGA_G),                    //                     .G
-////							.vga_conduit_B(VGA_B)   
-//	);
-//
-//
-//reg  delay1_out_valid;
-//reg reg_reset_frame;
-//reg l_reg_reset_frame;
-//parameter INIT  = 1'd0,INCREMENT = 1'd1;
-//wire reset_frame;
-//
-//	
-//always @ (posedge CLOCK_50)
-//begin
-//reg_reset_frame <= reset_frame;
-//l_reg_reset_frame <= reg_reset_frame;
-//delay1_out_valid <= lia_out_valid;
-//end
-//
-//////////////////////////////////////STATE MACHINE FOR SRAM DATA TRANSFER////////////////////////////
-//reg state_mach = 1'd0;
-//reg sram_write_done = 1'b0;
-////(*keep*) output wire test_bool;
-////assign test_bool = (reg_reset_frame == 1'b0 || sram_address >= 22'd2097152);
-//
-//always @ (posedge CLOCK_50)
-//begin
-//
-//case (state_mach)
-//
-//INIT:
-//begin
-//if (reg_reset_frame == 1'b1 && l_reg_reset_frame == 1'b0) begin
-//	sram_address <= 22'd0;
-//	state_mach <= INCREMENT;
-//	sram_write_done <= 1'b0;
-//end
-//end
-//
-//INCREMENT:
-//begin
-//if (lia_out_valid == 1'b0 && delay1_out_valid== 1'b1) begin // if neg edge of out_valid
-//	sram_address <= sram_address + 2'b10;
-//	end
-//
-//if (reg_reset_frame == 1'b0 || sram_address >= 22'd2097152) begin
-//	state_mach <= INIT;
-//	sram_write_done <= 1'b1;
-//end
-//
-//end
-//endcase
-//end
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-////////////////////////////////////////////////////////
-
-	
 
 eight_lia_pkg_merged eight_lia_pkg_merged_inst(
 				.clock_50			(CLOCK_50),
@@ -665,19 +390,16 @@ eight_lia_pkg_merged eight_lia_pkg_merged_inst(
 				
 );
 
-/// PLL INSTANTIATION////////////////////////////////////////////
-
+////////////////////////// PLL INSTANTIATION/////////////////////
 
 PLL pll_abc (
 	.inclk0(CLOCK_50),
-	.c0(FIFO_CLOCK_25));
+	.c0(FIFO_CLOCK_25));	
 	
-	
-/////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
 // single-shot counter
 // for CIC out parallel-to-serial
-//Developed by Saurabh Gupta and William Hudson
 reg l_lia_out_valid;
 
 always @ (posedge CLOCK_50)
@@ -690,7 +412,7 @@ end
 
 always @ (posedge FIFO_CLOCK_25)
 begin
-	if (l_lia_out_valid == 1'b1) //Checking lia_out_valid on 25 MHz clk might not be a good idea
+	if (l_lia_out_valid == 1'b1)
 	begin
 		cnt <= 4'd0;
 		fifo_load <= 1'b1;
@@ -718,8 +440,6 @@ l_fifo_write <= fifo_write;
 ll_fifo_write <= l_fifo_write;
 end
 
-
-
 always @ (posedge fifo_write)
 begin
 	case (cnt)
@@ -743,8 +463,6 @@ begin
 end				
 
 ///////////////////////////PROTOCOL//////////////////////////////////////////////////////////
-//Adapted from the Adaptive filter project intended for RPi data transfer
-//Developed by William Hudson and Saurabh Gupta
 
 reg [47:0] cic_encoded_data = 48'd0;
 reg overflw_reg;
@@ -776,19 +494,16 @@ end
 
 //pass to FIFO
 
-
  FIFO fifo_1 (
 	.data(cic_encoded_data),
 	.rdclk(GPIO[8]),
 	.rdreq(1'b1),
-	.wrclk(ll_fifo_write), //NEED TO INSPECT LATER
+	.wrclk(ll_fifo_write), 
 	.wrreq(1'b1),
 	.q({dummy,GPIO[10],GPIO[13],GPIO[12],GPIO[7:0]}),   
 	.rdempty(GPIO[11]),
 	.wrfull(overflow)
 	);
-	
-
 	
 always @(posedge ll_fifo_write) // NEEDS TO MATCH FIFO WRITE CLK
 begin
@@ -829,7 +544,6 @@ begin
 
 end
 
-
 always @(negedge pi_reset_n or negedge markYin)  
 begin
 	if (!pi_reset_n) begin
@@ -839,9 +553,5 @@ begin
 		markY_toggle	<=  ~markY_toggle;
 	end
 end
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 endmodule
