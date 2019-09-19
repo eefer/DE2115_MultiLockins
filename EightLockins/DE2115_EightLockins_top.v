@@ -478,8 +478,8 @@ reg markYin_reg;
 wire CIC_overflow;
 
 assign pi_reset_n = GPIO[17];
-assign markXin = GPIO[14];
-assign markYin = GPIO[15];
+assign markXin = GPIO[14]; // 20190919 can contribute to clock domain crossing problem. needs to be registered twice
+assign markYin = GPIO[15]; // 20190919 can contribute to clock domain crossing problem. needs to be registered twice
 assign LEDR[0] = CIC_overflow;
 reg CIC_overflow_LED ;
 
@@ -526,7 +526,7 @@ end
 reg [17:0] markX_stretch_cnt = 18'd0;
 reg markX_stretch;
 
-always @ (posedge CLOCK_50)
+always @ (posedge CLOCK_50) // 20190919 THIS PIECE MIGHT HAVE RACE CONDITIONS AND SYNC PROBLEMS THAT WOULD RESULT IN CREATING A RUNT X-STRETCH. NEEDS INSPECTION
 begin
 	if (markXin == 1'b0)
 	begin
