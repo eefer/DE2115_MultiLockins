@@ -281,18 +281,18 @@ wire 		[15:0]	lia_out_x_1;		// lock-in x output signal for lockin_1
 wire		[15:0]	lia_out_y_1;		// lock-in y output signal for lockin_1
 wire		[15:0]	lia_out_x_2;		// lock-in x output signal for lockin_2
 wire		[15:0]	lia_out_y_2;		// lock-in y output signal for lockin_2
-wire		[15:0]	lia_out_x_3;		// lock-in x output signal for lockin_2
-wire		[15:0]	lia_out_y_3;
-wire		[15:0]	lia_out_x_4;		// lock-in x output signal for lockin_2
-wire		[15:0]	lia_out_y_4;
-wire		[15:0]	lia_out_x_5;		// lock-in x output signal for lockin_2
-wire		[15:0]	lia_out_y_5;
-wire		[15:0]	lia_out_x_6;		// lock-in x output signal for lockin_2
-wire		[15:0]	lia_out_y_6;
-wire		[15:0]	lia_out_x_7;		// lock-in x output signal for lockin_2
-wire		[15:0]	lia_out_y_7;
-wire		[15:0]	lia_out_x_8;		// lock-in x output signal for lockin_2
-wire		[15:0]	lia_out_y_8;
+wire		[15:0]	lia_out_x_3;		// lock-in x output signal for lockin_3
+wire		[15:0]	lia_out_y_3;		// lock-in y output signal for lockin_3
+wire		[15:0]	lia_out_x_4;		// lock-in x output signal for lockin_4
+wire		[15:0]	lia_out_y_4;		// lock-in y output signal for lockin_4
+wire		[15:0]	lia_out_x_5;		// lock-in x output signal for lockin_5
+wire		[15:0]	lia_out_y_5;		// lock-in y output signal for lockin_5
+wire		[15:0]	lia_out_x_6;		// lock-in x output signal for lockin_6
+wire		[15:0]	lia_out_y_6;		// lock-in y output signal for lockin_6
+wire		[15:0]	lia_out_x_7;		// lock-in x output signal for lockin_7
+wire		[15:0]	lia_out_y_7;		// lock-in y output signal for lockin_7
+wire		[15:0]	lia_out_x_8;		// lock-in x output signal for lockin_8
+wire		[15:0]	lia_out_y_8;		// lock-in y output signal for lockin_8
 wire 		lia_out_valid;
 
  
