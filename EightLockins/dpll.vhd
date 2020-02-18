@@ -1,5 +1,10 @@
 -- dpll.vhd
 -- digital phase-locked loop
+-- This is a frequency synthesizer that matches a reference input.
+-- Originally developed for lock-in that was discussed in a 2016 SPIE Proceedings.
+-- Later modified for AFM tip-surface resonance measurements, where
+-- we use it only as a frequency source without tracking an external reference.
+-- Tracking code remains, but has been commented out.
 -- Jesse Wilson (2015) jesse.wilson@colostate.edu
 --
 -- Modified by Erin E. Flater (2017) flater01@luther.edu
@@ -38,13 +43,13 @@ END dpll;
 ARCHITECTURE behavior of dpll IS
 	SIGNAL err_phase_lead 	: STD_LOGIC := '0';
 	SIGNAL err_phase_lag  	: STD_LOGIC := '0';
-	SIGNAL ersig			 	: SIGNED(19 downto 0) := to_signed(0, 20);
+	SIGNAL ersig			: SIGNED(19 downto 0) := to_signed(0, 20);
 	SIGNAL filtered_ersig	: SIGNED(19 downto 0) := to_signed(0, 20);
 	SIGNAL outwave_ttl	 	: STD_LOGIC := '0';
-	SIGNAL nco_phaseinc 		: UNSIGNED(19 downto 0) := to_unsigned(1048, 20);
+	SIGNAL nco_phaseinc 	: UNSIGNED(19 downto 0) := to_unsigned(1048, 20);
 	SIGNAL nco_sync			: STD_LOGIC_VECTOR(12 downto 0);	-- NCO output that we'll sync to the reference wave input
-	SIGNAL nco_sin				: STD_LOGIC_VECTOR(12 downto 0);	-- NCO phase-shifted cos output
-	SIGNAL nco_cos				: STD_LOGIC_VECTOR(12 downto 0);	-- NCO phase-shifted sine output
+	SIGNAL nco_sin			: STD_LOGIC_VECTOR(12 downto 0);	-- NCO phase-shifted cos output
+	SIGNAL nco_cos			: STD_LOGIC_VECTOR(12 downto 0);	-- NCO phase-shifted sine output
 	
 	-- loop filter signals
 	signal lersig 						: signed(19 downto 0) := to_signed(0,20);
