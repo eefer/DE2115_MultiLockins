@@ -3,6 +3,13 @@
 -- Jesse Wilson (2015) jesse.wilson@colostate.edu
 --
 -- Modified by Erin E. Flater (2017) flater01@luther.edu
+--
+-- (JWW 2020-02-17): Feedback loop disabled. For now this doesn't operate as a 
+-- phase-locked loop, rather it serves as a 3-phase frequency synthesizer. To 
+-- re-enable, need to uncomment ref_i lines, the phase detector, the error signal
+-- generator, and feedback loop filter. WARNING: phase-locked loop tracking has
+-- not been tested since 2015, and will need tuning / debugging before it works!
+-- 
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -10,21 +17,21 @@ USE ieee.numeric_std.all;
 
 ENTITY dpll IS
 	PORT( 
-		clk				: IN  STD_LOGIC;										-- system clock
-		ref_src_sel_i	: in std_logic := '0';								-- reference source select 0=internal 1=external
+		clk				: IN  STD_LOGIC;								-- system clock
+		ref_src_sel_i	: in std_logic := '0';							-- reference source select 0=internal 1=external
 		
---		ref_i	 			: IN  STD_LOGIC;  									-- external reference wave input
+--		ref_i	 			: IN  STD_LOGIC;  							-- external reference wave input (disabled for now)
 		phase_offs_i	: IN 	std_logic_vector(19 downto 0);			-- phase offset to add to cos_o
 		
 		phase_incr_i 	: in std_logic_vector(19 downto 0)  			-- phase increment for internal reference
 							:= std_logic_vector(to_unsigned(4196,20));	-- defaults to 250 kHz (need to double check)
 		
-		cos_o				: OUT STD_LOGIC_VECTOR(12 downto 0); 			-- signal wave, in-phase (cos)
-		sin_o				: OUT STD_LOGIC_VECTOR(12 downto 0);			-- signal wave, quadrature (sin)
+		cos_o				: OUT STD_LOGIC_VECTOR(12 downto 0); 		-- signal wave, in-phase (cos)
+		sin_o				: OUT STD_LOGIC_VECTOR(12 downto 0);		-- signal wave, quadrature (sin)
 		ref_o				: OUT STD_LOGIC_VECTOR(12 downto 0);         -- signal wave, reference out wave from the nco
 		
-		phase_lag_o 	: OUT STD_LOGIC;			-- diagnostic, =1 when PLL lags ref
-		phase_lead_o 	: OUT STD_LOGIC			-- diagnostic, =1 when PLL leads ref
+		phase_lag_o 	: OUT STD_LOGIC;		-- diagnostic, =1 when PLL lags ref_i
+		phase_lead_o 	: OUT STD_LOGIC			-- diagnostic, =1 when PLL leads ref_i
 	);
 END dpll;
 	

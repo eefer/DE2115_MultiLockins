@@ -26,7 +26,7 @@ ENTITY lia_core IS
 		phase_incr_i	: in	std_logic_vector(19 downto 0);	-- phase increment for internal reference
 		ref_cos_o		: out std_logic_vector(12 downto 0);	-- PLL-generated reference cosine (in-phase)
 		ref_sin_o		: out std_logic_vector(12 downto 0);	-- PLL-generated reference sine (quadrature)
-		dpll_ref			: out std_logic_vector(12 downto 0);	-- PLL-generated reference wave
+		dpll_ref		: out std_logic_vector(12 downto 0);	-- PLL-generated reference wave (used for debugging tracking)
 		
 		-- lock-in amplifier input and output signals
 		samp_clk_i	: in std_logic;								-- sampling clock (1 MHz) from the ADC
@@ -39,8 +39,8 @@ ENTITY lia_core IS
 		cic_x_in_sel_i	: in natural range 0 to 1 := 0;			-- CIC filter x input select
 																				--  0: in-phase mixer (default)
 																				--  1: input signal (bypass mixer to debug CIC filter behavior)		
-		gain_ctrl	: IN  std_logic_vector (5 downto 0);
-		overflow_lia : OUT std_logic
+		gain_ctrl	: IN  std_logic_vector (5 downto 0);	-- sets gain for the CIC output
+		overflow_lia : OUT std_logic						-- indicates overflow at CIC output gain stage
 	);
 END lia_core;
 
@@ -64,12 +64,12 @@ ARCHITECTURE arch OF lia_core IS
 		COMPONENT dpll IS
 		PORT( 
 			clk				: IN  STD_LOGIC;	-- system clock
---			ref_i	 			: IN  STD_LOGIC;  -- reference wave
+--			ref_i	 		: IN  STD_LOGIC; 	-- reference signal for PLL locking (disabled)
 			phase_offs_i	: IN 	std_logic_vector(19 downto 0);	-- phase offset to add to cos_o
 			phase_incr_i	: IN	std_logic_vector(19 downto 0);	-- phase increment for internal reference
-			cos_o				: OUT  STD_LOGIC_VECTOR(12 downto 0);  -- phase-shifted cos out
-			sin_o				: OUT  STD_LOGIC_VECTOR(12 downto 0);  -- quadrature sin out
-			ref_o				: OUT  STD_LOGIC_VECTOR(12 downto 0);	-- nco reference wave out
+			cos_o			: OUT  STD_LOGIC_VECTOR(12 downto 0);  -- phase-shifted cos out
+			sin_o			: OUT  STD_LOGIC_VECTOR(12 downto 0);  -- quadrature sin out
+			ref_o			: OUT  STD_LOGIC_VECTOR(12 downto 0);	-- nco reference wave out
 			phase_lag_o 	: out std_logic;
 			phase_lead_o 	: out std_logic
 		);
@@ -103,11 +103,11 @@ ARCHITECTURE arch OF lia_core IS
 		signal		dpll_sin		: std_logic_vector(12 downto 0);
 		attribute	keep of dpll_sin : signal is true;
 		
+		-- Signals for PLL-generated reference wave (used for debugging tracking; disabled for now)
 --		signal		dpll_ref		: std_logic_vector(12 downto 0);
 --		attribute	keep of dpll_ref : signal is true;
 		
 		
---		SIGNAL		q12_refwave_i								: std_logic_vector(11 downto 0);
 		SIGNAL 		q27_mixer_i_product					  	: std_logic_vector(26 downto 0);
 		SIGNAL		mixer_i_scaled								: std_logic_vector(26 downto 0);
 		SIGNAL 		q27_mixer_q_product					  	: std_logic_vector(26 downto 0);
@@ -135,9 +135,7 @@ ARCHITECTURE arch OF lia_core IS
 		signal overflow_y					: std_logic;
 
 		
-		
-		--		signal mixer_in_valid			: std_logic;
-		
+				
 		
 
 	--
@@ -152,41 +150,27 @@ ARCHITECTURE arch OF lia_core IS
 	dpll_inst : dpll
 	PORT MAP(
 		clk				=> sys_clk_i,
---		ref_i				=> ref_i,  					-- reference wave
-		phase_offs_i	=> phase_offs_i,			-- phase offset
-		phase_incr_i	=> phase_incr_i,			-- phase increment for internal reference
-		cos_o				=> dpll_cos,				-- phase-shifted cos
-		sin_o				=> dpll_sin,				-- phase-shifted sin
-		ref_o				=> dpll_ref					-- reference wave out instantiation for dpll
+--		ref_i			=> ref_i,  			-- external reference for PLL tracking (disabled for now)
+		phase_offs_i	=> phase_offs_i,	-- phase offset
+		phase_incr_i	=> phase_incr_i,	-- phase increment for internal reference
+		cos_o			=> dpll_cos,		-- phase-shifted cos
+		sin_o			=> dpll_sin,		-- phase-shifted sin
+		ref_o			=> dpll_ref			-- reference wave out instantiation for dpll
 		--- latch cos and sine (edited version)
 		
 		
 	);
-	--ref_cos_o <= dpll_cos;							-- export reference cosine
-	--ref_sin_o <= dpll_sin;							-- export reference sine
-	---- edited version
-	ref_cos_o <= latch_cos;
-	ref_sin_o <= latch_sin;
+	
+	ref_cos_o <= latch_cos;			-- export reference cosine
+	ref_sin_o <= latch_sin;			-- export reference sine
 	gain_ctrl_tx <= gain_ctrl;
 	
 	overflow_lia <= overflow_x or overflow_y;
-		
---	delay_clock : process
---	begin
---	
---		--if rising_edge(sys_clk_i) then
---		
---			wait until rising_edge(sys_clk_i);
---			mixer_in_valid <= samp_clk_i  ;
---			
---	--end if;
---	end process;
 		
 	-- in-phase mixer
 	mixer_i: component mult_13x14
 		PORT MAP (
 		   clock		=> samp_clk_i,
---			clock		=> mixer_in_valid,
 			dataa		=>	latch_cos, 
 			datab		=>	input,
 			result	=> q27_mixer_i_product
@@ -201,15 +185,11 @@ ARCHITECTURE arch OF lia_core IS
 				mixer_i_scaled <= q27_mixer_i_product; -- tune for post-mixer gain
         end if;
 	end process;	
-
-	
-	--end process;
 	
 	-- quadrature mixer
 	mixer_q: component mult_13x14
 		PORT MAP (
 			clock		=> samp_clk_i,
---			clock		=> mixer_in_valid,			-- Added by EEF 7/18/17, Should have a FIFO for the clock domnain crossing though
 			dataa		=>	latch_sin,
 			datab		=>	input,
 			result	=> q27_mixer_q_product
@@ -228,28 +208,7 @@ ARCHITECTURE arch OF lia_core IS
 	-- CIC x-channel input
 	cic_x_in	<=	mixer_i_scaled;	-- feed mixer product to the CIC filter directly without any mux
 
-	-- CIC x-channel input select mux
---	cic_x_in_sel_mux : process( sys_clk_i )
---	begin
---		if rising_edge( sys_clk_i ) then
---			if cic_x_in_sel_i = 0 then 
---				cic_x_in	<=	mixer_i_scaled;	-- feed mixer product to the CIC filter
---			else
---				cic_x_in(26 downto 13)	<= input;				-- feed ADC raw data to tho CIC filter
---				cic_x_in(12 downto 0)   <= (others => '0');   -- zero padding LSBs for proof of concept experiment of CIC filter...
---			end if;
---		end if;
---	end process;
 
-	-- for testing purpose of the CIC filter only...the previous cic_x_in_sel_mux needs to be bypassed when the following section is being used
-	
---	cic_x_in_feed_nco : process( sys_clk_i )
---	begin
---		if rising_edge( sys_clk_i ) then
---			cic_x_in(26 downto 14)	<=	dpll_cos;
---			cic_x_in(13 downto 0)   <= (others => '0');
---		end if;
---	end process;
 	
 	--
 	
@@ -269,38 +228,32 @@ ARCHITECTURE arch OF lia_core IS
 	cic_x : cic_filter
 	port map
 	(	
-		clk_sys_in		=> sys_clk_i,			-- system clock (50 MHz)
-		clk_in			=> samp_clk_i,			-- input clock (1 MHz)
-		data_in			=> cic_x_in,			-- input signal
-		clk_out 			=> cic_x_out_valid,	-- output clock (1 kHz)
-		data_out			=> cic_x_out,			-- output signal
-		gain_ctrl_cic	=> gain_ctrl_tx,
-		overflow			=> overflow_x
+		clk_sys_in		=> sys_clk_i,		-- system clock (50 MHz)
+		clk_in			=> samp_clk_i,		-- input clock (1 MHz)
+		data_in			=> cic_x_in,		-- input signal
+		clk_out 		=> cic_x_out_valid,	-- output clock (1 kHz)
+		data_out		=> cic_x_out,		-- output signal
+		gain_ctrl_cic	=> gain_ctrl_tx,	-- controls scaling (gain) of CIC output
+		overflow		=> overflow_x		-- indicates overflow at CIC output gain block
 	);
 	
 	
 	-- CIC y-channel input
 	 cic_y_in	<= mixer_q_scaled;
-	-- CIC y-channel input register
---	cic_y_in_reg: process( sys_clk_i )
---	begin
---		if rising_edge( sys_clk_i ) then
---			cic_y_in	<=	mixer_q_scaled;	-- feed mixer product to the CIC filter
---		end if;
---	end process;
+
 	
 	
 	-- CIC low-pass filter, y-channel
 	cic_y : cic_filter
 	port map
 	(
-		clk_sys_in		=> sys_clk_i,
-		clk_in			=> samp_clk_i,			-- input clock
-		data_in			=> cic_y_in,			-- input signal
-		clk_out 			=> cic_y_out_valid,	-- output clock
-		data_out			=> cic_y_out,			-- output signal
-		gain_ctrl_cic	=> gain_ctrl_tx,
-		overflow			=> overflow_y
+		clk_sys_in		=> sys_clk_i,		-- system clock (50 MHz)
+		clk_in			=> samp_clk_i,		-- input clock
+		data_in			=> cic_y_in,		-- input signal
+		clk_out 		=> cic_y_out_valid,	-- output clock
+		data_out		=> cic_y_out,		-- output signal
+		gain_ctrl_cic	=> gain_ctrl_tx,	-- controls scaling (gain) of CIC output
+		overflow		=> overflow_y		-- indicates overflow at CIC output gain block
 	);
 	
 	-- export CIC outputs
