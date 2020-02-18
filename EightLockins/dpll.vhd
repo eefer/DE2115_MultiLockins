@@ -41,21 +41,21 @@ ENTITY dpll IS
 END dpll;
 	
 ARCHITECTURE behavior of dpll IS
-	SIGNAL err_phase_lead 	: STD_LOGIC := '0';
-	SIGNAL err_phase_lag  	: STD_LOGIC := '0';
-	SIGNAL ersig			: SIGNED(19 downto 0) := to_signed(0, 20);
-	SIGNAL filtered_ersig	: SIGNED(19 downto 0) := to_signed(0, 20);
-	SIGNAL outwave_ttl	 	: STD_LOGIC := '0';
-	SIGNAL nco_phaseinc 	: UNSIGNED(19 downto 0) := to_unsigned(1048, 20);
+	SIGNAL err_phase_lead 	: STD_LOGIC := '0';	-- indicates NCO phase is behind the external reference
+	SIGNAL err_phase_lag  	: STD_LOGIC := '0'; -- indicates NCO phase is ahead of the external reference
+	SIGNAL ersig			: SIGNED(19 downto 0) := to_signed(0, 20);	-- phase tracking error = phase_lead - phase_lag
+	SIGNAL filtered_ersig	: SIGNED(19 downto 0) := to_signed(0, 20);	-- error feedback signal for P-D controller
+	SIGNAL outwave_ttl	 	: STD_LOGIC := '0';		-- binary square wave output of NCO
+	SIGNAL nco_phaseinc 	: UNSIGNED(19 downto 0) := to_unsigned(1048, 20);	-- NCO phase increment. Controls NCO frequency.
 	SIGNAL nco_sync			: STD_LOGIC_VECTOR(12 downto 0);	-- NCO output that we'll sync to the reference wave input
 	SIGNAL nco_sin			: STD_LOGIC_VECTOR(12 downto 0);	-- NCO phase-shifted cos output
 	SIGNAL nco_cos			: STD_LOGIC_VECTOR(12 downto 0);	-- NCO phase-shifted sine output
 	
-	-- loop filter signals
-	signal lersig 						: signed(19 downto 0) := to_signed(0,20);
-	signal deriv						: signed(19 downto 0) := to_signed(0,20);
-	signal scaled_deriv 				: signed(19 downto 0) := to_signed(0,20);
-	signal scaled_filtered_ersig	: signed(19 downto 0) := to_signed(0,20);
+	-- frequency trackting loop filter signals
+	signal lersig 					: signed(19 downto 0) := to_signed(0,20);	-- latched error signal
+	signal deriv					: signed(19 downto 0) := to_signed(0,20);	-- derivative of error
+	signal scaled_deriv 			: signed(19 downto 0) := to_signed(0,20);	-- rescaled derivative
+	signal scaled_filtered_ersig	: signed(19 downto 0) := to_signed(0,20);	-- rescaled filtered P-D controller feedback signal
 	
 	
 	-- components
