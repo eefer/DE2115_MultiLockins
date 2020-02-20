@@ -44,3 +44,4 @@ cic_gain_controller.vhd.bak
 EightLockins.qsf.bak
 lia_core.vhd.bak
 qsys_system.BAK.qsys
+*.bak
